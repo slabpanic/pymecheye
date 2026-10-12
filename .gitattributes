@@ -1,0 +1,2 @@
+# Preserve third-party license notices byte for byte on Windows checkout.
+src/mecheye/licenses/** -text

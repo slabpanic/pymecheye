@@ -1,0 +1,50 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# pyenv
+.python-version
+
+# virtualenv
+.venv
+
+# IDE settings
+.vscode/
+.idea/
+
+# Local runtime data
+.history/
+.uv-cache/
+.tools/
+Log/
+Output/
+config/.env
+# Vendor SDK installations must remain external to this wrapper repository.
+src/sdk/
+
+# Agent settings
+.codex/
+.claude/
+.agents/
+AGENTS.md
+PLAN.md

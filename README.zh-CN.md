@@ -1,0 +1,284 @@
+# pymecheye
+
+[English](README.md)
+
+通过 [nanobind](https://nanobind.readthedocs.io/) 和厂商 C++ SDK 实现的高性能
+Mech-Eye 面阵 3D 相机 Python 绑定。
+
+pymecheye 不依赖厂商预编译的 Python SDK，而是在安装时为当前 CPython 版本和线程
+ABI 编译轻量原生绑定，避免受厂商 Python 扩展版本限制。同时提供相机生命周期管理、
+NumPy 数据采集、设备信息访问和错误处理等便利功能。Python 运行时只依赖 NumPy。
+
+安装的发行包名是 **pymecheye**，导入包名仍为 **mecheye**：
+
+```python
+from mecheye.area_scan_3d_camera import Camera
+```
+
+面阵相机接口以 **mecheyeapi 2.6.0** 的公开 Python API 为源码兼容目标：
+现有脚本保留 `mecheye` 导入和相机调用方式，安装依赖改为 `pymecheye`。
+不包含激光轮廓仪接口。同一环境只安装一个提供 `mecheye` 导入包的发行包。
+
+## 功能
+
+- 使用轻量 nanobind 绑定在 C++ 中完成原生采集和点云转换。
+- 阻塞 SDK 调用释放 Python 线程状态，相机状态和 SDK 调用使用显式锁，不依赖 GIL
+  保证安全，支持常规与 free-threaded CPython；不同相机实例的 SDK 调用也会串行执行。
+- 返回独立持有缓冲区的 NumPy 数组，再次采集或关闭相机不会使已有数组失效；
+  点云保留与图像对应的有组织像素网格。
+- 提供相机发现、连接、各种采集方式、帧容器、参数、配置集、点云处理和导出、
+  事件及手眼标定接口，保留 SDK 的错误状态返回方式。
+- 便利功能直接融入同一个 `Camera`，支持上下文管理和可选 IP 的延迟连接；
+   SDK 方法不会隐式重试。
+- 提供设备信息、相机内参、深度源 2D 曝光模式配置和 NumPy 灰度转换。
+
+本项目面向高效原生数据采集，尚未提供与绑定对比的性能测量。
+数组会复制到独立缓冲区，不直接暴露 SDK 帧内存。
+
+## 环境要求
+
+| 项目 | 支持范围 |
+| --- | --- |
+| 平台 | Linux、Windows，x86_64 |
+| Python | CPython 3.10+；free-threaded CPython 3.13+ |
+| 厂商 SDK | 单独安装的 Mech-Eye C++ SDK 2.6.0 |
+| Linux 构建环境 | 支持 C++17 的 GCC 或 Clang；glibc、libstdc++、libgcc、libgomp |
+| Windows 构建环境 | MSVC x64 C++17 工具链、Windows SDK、VC++ 2015-2022 x64 Redistributable |
+
+扩展按 Python 次版本和线程 ABI 分别编译，并非一个二进制文件适用于所有 Python。
+构建始终启用 nanobind 的 `FREE_THREADED` 选项，在 free-threaded 解释器上生效。
+后续 Python 版本的兼容性取决于 nanobind、NumPy 和编译器支持。
+暂不支持其他 SDK 版本、PyPy、ARM、macOS 或 MinGW。
+
+## 安装
+
+先安装厂商 C++ SDK。构建与运行时使用相同默认路径：
+
+| 平台 | SDK 根目录 | 所需文件 |
+| --- | --- | --- |
+| Linux | `/opt/mech-mind/mech-eye-sdk/` | `include/`、`lib/libMechEyeApi.so` |
+| Windows | `C:/Mech-Mind/Mech-Eye SDK-2.6.0/API/` | `include/`、`lib/MechEyeApi.lib`、`dll/MechEyeApi.dll` |
+
+自定义安装位置通过环境变量 `MECHEYE_SDK_ROOT` 指定，必须使用绝对路径：
+
+```bash
+# Linux
+export MECHEYE_SDK_ROOT=/absolute/path/to/mech-eye-sdk
+```
+
+```powershell
+# Windows PowerShell
+$env:MECHEYE_SDK_ROOT = 'C:\path\to\Mech-Eye SDK\API'
+```
+
+变量未设置或为空时使用当前平台默认路径；显式指定的路径无效时直接报错。
+头文件、链接库和运行库必须来自同一 SDK 安装。运行库的 SHA-256 必须与编译时一致。
+
+在使用本库的 uv 项目中执行：
+
+```bash
+uv add pymecheye
+```
+
+也可以直接从 Git 安装：
+
+```bash
+uv add git+https://github.com/slabpanic/pymecheye.git
+```
+
+uv 会记录依赖并在锁文件中固定 Git 提交。
+可使用 `--tag` 指定已发布的标签，或通过 `--rev` 指定提交。
+
+两种方式均采用普通安装。PyPI 只发布源码包时，uv 会自动解析构建依赖，
+用引用项目的 Python 和本地 C++ SDK 编译扩展；Git 安装也会从源码构建。
+厂商 C++ SDK 需要预先安装：uv 编译的是本项目的绑定，不是厂商 SDK 本身。
+uv 可能复用此前编译的缓存 wheel。使用自定义 SDK 路径时，构建和运行应用时都应保留环境变量。
+项目不会将厂商头文件、链接库或运行库复制到源码包或 wheel 中。
+
+引用本地源码目录时，也使用普通安装：
+
+```bash
+uv add ../pymecheye
+```
+
+也可在源码目录使用 pip 安装：
+
+```bash
+python -m pip install .
+```
+
+源码修改需要重新构建、安装后才会生效。SDK 文件更新后，清理此前编译的包，
+重新构建并重启 Python：
+
+```bash
+uv cache clean pymecheye
+uv sync --reinstall-package pymecheye
+```
+
+在本仓库内使用 `uv sync` 和 `uv run` 时，增加 `--no-editable`，确保项目本身也采用
+普通安装。Git 和 PyPI 依赖可能复用已编译的缓存 wheel，SDK 更新时清理包缓存可强制
+重新从源码构建。不同 Python 次版本、线程 ABI 和平台需要各自兼容的环境与构建。
+
+## API 兼容性
+
+| 模块 | API |
+| --- | --- |
+| `mecheye.area_scan_3d_camera` | 相机、元数据、帧、图像和点云容器、参数描述符、映射、变换、事件及手眼标定 |
+| `mecheye.shared` | ErrorStatus、公共数据类型、参数、配置集、版本与日志导出工具 |
+| `mecheye.area_scan_3d_camera_utils` | 打印和交互式设备选择工具，以及 `image_to_gray()` |
+
+方法保留原有签名和返回约定：`Camera.connect()` 返回 `ErrorStatus`；
+采集写入调用方提供的帧并返回 `ErrorStatus`；标量参数读取返回 `[status, value]`，
+结构化读取返回 `(status, value)`。SDK 错误码和说明原样传递，`disconnect()` 返回 `None`。
+
+兼容范围是 2.6.0 的面阵公开 Python API，不包含激光轮廓仪或 SWIG 实现细节。
+不提供直接 `this` 指针访问、其他 SWIG 扩展的指针互操作或 `__swig_destroy__`。
+原生对象由 Python 管理生命周期；`thisown` 是兼容属性，不能转移原生内存所有权。
+后续 SDK 版本新增的接口需要进一步适配。
+
+## 接口示例
+
+现有脚本保留以下调用方式：
+
+```python
+from mecheye.area_scan_3d_camera import Camera, Frame3D
+
+camera = Camera()
+try:
+    status = camera.connect("192.168.1.100")
+    if not status.is_ok():
+        raise RuntimeError(status.error_description)
+
+    frame = Frame3D()
+    status = camera.capture_3d(frame)
+    if not status.is_ok():
+        raise RuntimeError(status.error_description)
+
+    points = frame.get_untextured_point_cloud().data()
+finally:
+    camera.disconnect()
+```
+
+图像和点云访问方法返回独立 NumPy 副本，保持类型和布局：XYZ 为 `float32`，
+灰度和 BGR 为 `uint8`；纹理点云提供 `vertices()`、`colors()`，带法线的类型还提供
+`normals()`。为保持兼容，空数据访问返回 `np.zeros(1)`。
+
+`at()` 或索引返回的像素对象支持字段赋值。容器调整尺寸或释放后，已有像素引用会
+抛出 `ReferenceError`，避免访问已释放内存。相机、帧、参数和像素操作使用显式锁；
+SDK 对象的构造和销毁也在专用工作线程完成。
+
+## 集成便利功能
+
+NumPy 采集和上下文管理直接由 `Camera` 对象提供：
+
+```python
+from mecheye.area_scan_3d_camera import Camera
+
+with Camera("192.168.1.100") as camera:
+    camera.configure_depth_source_2d_exposure("flash")
+    image, points_mm = camera.capture_points(timeoutMs=10000)
+    device_info = camera.device_info
+    camera_parameters = camera.camera_parameters
+
+print(image.shape, image.dtype)
+print(points_mm.shape, points_mm.dtype)
+```
+
+`Camera()` 使用显式连接流程。提供可选 IP 时，进入上下文或第一次调用便利采集、
+配置方法时连接。导入包或构造相机不会连接设备，`close()` 是 `disconnect()` 的别名。
+
+`capture_points()` 组合 `capture_depth_source_2d_and_3d()`、点云映射、灰度转换与
+独立 NumPy 输出，返回 `uint8` 灰度图 `(h, w)` 和同网格上的 `float64` 有组织点云
+`(h, w, 3)`。坐标单位为毫米，无效点为 `NaN`；成功或失败后均恢复调用前选定的
+点云单位。SDK 要求这种采集使用带外置 2D 相机的型号。
+
+`device_info` 与 `camera_parameters` 查询已连接相机并返回普通 Python 字典。
+曝光配置接受 `"timed"` 或 `"flash"`，并返回从当前配置集读回的实际模式。
+调用方需要自行同步对返回数组的并发写入和尺寸调整。
+
+## 错误、事件与工具函数
+
+SDK 方法返回 `ErrorStatus`。便利方法失败时抛出 `MechEyeConnectionError`、
+`MechEyeConfigurationError`、`MechEyeCaptureError` 或 `MechEyePointCloudError`，
+均继承 `MechEyeError`，可从 `mecheye.shared` 或包根目录导入。
+
+继承 `EventCallbackBase` 并通过 `CameraEvent` 注册回调。
+事件与负载先复制再交给 Python，采集期间回调仍能读取这些数据。
+回调异常保留在 `camera.pop_callback_errors()` 中，不打印或丢弃。
+回调中调用其他 SDK 操作时，会等待正在进行的 SDK 操作完成。
+
+Python 层不添加自动日志。Linux 下在专用工作线程中关闭 SDK 标准输出，
+不重定向宿主进程的输出流；厂商 SDK 仍可能生成诊断文件。
+`show_error()` 与 `print_*()` 仅在调用方显式调用时打印，交互式工具也只在
+显式调用时请求输入。
+
+```python
+from mecheye.area_scan_3d_camera_utils import image_to_gray
+
+gray = image_to_gray(bgr_image)
+```
+
+该工具接受灰度、BGR 或 BGRA 数组，返回独立数组并忽略 alpha。
+彩色输入支持 `uint8`、`uint16` 和 `float32`。
+
+示例脚本只输出数组形状、类型和有效点数：
+
+```bash
+uv run --no-editable python examples/capture.py 192.168.1.100
+```
+
+该命令会连接相机，不打开 GUI。项目的 Python 依赖不包含 Pillow、OpenCV 或 Open3D。
+
+## 开发
+
+```bash
+uv sync --no-editable
+uv lock --check
+uv run --no-editable black --check src/mecheye/*.py examples/*.py tests/*.py
+uv run --no-editable python -m compileall -q src/mecheye
+uv run --no-editable python -c "import mecheye"
+uv run --no-editable python -m unittest discover -s tests
+uv pip check
+uv build --sdist
+```
+
+格式、编译、导入和依赖检查不会连接相机。
+Windows 编译和加载需要在实际 MSVC 环境验证。
+
+## 源码发布
+
+向 PyPI 发布源码包，让安装过程使用引用项目的 Python ABI 和本地 SDK 进行编译：
+
+```bash
+uv build --sdist
+```
+
+上传生成的 `dist/pymecheye-<version>.tar.gz`。本地构建的 wheel 会记录构建机器上
+SDK 运行库的精确哈希，适用于 SDK 匹配的环境，不应作为通用 PyPI 二进制发行包上传。
+只发布源码包且没有可复用的已编译缓存时，`uv add pymecheye` 会使用安装者本机的 SDK
+自动编译。如果索引中也提供了 wheel，使用者可以显式选择从源码安装：
+
+```bash
+uv add --no-binary-package pymecheye pymecheye
+```
+
+也可以在引用项目中持久配置：
+
+```toml
+[tool.uv]
+no-binary-package = ["pymecheye"]
+```
+
+这些 uv 安装策略由引用项目配置，不会通过 pymecheye 的发行元数据强制传递给下游。
+
+## 许可证
+
+本项目自有代码与文档采用 [MIT 许可证](LICENSE)。
+第三方代码保留原有条款，发行包包含 MIT 与 BSD 3-Clause 许可说明。
+
+## 第三方说明
+
+单独安装的 Mech-Eye SDK 受厂商协议约束。
+编入扩展的 nanobind、robin-map 和 SDK 头文件代码的许可说明保留在
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) 与
+[`src/mecheye/licenses/`](src/mecheye/licenses/) 中。

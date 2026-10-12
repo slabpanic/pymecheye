@@ -1,0 +1,81 @@
+[build-system]
+requires = ["scikit-build-core>=0.11,<0.12", "nanobind>=3.1,<4"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "pymecheye"
+version = "0.1.0"
+description = "High-performance nanobind bindings and NumPy utilities for Mech-Eye 3D cameras, compatible with mecheyeapi"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT AND BSD-3-Clause"
+keywords = ["mecheye", "nanobind", "3d-camera", "point-cloud", "numpy"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: C++",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: Scientific/Engineering :: Image Processing",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = ["numpy>=2.0"]
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md", "src/mecheye/licenses/*/*"]
+
+[project.urls]
+Homepage = "https://github.com/slabpanic/pymecheye"
+Repository = "https://github.com/slabpanic/pymecheye"
+Issues = "https://github.com/slabpanic/pymecheye/issues"
+
+[dependency-groups]
+dev = ["black>=26.5.1"]
+
+[tool.scikit-build]
+minimum-version = "build-system.requires"
+wheel.packages = ["src/mecheye"]
+wheel.exclude = ["**/__pycache__/**", "mecheye/*.cpp", "mecheye/*.h"]
+sdist.include = [
+    "CMakeLists.txt",
+    "cmake/**",
+    "src/mecheye/*.py",
+    "src/mecheye/*.pyi",
+    "src/mecheye/*.cpp",
+    "src/mecheye/*.h",
+    "src/mecheye/licenses/*/*",
+    "README.md",
+    "README.zh-CN.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md",
+    "examples/*.py",
+    "tests/*.py",
+    "tests/*.json",
+    ".gitattributes",
+]
+sdist.exclude = ["src/sdk/**", "**/__pycache__/**", "**/*.pyc"]
+install.strip = false
+
+[tool.uv]
+cache-keys = [
+    { file = "pyproject.toml" },
+    { file = "CMakeLists.txt" },
+    { file = "cmake/**" },
+    { file = "src/mecheye/*.py" },
+    { file = "src/mecheye/*.pyi" },
+    { file = "src/mecheye/*.cpp" },
+    { file = "src/mecheye/*.h" },
+    { file = "src/mecheye/licenses/*/*" },
+    { file = "README.md" },
+    { env = "MECHEYE_SDK_ROOT" },
+]
+
+[tool.black]
+target-version = ["py310"]
