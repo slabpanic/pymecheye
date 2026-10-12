@@ -322,7 +322,7 @@ To run Python branch coverage locally:
 ```bash
 uv sync --locked --no-editable --group test
 uv run --no-sync coverage run -m unittest discover -s tests
-uv run --no-sync coverage report --fail-under=75
+uv run --no-sync coverage report --fail-under=95
 uv run --no-sync coverage xml
 ```
 
@@ -340,7 +340,7 @@ uv run --no-sync gcovr --root . --filter 'src/mecheye/' --merge-lines \
 Native coverage measures this repository's C++ code, excluding vendor binaries
 and nanobind implementation code. Restore a regular build with
 `uv sync --locked --no-editable --reinstall-package pymecheye` after profiling.
-CI requires at least 75% Python coverage and 65% native line coverage, and retains
+CI requires at least 95% Python coverage and 80% native line coverage, and retains
 both XML reports as workflow artifacts. Codecov tracks Python and native reports with separate flags.
 
 Enable this repository in [Codecov](https://app.codecov.io/gh/slabpanic/pymecheye)
@@ -353,11 +353,41 @@ requests, and manual workflow runs.
 
 ## Source releases
 
-Publish the source distribution to PyPI so installation compiles against the
-consumer's Python ABI and local SDK:
+Pushing a version tag such as `v0.1.0` runs
+[release.yml](https://github.com/slabpanic/pymecheye/blob/main/.github/workflows/release.yml).
+The workflow requires the tag to match the normalized `project.version` in
+`pyproject.toml`, validates the source archive and PyPI metadata, and runs the
+complete CI workflow before uploading the `.tar.gz` to PyPI. Release tools are
+installed separately, so building the source archive does not require the SDK.
+
+To enable automatic publishing once:
+
+1. Create a GitHub environment named `pypi` under the repository's Settings → Environments.
+2. In your PyPI account's Publishing settings, add a pending GitHub Trusted Publisher
+   with project name `pymecheye`, owner `slabpanic`, repository `pymecheye`, workflow
+   filename `release.yml`, and environment `pypi`. For an existing PyPI project,
+   add the same publisher in that project's Publishing settings.
+
+The publisher uses OIDC; no PyPI API token is needed in GitHub secrets. See the
+[PyPI Trusted Publishing guide](https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc/).
+
+For each release, update `project.version`, run `uv lock`, commit the release
+changes, then push the matching tag:
 
 ```bash
-uv build --sdist
+git tag -a v0.1.0 -m "Release 0.1.0"
+git push origin v0.1.0
+```
+
+Use normalized versions for prereleases as well, for example `0.2.0rc1` with
+`v0.2.0rc1`. A tag mismatch or failed build, metadata, test, coverage, or
+documentation check prevents uploading. Existing tags do not trigger publication
+until pushed; the version is never changed automatically by the workflow.
+
+To build a source archive locally:
+
+```bash
+uv build --sdist --no-sources
 ```
 
 Upload the resulting `dist/pymecheye-<version>.tar.gz`. Locally built wheels record

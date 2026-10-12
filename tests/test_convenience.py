@@ -218,3 +218,57 @@ class CaptureCleanupTests(unittest.TestCase):
         np.testing.assert_array_equal(points[1, 1, :2], [10, 20])
         self.assertEqual(points.shape, (2, 2, 3))
         self.assert_units_restored()
+
+    def test_color_capture_returns_grayscale_and_owned_point_arrays(self):
+        color = a.Color2DImage()
+        color.resize(2, 2)
+        for index in range(4):
+            color[index].b, color[index].g, color[index].r = 0, 0, 255
+        frame_type = a.Frame2DAnd3D
+
+        def frame():
+            result = frame_type()
+            image = result.frame_2d()
+            image.color_type = lambda: a.ColorTypeOf2DCamera_Color
+            image.get_color_image = lambda: color
+            result.frame_2d = lambda: image
+            return result
+
+        with patch.object(a, "Frame2DAnd3D", side_effect=frame):
+            gray, points = self.camera.capture_points()
+        np.testing.assert_array_equal(gray, np.full((2, 2), 76, dtype=np.uint8))
+        self.assertEqual(points.shape, (2, 2, 3))
+        color.release()
+        self.assertTrue(gray.flags.c_contiguous)
+        np.testing.assert_array_equal(gray, 76)
+        self.assert_units_restored()
+
+    def test_empty_depth_restores_units(self):
+        frame_type = a.Frame2DAnd3D
+
+        def frame():
+            result = frame_type()
+            result.frame_3d().get_depth_map().release()
+            return result
+
+        with patch.object(a, "Frame2DAnd3D", side_effect=frame):
+            with self.assertRaisesRegex(s.MechEyeCaptureError, "depth map is empty"):
+                self.camera.capture_points()
+        self.assert_units_restored()
+
+    def test_invalid_mapped_grids_restore_units(self):
+        for size in (None, (3, 2)):
+
+            def mapping(depth, mask, intrinsics, cloud):
+                if size is not None:
+                    cloud.resize(*size)
+                return s.ErrorStatus()
+
+            with (
+                self.subTest(size=size),
+                patch.object(a, "get_point_cloud_after_mapping", side_effect=mapping),
+            ):
+                with self.assertRaisesRegex(s.MechEyePointCloudError, "does not match"):
+                    self.camera.capture_points()
+            self.assert_units_restored()
+            self.set_unit.reset_mock()

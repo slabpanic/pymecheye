@@ -91,7 +91,7 @@ Tests and coverage
    uv sync --locked --no-editable --group test
    uv run --no-sync python -B -m unittest discover -s tests
    uv run --no-sync coverage run -m unittest discover -s tests
-   uv run --no-sync coverage report --fail-under=75
+   uv run --no-sync coverage report --fail-under=95
 
 Tests cover SDK status and data operations with native containers and simulated
 device responses. They do not require a camera. CI tests regular and free-threaded

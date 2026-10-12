@@ -187,3 +187,54 @@ class SdkValidationTests(unittest.TestCase):
         ):
             sdk.write_build_record(output, sys.platform)
         self.assertIsNone(json.loads(output.read_text())["python_soabi"])
+
+    def test_unknown_sdk_platform_and_runtime_target_are_rejected(self):
+        with (
+            patch.dict(os.environ, {"MECHEYE_SDK_ROOT": ""}),
+            patch.object(sdk, "sys", SimpleNamespace(platform="darwin")),
+        ):
+            with self.assertRaisesRegex(ImportError, "requires Linux/Windows"):
+                sdk.sdk_root()
+        runtime = self.root / "runtime"
+        runtime.write_bytes(runtime_bytes("linux"))
+        with self.assertRaisesRegex(ImportError, "not a darwin"):
+            sdk.validate_runtime(runtime, "darwin")
+
+    def test_windows_build_record_requires_import_library_and_excludes_profiler(self):
+        runtime = self.root / "dll/MechEyeApi.dll"
+        runtime.parent.mkdir()
+        runtime.write_bytes(runtime_bytes("win32"))
+        for relative in (
+            "include/area_scan_3d_camera/Camera.h",
+            "include/area_scan_3d_camera/Mapping2DToDepth.h",
+            "include/Version.h",
+            "include/profiler/Excluded.h",
+        ):
+            path = self.root / relative
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(relative.encode())
+        fake_sys = SimpleNamespace(
+            platform="win32",
+            maxsize=sys.maxsize,
+            implementation=sys.implementation,
+            version_info=sys.version_info,
+        )
+        output = self.root / "runtime.json"
+        with (
+            patch.object(sdk, "sys", fake_sys),
+            patch.dict(os.environ, {"MECHEYE_SDK_ROOT": str(self.root)}),
+        ):
+            with self.assertRaisesRegex(ImportError, "MechEyeApi.lib"):
+                sdk.write_build_record(output, "win32")
+            self.assertFalse(output.exists())
+            library = self.root / "lib/MechEyeApi.lib"
+            library.parent.mkdir()
+            library.write_bytes(b"import library")
+            sdk.write_build_record(output, "win32")
+        record = json.loads(output.read_text())
+        self.assertEqual(record["platform"], "win32")
+        self.assertEqual(record["runtime"], "MechEyeApi.dll")
+        self.assertEqual(
+            record["build_inputs"]["lib/MechEyeApi.lib"], sdk.file_sha256(library)
+        )
+        self.assertNotIn("include/profiler/Excluded.h", record["build_inputs"])

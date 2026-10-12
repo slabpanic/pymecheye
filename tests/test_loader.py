@@ -7,6 +7,7 @@ from pathlib import Path
 import sys
 import sysconfig
 import tempfile
+from types import SimpleNamespace
 import unittest
 from unittest.mock import Mock, patch
 
@@ -172,3 +173,64 @@ class RuntimeLoaderTests(unittest.TestCase):
         else:
             add_directory.assert_not_called()
         directory_handle.close.assert_not_called()
+
+    def test_windows_loader_retains_directory_and_cleans_it_up_on_failure(self):
+        record = dict(self.record, platform="win32", runtime="MechEyeApi.dll")
+        self.manifest.write_text(json.dumps(record))
+        directory, handle = Mock(), object()
+        with (
+            patch.object(mecheye, "sys", SimpleNamespace(platform="win32")),
+            patch.object(
+                mecheye.os, "add_dll_directory", return_value=directory, create=True
+            ) as search,
+            patch.object(
+                mecheye.ctypes, "WinDLL", return_value=handle, create=True
+            ) as loader,
+        ):
+            mecheye._load_native_sdk()
+            search.assert_called_once_with(str(self.runtime.parent))
+            loader.assert_called_once_with(str(self.runtime))
+            self.assertIs(mecheye._MECHEYE_RUNTIME_HANDLE, handle)
+            self.assertIs(mecheye._MECHEYE_DLL_DIRECTORY_HANDLE, directory)
+            mecheye._load_native_sdk()
+            loader.assert_called_once()
+            directory.close.assert_not_called()
+        with (
+            patch.object(mecheye, "_MECHEYE_RUNTIME_PATH", None),
+            patch.object(mecheye, "_MECHEYE_RUNTIME_HANDLE", None),
+            patch.object(mecheye, "_MECHEYE_DLL_DIRECTORY_HANDLE", None),
+            patch.object(mecheye, "sys", SimpleNamespace(platform="win32")),
+            patch.object(
+                mecheye.os, "add_dll_directory", return_value=directory, create=True
+            ),
+            patch.object(
+                mecheye.ctypes,
+                "WinDLL",
+                side_effect=OSError("dependency unavailable"),
+                create=True,
+            ),
+        ):
+            with self.assertRaisesRegex(ImportError, "dependency unavailable"):
+                mecheye._load_native_sdk()
+            directory.close.assert_called_once_with()
+            self.assertIsNone(mecheye._MECHEYE_RUNTIME_HANDLE)
+            self.assertIsNone(mecheye._MECHEYE_DLL_DIRECTORY_HANDLE)
+
+    def test_missing_spec_origin_or_extension_suffix_rejects_binding(self):
+        with patch.object(
+            mecheye.importlib.util,
+            "find_spec",
+            return_value=SimpleNamespace(origin=None),
+        ):
+            with self.assertRaisesRegex(ImportError, "not built"):
+                mecheye._load_native_sdk()
+        get_config_var = mecheye.sysconfig.get_config_var
+        with patch.object(
+            mecheye.sysconfig,
+            "get_config_var",
+            side_effect=lambda name: (
+                None if name == "EXT_SUFFIX" else get_config_var(name)
+            ),
+        ):
+            with self.assertRaisesRegex(ImportError, "ABI mismatch"):
+                mecheye._load_native_sdk()

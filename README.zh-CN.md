@@ -284,7 +284,7 @@ Runner 提供的 WiX 工具与 MSI 管理映像。CI 不执行真实相机采集
 ```bash
 uv sync --locked --no-editable --group test
 uv run --no-sync coverage run -m unittest discover -s tests
-uv run --no-sync coverage report --fail-under=75
+uv run --no-sync coverage report --fail-under=95
 uv run --no-sync coverage xml
 ```
 
@@ -301,7 +301,7 @@ uv run --no-sync gcovr --root . --filter 'src/mecheye/' --merge-lines \
 
 原生覆盖率仅统计本仓库的 C++ 代码，不包含厂商二进制或 nanobind 实现。
 完成测量后使用 `uv sync --locked --no-editable --reinstall-package pymecheye` 恢复普通构建。
-CI 要求 Python 覆盖率至少 75%、C++ 行覆盖率至少 65%，将两份 XML 报告保存为
+CI 要求 Python 覆盖率至少 95%、C++ 行覆盖率至少 80%，将两份 XML 报告保存为
 工作流产物，并以独立 flag 上传到 Codecov。
 
 在 [Codecov](https://app.codecov.io/gh/slabpanic/pymecheye) 中启用仓库并安装 GitHub App，
@@ -311,10 +311,38 @@ CI 要求 Python 覆盖率至少 75%、C++ 行覆盖率至少 65%，将两份 XM
 
 ## 源码发布
 
-向 PyPI 发布源码包，让安装过程使用引用项目的 Python ABI 和本地 SDK 进行编译：
+推送 `v0.1.0` 等版本 tag 会触发
+[release.yml](https://github.com/slabpanic/pymecheye/blob/main/.github/workflows/release.yml)。
+工作流检查 tag 与 `pyproject.toml` 中规范化的 `project.version` 是否一致，校验源码包和
+PyPI 元数据，并运行完整 CI；全部通过后自动向 PyPI 上传 `.tar.gz`。发布工具单独安装，
+构建源码包不需要 SDK。
+
+首次启用需要完成以下配置：
+
+1. 在 GitHub 仓库的 Settings → Environments 中创建名为 `pypi` 的环境。
+2. 在 PyPI 账户的 Publishing 设置中添加待创建项目的 GitHub Trusted Publisher：
+   项目名 `pymecheye`、所有者 `slabpanic`、仓库 `pymecheye`、workflow 文件名
+   `release.yml`、环境名 `pypi`。如果 PyPI 项目已经存在，在该项目的 Publishing 设置中
+   添加相同配置。
+
+发布使用 OIDC，无需在 GitHub secrets 中配置 PyPI API Token。配置步骤见
+[PyPI Trusted Publishing 文档](https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc/)。
+
+每次发布先更新 `project.version`，运行 `uv lock` 并提交发布改动，再推送匹配的 tag：
 
 ```bash
-uv build --sdist
+git tag -a v0.1.0 -m "Release 0.1.0"
+git push origin v0.1.0
+```
+
+预发布版本也使用规范形式，例如 `0.2.0rc1` 对应 `v0.2.0rc1`。版本不匹配，或构建、元数据、
+测试、覆盖率、文档检查失败时，不会上传。仅在本地创建 tag 不会触发发布；工作流不会自动
+修改版本号。
+
+本地构建源码包：
+
+```bash
+uv build --sdist --no-sources
 ```
 
 上传生成的 `dist/pymecheye-<version>.tar.gz`。本地构建的 wheel 会记录构建机器上

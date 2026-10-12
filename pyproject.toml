@@ -40,6 +40,7 @@ Documentation = "https://pymecheye.readthedocs.io/en/latest/"
 [dependency-groups]
 dev = ["black>=26.5.1"]
 test = ["coverage[toml]>=7.13,<8"]
+release = ["packaging>=24,<27", "twine>=6,<7"]
 docs = ["sphinx>=7.4,<9", "furo>=2024.8.6,<2027"]
 native-coverage = [
     "gcovr>=8.6,<9",

@@ -110,3 +110,80 @@ class ContainerTests(unittest.TestCase):
                 image[index]
         with self.assertRaises(TypeError):
             image[0.5]
+
+
+class ContainerBoundaryTests(unittest.TestCase):
+    def test_vector_single_insert_erase_and_slice_adapters(self):
+        vector = s.MechEyeVectorString(["a", "c"])
+        inserted = vector.insert(1, "b")
+        self.assertEqual(inserted.value(), "b")
+        self.assertEqual(vector.erase(inserted).value(), "c")
+        self.assertEqual(list(vector.__getslice__(0, 2)), ["a", "c"])
+        vector.__setslice__(1, 2, ["b", "c"])
+        vector.__delslice__(0, 1)
+        self.assertEqual(list(vector), ["b", "c"])
+        vector.resize(1)
+        self.assertEqual(list(vector), ["b"])
+        self.assertIs(vector.get_allocator(), str)
+        with self.assertRaises(TypeError):
+            s.MechEyeVectorString([], [])
+        for args in ((), (1, 2, 3)):
+            with self.assertRaises(TypeError):
+                vector.insert(0, *args)
+
+    def test_iterator_advance_comparison_and_reverse_boundaries(self):
+        vector = s.MechEyeVectorString(["a", "b", "c"])
+        iterator = vector.begin()
+        self.assertIs(iterator.advance(2), iterator)
+        self.assertEqual(iterator.value(), "c")
+        self.assertNotEqual(iterator, vector.begin())
+        self.assertEqual(iterator.distance(vector.end()), 1)
+        self.assertEqual(iterator.decr(2).value(), "a")
+        self.assertEqual(vector.rbegin().next(), "c")
+        with self.assertRaises(StopIteration):
+            vector.rend().value()
+        vector.clear()
+        for method in (vector.front, vector.back, vector.pop_back):
+            with self.assertRaises(IndexError):
+                method()
+
+    def test_map_snapshot_iterators_and_swap_do_not_share_contents(self):
+        mapping = s.MechEyeMapStringInt()
+        mapping["b"], mapping["a"] = 2, 1
+        keys, values, items = (
+            mapping.iterkeys(),
+            mapping.itervalues(),
+            mapping.iteritems(),
+        )
+        mapping["c"] = 3
+        self.assertEqual(list(keys), ["a", "b"])
+        self.assertEqual(list(values), [1, 2])
+        self.assertEqual(list(items), [("a", 1), ("b", 2)])
+        self.assertEqual(list(mapping.rbegin()), [("c", 3), ("b", 2), ("a", 1)])
+        with self.assertRaises(StopIteration):
+            mapping.rend().value()
+        self.assertEqual(mapping.size(), 3)
+        self.assertTrue(mapping.has_key("a"))
+        self.assertEqual(mapping.count("a"), 1)
+        self.assertEqual(mapping.count("missing"), 0)
+        self.assertIs(mapping.get_allocator(), tuple)
+        other = s.MechEyeMapStringInt({"z": 9})
+        mapping.swap(other)
+        self.assertEqual(mapping.asdict(), {"z": 9})
+        self.assertEqual(other.keys(), ["a", "b", "c"])
+        other.erase(other.find("b"))
+        other.erase(other.begin())
+        self.assertEqual(other.asdict(), {"c": 3})
+
+    def test_wrapped_double_list_converts_values_without_aliasing_input(self):
+        values = s.WrappedDoubleList()
+        source = ["1.25", 2]
+        values.values = source
+        source[0] = 99
+        values.push_back("3.5")
+        self.assertIs(values.values, values)
+        self.assertEqual(values, [1.25, 2.0, 3.5])
+        self.assertTrue(all(isinstance(value, float) for value in values))
+        with self.assertRaises(ValueError):
+            values.push_back("invalid")
+        self.assertEqual(values, [1.25, 2.0, 3.5])

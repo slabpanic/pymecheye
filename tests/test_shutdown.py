@@ -40,12 +40,9 @@ class ProcessShutdownTests(unittest.TestCase):
         # Run the SDK/mocking interactions in a child so teardown failures are observable.
         # Exclude this module to avoid recursively spawning the shutdown tests.
         modules = [
-            "test_camera",
-            "test_containers",
-            "test_convenience",
-            "test_loader",
-            "test_sdk",
-            "test_utils",
+            path.stem
+            for path in sorted(Path(__file__).resolve().parent.glob("test_*.py"))
+            if path.stem != "test_shutdown"
         ]
         result = subprocess.run(
             [sys.executable, "-B", "-m", "unittest", *modules],

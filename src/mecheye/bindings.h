@@ -14,6 +14,9 @@ template <typename T> struct NativeFrame {
     NativeFrame() { initialize(nullptr); }
     explicit NativeFrame(const T &other) { initialize(&other); }
     NativeFrame(const NativeFrame &other) { initialize(other.value.get()); }
+    // Future results move while the caller has released its Python thread state.
+    NativeFrame(NativeFrame &&other) noexcept = default;
+    NativeFrame &operator=(NativeFrame &&other) noexcept = default;
 
   private:
     void initialize(const T *other) {
