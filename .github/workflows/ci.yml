@@ -38,14 +38,20 @@ jobs:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           persist-credentials: false
-      - uses: astral-sh/setup-uv@d0d8abe699bfb85fec6de9f7adb5ae17292296ff # v6
+      - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
         with:
           python-version: ${{ matrix.python }}
       - name: Set up MSVC
         if: runner.os == 'Windows'
-        uses: ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756 # v1
-        with:
-          arch: x64
+        shell: pwsh
+        run: |
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          $vsPath = & $vswhere -latest -products '*' -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
+          if (-not $vsPath) { throw "MSVC x64 build tools were not found" }
+          & "$vsPath\Common7\Tools\Launch-VsDevShell.ps1" -Arch amd64 -HostArch amd64 -SkipAutomaticLocation
+          foreach ($name in @('PATH', 'INCLUDE', 'LIB', 'LIBPATH')) {
+            "$name=$([Environment]::GetEnvironmentVariable($name))" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+          }
       - name: Set up external SDK
         shell: bash
         run: uv run --no-project python .github/scripts/setup_sdk.py --destination "$RUNNER_TEMP/mech-eye-sdk"
@@ -60,6 +66,7 @@ jobs:
         shell: bash
         run: |
           uv build --sdist
+          uv run --no-sync python .github/scripts/check_sdist.py dist/*.tar.gz
           uv pip install --force-reinstall --no-deps dist/*.tar.gz
       - name: Run unit tests
         run: uv run --no-sync python -B -m unittest discover -s tests -v
@@ -75,7 +82,7 @@ jobs:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           persist-credentials: false
-      - uses: astral-sh/setup-uv@d0d8abe699bfb85fec6de9f7adb5ae17292296ff # v6
+      - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
         with:
           python-version: "3.14"
       - name: Set up external SDK
@@ -99,7 +106,7 @@ jobs:
           --xml-pretty --output coverage-native.xml --print-summary --fail-under-line=65 build/coverage
       - name: Save coverage reports
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: coverage-reports
           path: coverage-*.xml
@@ -108,23 +115,25 @@ jobs:
         if: >-
           success() && (github.event_name != 'pull_request' ||
           github.event.pull_request.head.repo.full_name == github.repository)
-        uses: codecov/codecov-action@04b047e8bb82a0c002c8312c1c880fbc6a999d45 # v5
+        uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5 # v7.1.1
         with:
           use_oidc: true
           files: coverage-python.xml
           flags: python
           disable_search: true
+          plugins: noop
           fail_ci_if_error: true
       - name: Upload native coverage to Codecov
         if: >-
           success() && (github.event_name != 'pull_request' ||
           github.event.pull_request.head.repo.full_name == github.repository)
-        uses: codecov/codecov-action@04b047e8bb82a0c002c8312c1c880fbc6a999d45 # v5
+        uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5 # v7.1.1
         with:
           use_oidc: true
           files: coverage-native.xml
           flags: native
           disable_search: true
+          plugins: noop
           fail_ci_if_error: true
 
   docs:
@@ -135,19 +144,27 @@ jobs:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           persist-credentials: false
-      - uses: astral-sh/setup-uv@d0d8abe699bfb85fec6de9f7adb5ae17292296ff # v6
+      - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
         with:
           python-version: "3.12"
       - name: Set up external SDK
         run: uv run --no-project python .github/scripts/setup_sdk.py --destination "$RUNNER_TEMP/mech-eye-sdk"
       - name: Install binding and documentation dependencies
         run: uv sync --locked --no-editable --no-default-groups --group docs
+      - name: Check Chinese translation catalogs
+        run: |
+          uv run --no-sync sphinx-build -n -W --keep-going -b gettext docs docs/_build/gettext
+          uv run --no-sync python docs/_ext/check_translations.py docs/_build/gettext
       - name: Build documentation with warnings as errors
-        run: uv run --no-sync sphinx-build -n -W --keep-going -b html docs docs/_build/html
+        run: |
+          uv run --no-sync sphinx-build -n -W --keep-going -b html -D language=en docs docs/_build/en
+          uv run --no-sync sphinx-build -n -W --keep-going -b html -D language=zh_CN docs docs/_build/zh_CN
       - name: Save documentation preview
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: sphinx-html
-          path: docs/_build/html
+          path: |
+            docs/_build/en
+            docs/_build/zh_CN
           if-no-files-found: warn

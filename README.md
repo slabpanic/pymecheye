@@ -267,17 +267,19 @@ dependencies of this project.
 
 ## Documentation
 
-[Read the documentation](https://pymecheye.readthedocs.io/en/latest/) for setup,
+Read the [English documentation](https://pymecheye.readthedocs.io/en/latest/) or
+[简体中文文档](https://pymecheye.readthedocs.io/zh-cn/latest/) for setup,
 camera workflows, and API reference pages generated from the installed binding's
 docstrings. To build the same documentation locally with an installed C++ SDK:
 
 ```bash
 uv sync --locked --no-editable --group docs
-uv run --no-sync sphinx-build -n -W --keep-going -b html docs docs/_build/html
+uv run --no-sync sphinx-build -n -W --keep-going -b html -D language=en docs docs/_build/en
+uv run --no-sync sphinx-build -n -W --keep-going -b html -D language=zh_CN docs docs/_build/zh_CN
 ```
 
-Open `docs/_build/html/index.html`. The build checks public docstrings and treats
-warnings and broken cross-references as errors. Generated API pages and HTML are
+Open `docs/_build/en/index.html` or `docs/_build/zh_CN/index.html`. The build
+checks public docstrings and treats warnings and broken cross-references as errors. Generated API pages and HTML are
 ignored by Git. GitHub Actions also builds the documentation and saves an HTML
 preview artifact.
 
@@ -286,8 +288,10 @@ external SDK, compiles the binding, and builds with the locked documentation
 dependencies. To activate publishing, import `slabpanic/pymecheye` into Read the
 Docs with the project slug `pymecheye`, authorize its GitHub App, and use `main`
 as the default branch. Subsequent pushes trigger the hosted build automatically;
-activate release-tag versions to publish stable documentation. No Read the Docs
-token is needed in GitHub Actions. The hosted URL becomes available after the
+activate release-tag versions to publish stable documentation. Import the same
+repository as `pymecheye-zh-cn` with Simplified Chinese selected, and add it under
+the parent project's Translations settings to publish `/zh-cn/` documentation.
+No Read the Docs token is needed in GitHub Actions. The hosted URL becomes available after the
 project is imported and its first build succeeds. See
 [docs/development.rst](docs/development.rst) for the complete setup.
 

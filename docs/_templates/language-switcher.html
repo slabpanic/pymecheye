@@ -1,0 +1,8 @@
+<nav class="sidebar-tree" aria-label="{{ language_title }}">
+  <p class="caption"><span class="caption-text">{{ language_title }}</span></p>
+  <ul>
+    {% for locale, label, url, selected in documentation_languages %}
+    <li><a href="{{ url }}" hreflang="{{ locale }}"{% if selected %} aria-current="page"{% endif %}>{{ label }}</a></li>
+    {% endfor %}
+  </ul>
+</nav>

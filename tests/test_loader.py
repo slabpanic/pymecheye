@@ -94,6 +94,27 @@ class RuntimeLoaderTests(unittest.TestCase):
                 with self.assertRaisesRegex(ImportError, "does not match"):
                     mecheye._load_native_sdk()
 
+    def test_missing_sysconfig_soabi_is_supported_without_relaxing_extension_checks(
+        self,
+    ):
+        get_config_var = mecheye.sysconfig.get_config_var
+        record = dict(self.record, python_soabi=None)
+        self.manifest.write_text(json.dumps(record))
+        loader = "WinDLL" if sys.platform == "win32" else "CDLL"
+        with (
+            patch.object(
+                mecheye.sysconfig,
+                "get_config_var",
+                side_effect=lambda name: (
+                    None if name == "SOABI" else get_config_var(name)
+                ),
+            ),
+            patch.object(mecheye.ctypes, loader) as load,
+            patch.object(mecheye.os, "add_dll_directory", create=True),
+        ):
+            mecheye._load_native_sdk()
+            load.assert_called_once()
+
     def test_runtime_checksum_mismatch_is_rejected(self):
         with patch.object(mecheye, "file_sha256", return_value="different-digest"):
             with self.assertRaisesRegex(ImportError, "SHA-256 does not match"):

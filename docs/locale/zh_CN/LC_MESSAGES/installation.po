@@ -1,0 +1,132 @@
+# Simplified Chinese translations for pymecheye.
+# Copyright (C) 2026 pymecheye contributors
+# Distributed under the MIT license; see LICENSE.
+# pymecheye contributors, 2026.
+msgid ""
+msgstr ""
+"Project-Id-Version: pymecheye 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/slabpanic/pymecheye/issues\n"
+"POT-Creation-Date: 2026-10-12 21:21+0800\n"
+"PO-Revision-Date: 2026-10-12 21:27+0800\n"
+"Last-Translator: pymecheye contributors\n"
+"Language: zh_CN\n"
+"Language-Team: Simplified Chinese\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: docs/installation.rst:2
+msgid "Installation"
+msgstr "安装"
+
+#: docs/installation.rst:5
+msgid "Requirements"
+msgstr "环境要求"
+
+#: docs/installation.rst:7
+msgid "Linux or Windows on x86_64."
+msgstr "x86_64 架构的 Linux 或 Windows。"
+
+#: docs/installation.rst:8
+msgid "CPython 3.10 or newer; free-threaded CPython 3.13 or newer is supported."
+msgstr "CPython 3.10 或更新版本；支持 free-threaded CPython 3.13 或更新版本。"
+
+#: docs/installation.rst:9
+msgid "The separately installed Mech-Eye C++ SDK 2.6.0."
+msgstr "单独安装的 Mech-Eye C++ SDK 2.6.0。"
+
+#: docs/installation.rst:10
+msgid "A C++17 toolchain: GCC/Clang on Linux, or MSVC x64 on Windows."
+msgstr "C++17 工具链：Linux 使用 GCC/Clang，Windows 使用 MSVC x64。"
+
+#: docs/installation.rst:12
+msgid ""
+"The SDK is available from the `Mech-Mind download center <https://downloads.mech-"
+"mind.com/?tab=tab-sdk>`_. SDK files are not included in the Python distribution. The "
+"Python extension uses the regular CPython ABI, so it is rebuilt for each Python minor"
+" version and threading ABI."
+msgstr ""
+"SDK 可从 `Mech-Mind download center <https://downloads.mech-mind.com/?tab=tab-sdk>`_ "
+"获取。Python 分发包不包含 SDK 文件。扩展使用普通 CPython ABI，因此每个 Python 次版本和线程 ABI 都需要重新编译。"
+
+#: docs/installation.rst:18
+msgid "Select the SDK"
+msgstr "选择 SDK"
+
+#: docs/installation.rst:20
+msgid ""
+"``MECHEYE_SDK_ROOT`` overrides the platform default. It must be an absolute directory"
+" containing ``include`` and the runtime/import library directories."
+msgstr "``MECHEYE_SDK_ROOT`` 覆盖平台默认路径。它必须是包含 ``include`` 及运行库／导入库目录的绝对目录路径。"
+
+#: docs/installation.rst:26
+msgid "Platform"
+msgstr "平台"
+
+#: docs/installation.rst:27
+msgid "Default SDK root"
+msgstr "默认 SDK 根目录"
+
+#: docs/installation.rst:28
+msgid "Runtime"
+msgstr "运行库"
+
+#: docs/installation.rst:29
+msgid "Linux"
+msgstr "Linux"
+
+#: docs/installation.rst:30
+msgid "``/opt/mech-mind/mech-eye-sdk``"
+msgstr "``/opt/mech-mind/mech-eye-sdk``"
+
+#: docs/installation.rst:31
+msgid "``lib/libMechEyeApi.so``"
+msgstr "``lib/libMechEyeApi.so``"
+
+#: docs/installation.rst:32
+msgid "Windows"
+msgstr "Windows"
+
+#: docs/installation.rst:33
+msgid "``C:/Mech-Mind/Mech-Eye SDK-2.6.0/API``"
+msgstr "``C:/Mech-Mind/Mech-Eye SDK-2.6.0/API``"
+
+#: docs/installation.rst:34
+msgid "``dll/MechEyeApi.dll`` and ``lib/MechEyeApi.lib``"
+msgstr "``dll/MechEyeApi.dll`` 和 ``lib/MechEyeApi.lib``"
+
+#: docs/installation.rst:36
+msgid "For example, on Linux:"
+msgstr "Linux 示例："
+
+#: docs/installation.rst:43
+msgid "Or with pip:"
+msgstr "也可以使用 pip："
+
+#: docs/installation.rst:49
+msgid "Before a public source release is available, install from a local checkout:"
+msgstr "发布公开源码包之前，可以从本地检出目录安装："
+
+#: docs/installation.rst:55
+msgid "On Windows, set the variable in PowerShell before installing:"
+msgstr "Windows 下请先在 PowerShell 中设置环境变量，再安装："
+
+#: docs/installation.rst:63
+msgid "Runtime validation"
+msgstr "运行时校验"
+
+#: docs/installation.rst:65
+msgid ""
+"Importing the package checks the platform, Python ABI, and exact SDK runtime SHA-256 "
+"recorded at compilation. A different runtime is rejected with ``ImportError``. After "
+"changing the SDK, rebuild and restart the interpreter:"
+msgstr ""
+"导入时会检查平台、Python ABI 和编译时记录的 SDK 运行库 SHA-256。运行库不匹配时抛出 ``ImportError``。更换 SDK "
+"后，请重新编译并重启解释器："
+
+#: docs/installation.rst:74
+msgid "Importing the package and constructing a camera do not connect to a device."
+msgstr "导入包和构造相机对象都不会连接设备。"
+

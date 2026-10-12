@@ -22,6 +22,10 @@ build:
       html:
         - >-
           MECHEYE_SDK_ROOT=/tmp/pymecheye-sdk/payload/opt/mech-mind/mech-eye-sdk
+          python -m sphinx -n -W --keep-going -b gettext -D language=en docs docs/_build/gettext
+        - python docs/_ext/check_translations.py docs/_build/gettext
+        - >-
+          MECHEYE_SDK_ROOT=/tmp/pymecheye-sdk/payload/opt/mech-mind/mech-eye-sdk
           python -m sphinx -n -W --keep-going -b html docs "$READTHEDOCS_OUTPUT/html"
 
 sphinx:

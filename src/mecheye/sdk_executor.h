@@ -48,6 +48,8 @@ class SdkExecutor {
         auto result = task->get_future();
         {
             std::lock_guard<std::mutex> lock(mutex_);
+            if (stopping_)
+                throw std::runtime_error("The Mech-Eye SDK worker has shut down");
             tasks_.emplace_back([task] { (*task)(); });
         }
         condition_.notify_one();
@@ -56,17 +58,44 @@ class SdkExecutor {
 
     bool on_worker() const { return std::this_thread::get_id() == worker_id_; }
 
+    void shutdown() {
+        {
+            std::lock_guard<std::mutex> lock(mutex_);
+            stopping_ = true;
+        }
+        condition_.notify_one();
+        if (worker_.joinable())
+            worker_.join();
+    }
+
     void post(std::function<void()> task) {
         {
             std::lock_guard<std::mutex> lock(mutex_);
+            if (stopping_)
+                return;
             tasks_.emplace_back(std::move(task));
         }
         condition_.notify_one();
     }
 
+    // Register SDK allocations on the worker so surviving Python references cannot leave
+    // the SDK's global network context to be destroyed on the main thread at exit.
+    void track_resource(void *pointer, std::function<void()> cleanup) {
+        resources_.emplace(pointer, std::move(cleanup));
+    }
+
+    void release_resource(void *pointer) {
+        auto item = resources_.find(pointer);
+        if (item == resources_.end())
+            return;
+        auto cleanup = std::move(item->second);
+        resources_.erase(item);
+        cleanup();
+    }
+
     static SdkExecutor &instance() {
-        // Let the OS terminate this worker at process exit to avoid static destruction order
-        // issues.
+        // Keep the executor storage alive until process exit, but join its worker after
+        // Python finalization has queued all remaining SDK object destructors.
         static auto *executor = new SdkExecutor();
         return *executor;
     }
@@ -88,7 +117,19 @@ class SdkExecutor {
                 std::function<void()> task;
                 {
                     std::unique_lock<std::mutex> lock(mutex_);
-                    condition_.wait(lock, [this] { return !tasks_.empty(); });
+                    condition_.wait(lock, [this] { return stopping_ || !tasks_.empty(); });
+                    if (tasks_.empty()) {
+                        lock.unlock();
+                        // The interpreter is finalized. Drain all surviving SDK resources in
+                        // the same file descriptor table that created their network context.
+                        while (!resources_.empty()) {
+                            try {
+                                release_resource(resources_.begin()->first);
+                            } catch (...) {
+                            }
+                        }
+                        return;
+                    }
                     task = std::move(tasks_.front());
                     tasks_.pop_front();
                 }
@@ -101,7 +142,10 @@ class SdkExecutor {
             worker_.join();
             throw;
         }
-        worker_.detach();
+        if (Py_AtExit([] { SdkExecutor::instance().shutdown(); }) != 0) {
+            shutdown();
+            throw std::runtime_error("Failed to register Mech-Eye SDK shutdown");
+        }
     }
 
     static void isolate_output() {
@@ -124,6 +168,8 @@ class SdkExecutor {
     std::deque<std::function<void()>> tasks_;
     std::thread worker_;
     std::thread::id worker_id_;
+    bool stopping_ = false;
+    std::map<void *, std::function<void()>> resources_;
 };
 
 // The SDK does not guarantee full global thread safety, so serialize all SDK entry points.

@@ -1,5 +1,10 @@
 # pymecheye
 
+[![CI](https://github.com/slabpanic/pymecheye/actions/workflows/ci.yml/badge.svg)](https://github.com/slabpanic/pymecheye/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/slabpanic/pymecheye/branch/main/graph/badge.svg)](https://codecov.io/gh/slabpanic/pymecheye)
+
+[![文档](https://readthedocs.org/projects/pymecheye/badge/?version=latest)](https://pymecheye.readthedocs.io/zh-cn/latest/)
+
 [English](README.md)
 
 通过 [nanobind](https://nanobind.readthedocs.io/) 和厂商 C++ SDK 实现的高性能
@@ -231,15 +236,16 @@ uv run --no-editable python examples/capture.py 192.168.1.100
 
 ## 文档
 
-[在线文档](https://pymecheye.readthedocs.io/en/latest/) 包含安装说明、相机使用方式，
+[中文文档](https://pymecheye.readthedocs.io/zh-cn/latest/)（[English](https://pymecheye.readthedocs.io/en/latest/)）包含安装说明、相机使用方式，
 以及从实际绑定的 docstring 自动生成的 API 参考。安装 C++ SDK 后可在本地构建：
 
 ```bash
 uv sync --locked --no-editable --group docs
-uv run --no-sync sphinx-build -n -W --keep-going -b html docs docs/_build/html
+uv run --no-sync sphinx-build -n -W --keep-going -b html -D language=zh_CN docs docs/_build/zh_CN
+uv run --no-sync sphinx-build -n -W --keep-going -b html -D language=en docs docs/_build/en
 ```
 
-打开 `docs/_build/html/index.html` 查看结果。构建会检查公开接口的 docstring，
+打开 `docs/_build/zh_CN/index.html` 查看结果。构建会检查公开接口的 docstring，
 并将警告和失效交叉引用视为错误。自动生成的 API 页面与 HTML 已加入 Git 忽略规则。
 GitHub Actions 同样构建文档，并保存 HTML 预览产物。
 
@@ -247,7 +253,9 @@ GitHub Actions 同样构建文档，并保存 HTML 预览产物。
 再使用锁定的文档依赖完成构建。首次启用需要在 Read the Docs 导入
 `slabpanic/pymecheye`，将项目标识设为 `pymecheye`，授权其 GitHub App，
 并使用 `main` 作为默认分支。之后推送会自动触发托管构建；激活 release tag 版本
-可发布 stable 文档。GitHub Actions 无需配置 Read the Docs Token。
+可发布 stable 文档。中文版本需将同一仓库再次导入为 `pymecheye-zh-cn`，
+语言选择简体中文，并在父项目的 Translations 设置中关联。构建会自动读取
+`READTHEDOCS_LANGUAGE` 选择翻译。GitHub Actions 无需配置 Read the Docs Token。
 在线地址会在项目导入且首次构建成功后可用，完整步骤见
 [docs/development.rst](docs/development.rst)。
 

@@ -1,0 +1,4264 @@
+# Simplified Chinese translations for pymecheye.
+# Copyright (C) 2026 pymecheye contributors
+# Distributed under the MIT license; see LICENSE.
+# pymecheye contributors, 2026.
+msgid ""
+msgstr ""
+"Project-Id-Version: pymecheye 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/slabpanic/pymecheye/issues\n"
+"POT-Creation-Date: 2026-10-12 21:21+0800\n"
+"PO-Revision-Date: 2026-10-12 21:27+0800\n"
+"Last-Translator: pymecheye contributors\n"
+"Language: zh_CN\n"
+"Language-Team: Simplified Chinese\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:2
+msgid "mecheye.area_scan_3d_camera"
+msgstr "mecheye.area_scan_3d_camera"
+
+#: mecheye.area_scan_3d_camera:1
+msgid "Mech-Eye area-scan camera bindings and NumPy capture utilities."
+msgstr "Mech-Eye 面阵相机绑定与 NumPy 采集工具。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:7 docs/api/_generated/shared.rst:7
+msgid "Classes"
+msgstr "类"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`Transformation <mecheye.area_scan_3d_camera.Transformation>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`Transformation <mecheye.area_scan_3d_camera.Transformation>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Transformation:1
+msgid "Camera transformation containing a 3-by-3 rotation and three-element translation."
+msgstr "相机变换，由 3×3 旋转矩阵和三元素平移向量组成。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`FrameTransformation <mecheye.area_scan_3d_camera.FrameTransformation>`\\ "
+"\\(\\*args\\)"
+msgstr ""
+":py:obj:`FrameTransformation <mecheye.area_scan_3d_camera.FrameTransformation>`\\ "
+"\\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid "Rigid transformation with a 3-by-3 rotation and three-element translation."
+msgstr "刚体变换，由 3×3 旋转矩阵和三元素平移向量组成。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`CameraIntrinsics <mecheye.area_scan_3d_camera.CameraIntrinsics>`\\ "
+"\\(\\*args\\)"
+msgstr ""
+":py:obj:`CameraIntrinsics <mecheye.area_scan_3d_camera.CameraIntrinsics>`\\ "
+"\\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.CameraIntrinsics:1
+msgid ""
+"Calibration for the texture and depth cameras, including the depth-to-texture rigid "
+"transformation."
+msgstr "纹理相机和深度相机的标定参数，包含深度坐标到纹理坐标的刚体变换。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`CameraInfo <mecheye.area_scan_3d_camera.CameraInfo>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`CameraInfo <mecheye.area_scan_3d_camera.CameraInfo>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.CameraInfo:1
+msgid ""
+"Discovered or connected camera metadata, including identity, network settings, "
+"versions, and support information."
+msgstr "已发现或已连接相机的元数据，包含设备标识、网络配置、版本和支持信息。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`DeviceTemperature <mecheye.area_scan_3d_camera.DeviceTemperature>`\\ "
+"\\(\\*args\\)"
+msgstr ""
+":py:obj:`DeviceTemperature <mecheye.area_scan_3d_camera.DeviceTemperature>`\\ "
+"\\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.DeviceTemperature:1
+msgid "CPU and projector temperature measurements in degrees Celsius."
+msgstr "CPU 和投影器的温度测量值，单位为摄氏度。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`CameraStatus <mecheye.area_scan_3d_camera.CameraStatus>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`CameraStatus <mecheye.area_scan_3d_camera.CameraStatus>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.CameraStatus:1
+msgid "Camera status containing a DeviceTemperature measurement."
+msgstr "包含 DeviceTemperature 测量值的相机状态。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`CameraMatrix <mecheye.area_scan_3d_camera.CameraMatrix>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`CameraMatrix <mecheye.area_scan_3d_camera.CameraMatrix>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.CameraMatrix:1
+msgid "Pinhole calibration with focal lengths fx/fy and principal point cx/cy, in pixels."
+msgstr "针孔相机标定参数：焦距 fx/fy 和主点 cx/cy，单位为像素。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`CameraDistortion <mecheye.area_scan_3d_camera.CameraDistortion>`\\ "
+"\\(\\*args\\)"
+msgstr ""
+":py:obj:`CameraDistortion <mecheye.area_scan_3d_camera.CameraDistortion>`\\ "
+"\\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.CameraDistortion:1
+msgid "Camera distortion coefficients in k1, k2, p1, p2, k3 order."
+msgstr "相机畸变系数，按 k1、k2、p1、p2、k3 排列。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`Intrinsics2DCamera <mecheye.area_scan_3d_camera.Intrinsics2DCamera>`\\ "
+"\\(\\*args\\)"
+msgstr ""
+":py:obj:`Intrinsics2DCamera <mecheye.area_scan_3d_camera.Intrinsics2DCamera>`\\ "
+"\\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Intrinsics2DCamera:1
+msgid "CameraMatrix and CameraDistortion for one 2D camera."
+msgstr "单个 2D 相机的 CameraMatrix 和 CameraDistortion。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`CameraResolutions <mecheye.area_scan_3d_camera.CameraResolutions>`\\ "
+"\\(\\*args\\)"
+msgstr ""
+":py:obj:`CameraResolutions <mecheye.area_scan_3d_camera.CameraResolutions>`\\ "
+"\\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.CameraResolutions:1
+msgid "Texture and depth image sizes, in pixels."
+msgstr "纹理图像和深度图像的尺寸，单位为像素。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`Gray <mecheye.area_scan_3d_camera.Gray>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`Gray <mecheye.area_scan_3d_camera.Gray>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Gray:1
+msgid "A grayscale pixel with one unsigned 8-bit intensity."
+msgstr "灰度像素，包含一个无符号 8 位强度值。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`ColorBGR <mecheye.area_scan_3d_camera.ColorBGR>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`ColorBGR <mecheye.area_scan_3d_camera.ColorBGR>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.ColorBGR:1
+msgid "A color pixel with unsigned 8-bit blue, green, and red channels."
+msgstr "彩色像素，包含无符号 8 位蓝、绿、红通道。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`PointZ <mecheye.area_scan_3d_camera.PointZ>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`PointZ <mecheye.area_scan_3d_camera.PointZ>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.PointZ:1
+msgid "A per-pixel depth value in the selected SDK coordinate unit."
+msgstr "逐像素深度值，使用当前选择的 SDK 坐标单位。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`NormalVector <mecheye.area_scan_3d_camera.NormalVector>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`NormalVector <mecheye.area_scan_3d_camera.NormalVector>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.NormalVector:1
+msgid "Surface-normal X/Y/Z components and curvature."
+msgstr "表面法向量的 X/Y/Z 分量和曲率。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`PointXYZWithNormals <mecheye.area_scan_3d_camera.PointXYZWithNormals>`\\ "
+"\\(\\*args\\)"
+msgstr ""
+":py:obj:`PointXYZWithNormals <mecheye.area_scan_3d_camera.PointXYZWithNormals>`\\ "
+"\\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.PointXYZWithNormals:1
+msgid "A PointXYZ coordinate and its NormalVector."
+msgstr "PointXYZ 坐标及其 NormalVector。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`PointXYZBGR <mecheye.area_scan_3d_camera.PointXYZBGR>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`PointXYZBGR <mecheye.area_scan_3d_camera.PointXYZBGR>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.PointXYZBGR:1
+msgid "XYZ coordinates and unsigned 8-bit BGR/alpha channels, with packed rgb access."
+msgstr "XYZ 坐标和无符号 8 位 BGR/alpha 通道，支持打包的 rgb 访问。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`PointXYZBGRWithNormals "
+"<mecheye.area_scan_3d_camera.PointXYZBGRWithNormals>`\\ \\(\\*args\\)"
+msgstr ""
+":py:obj:`PointXYZBGRWithNormals "
+"<mecheye.area_scan_3d_camera.PointXYZBGRWithNormals>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.PointXYZBGRWithNormals:1
+msgid "A PointXYZBGR coordinate/color value and its NormalVector."
+msgstr "PointXYZBGR 坐标与颜色值及其 NormalVector。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`EventData <mecheye.area_scan_3d_camera.EventData>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`EventData <mecheye.area_scan_3d_camera.EventData>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.EventData:1
+msgid "Copied event metadata: identifier, name, SDK timestamp, and capture frame identifier."
+msgstr "复制的事件元数据：标识、名称、SDK 时间戳和采集帧标识。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`EventInfo <mecheye.area_scan_3d_camera.EventInfo>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`EventInfo <mecheye.area_scan_3d_camera.EventInfo>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.EventInfo:1
+msgid "The name and identifier of a supported camera event."
+msgstr "受支持相机事件的名称和标识。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`PayloadMember <mecheye.area_scan_3d_camera.PayloadMember>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`PayloadMember <mecheye.area_scan_3d_camera.PayloadMember>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid "Named event payload with a ``Type_*`` discriminator and a MemberValue."
+msgstr "具名事件载荷，包含 ``Type_*`` 类型标识和 MemberValue。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`MemberValue <mecheye.area_scan_3d_camera.MemberValue>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`MemberValue <mecheye.area_scan_3d_camera.MemberValue>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid "Event payload union."
+msgstr "事件载荷联合体。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`HandEyeTransformation <mecheye.area_scan_3d_camera.HandEyeTransformation>`\\"
+" \\(\\*args\\)"
+msgstr ""
+":py:obj:`HandEyeTransformation <mecheye.area_scan_3d_camera.HandEyeTransformation>`\\"
+" \\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid "Translation and quaternion in x, y, z, q_w, q_x, q_y, q_z order."
+msgstr "平移和四元数，按 x、y、z、q_w、q_x、q_y、q_z 排列。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`doubleArray3 <mecheye.area_scan_3d_camera.doubleArray3>`\\ \\(\\)"
+msgstr ":py:obj:`doubleArray3 <mecheye.area_scan_3d_camera.doubleArray3>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.doubleArray3:1
+msgid "Mutable three-element double array."
+msgstr "可修改的三元素 double 数组。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`doubleMatrix3 <mecheye.area_scan_3d_camera.doubleMatrix3>`\\ \\(\\)"
+msgstr ":py:obj:`doubleMatrix3 <mecheye.area_scan_3d_camera.doubleMatrix3>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.doubleMatrix3:1
+msgid "Mutable three-by-three double matrix."
+msgstr "可修改的 3×3 double 矩阵。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`GrayScale2DImage <mecheye.area_scan_3d_camera.GrayScale2DImage>`\\ "
+"\\(\\*args\\)"
+msgstr ""
+":py:obj:`GrayScale2DImage <mecheye.area_scan_3d_camera.GrayScale2DImage>`\\ "
+"\\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.GrayScale2DImage:1
+msgid "Organized grayscale image."
+msgstr "保留图像网格结构的灰度图像。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`Color2DImage <mecheye.area_scan_3d_camera.Color2DImage>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`Color2DImage <mecheye.area_scan_3d_camera.Color2DImage>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Color2DImage:1
+msgid "Organized BGR color image."
+msgstr "保留图像网格结构的 BGR 彩色图像。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`DepthMap <mecheye.area_scan_3d_camera.DepthMap>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`DepthMap <mecheye.area_scan_3d_camera.DepthMap>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.DepthMap:1
+msgid "Organized SDK depth grid."
+msgstr "保留图像网格结构的 SDK 深度图。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`UntexturedPointCloud <mecheye.area_scan_3d_camera.UntexturedPointCloud>`\\ "
+"\\(\\*args\\)"
+msgstr ""
+":py:obj:`UntexturedPointCloud <mecheye.area_scan_3d_camera.UntexturedPointCloud>`\\ "
+"\\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.UntexturedPointCloud:1
+msgid "Organized XYZ point cloud in the selected SDK coordinate unit."
+msgstr "保留图像网格结构的 XYZ 点云，使用当前选择的 SDK 坐标单位。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`UntexturedPointCloudWithNormals "
+"<mecheye.area_scan_3d_camera.UntexturedPointCloudWithNormals>`\\ \\(\\*args\\)"
+msgstr ""
+":py:obj:`UntexturedPointCloudWithNormals "
+"<mecheye.area_scan_3d_camera.UntexturedPointCloudWithNormals>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.UntexturedPointCloudWithNormals:1
+msgid "Organized XYZ point cloud with surface normals."
+msgstr "带表面法向量并保留图像网格结构的 XYZ 点云。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`TexturedPointCloud <mecheye.area_scan_3d_camera.TexturedPointCloud>`\\ "
+"\\(\\*args\\)"
+msgstr ""
+":py:obj:`TexturedPointCloud <mecheye.area_scan_3d_camera.TexturedPointCloud>`\\ "
+"\\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.TexturedPointCloud:1
+msgid "Organized XYZ point cloud with BGR texture."
+msgstr "带 BGR 纹理并保留图像网格结构的 XYZ 点云。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`TexturedPointCloudWithNormals "
+"<mecheye.area_scan_3d_camera.TexturedPointCloudWithNormals>`\\ \\(\\*args\\)"
+msgstr ""
+":py:obj:`TexturedPointCloudWithNormals "
+"<mecheye.area_scan_3d_camera.TexturedPointCloudWithNormals>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.TexturedPointCloudWithNormals:1
+msgid "Organized XYZ point cloud with BGR texture and surface normals."
+msgstr "带 BGR 纹理、表面法向量并保留图像网格结构的 XYZ 点云。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`Frame2D <mecheye.area_scan_3d_camera.Frame2D>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`Frame2D <mecheye.area_scan_3d_camera.Frame2D>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Frame2D:1
+msgid "SDK Frame2D object, serialized for regular and free-threaded Python."
+msgstr "SDK Frame2D 对象，普通及 free-threaded Python 下的访问都会串行执行。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`Frame3D <mecheye.area_scan_3d_camera.Frame3D>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`Frame3D <mecheye.area_scan_3d_camera.Frame3D>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Frame3D:1
+msgid "SDK Frame3D object, serialized for regular and free-threaded Python."
+msgstr "SDK Frame3D 对象，普通及 free-threaded Python 下的访问都会串行执行。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`Frame2DAnd3D <mecheye.area_scan_3d_camera.Frame2DAnd3D>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`Frame2DAnd3D <mecheye.area_scan_3d_camera.Frame2DAnd3D>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Frame2DAnd3D:1
+msgid "SDK Frame2DAnd3D object, serialized for regular and free-threaded Python."
+msgstr "SDK Frame2DAnd3D 对象，普通及 free-threaded Python 下的访问都会串行执行。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`HandEyeCalibration <mecheye.area_scan_3d_camera.HandEyeCalibration>`\\ "
+"\\(\\*args\\)"
+msgstr ""
+":py:obj:`HandEyeCalibration <mecheye.area_scan_3d_camera.HandEyeCalibration>`\\ "
+"\\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.HandEyeCalibration:1
+msgid "SDK HandEyeCalibration object, serialized for regular and free-threaded Python."
+msgstr "SDK HandEyeCalibration 对象，普通及 free-threaded Python 下的访问都会串行执行。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`VectorCameraInfo <mecheye.area_scan_3d_camera.VectorCameraInfo>`\\ "
+"\\(\\*args\\)"
+msgstr ""
+":py:obj:`VectorCameraInfo <mecheye.area_scan_3d_camera.VectorCameraInfo>`\\ "
+"\\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.VectorCameraInfo:1
+msgid "Mutable vector of CameraInfo values."
+msgstr "CameraInfo 值的可修改向量。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`EventInfos <mecheye.area_scan_3d_camera.EventInfos>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`EventInfos <mecheye.area_scan_3d_camera.EventInfos>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.EventInfos:1
+msgid "Mutable vector of EventInfo values."
+msgstr "EventInfo 值的可修改向量。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`Payload <mecheye.area_scan_3d_camera.Payload>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`Payload <mecheye.area_scan_3d_camera.Payload>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Payload:1
+msgid "Mutable vector of PayloadMember values."
+msgstr "PayloadMember 值的可修改向量。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`Camera <mecheye.area_scan_3d_camera.Camera>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`Camera <mecheye.area_scan_3d_camera.Camera>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Camera:1
+msgid "Camera connection, SDK operations, and NumPy capture conveniences."
+msgstr "相机连接、SDK 操作和 NumPy 便捷采集功能。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`LaserPowerLevel <mecheye.area_scan_3d_camera.LaserPowerLevel>`\\ \\(\\)"
+msgstr ":py:obj:`LaserPowerLevel <mecheye.area_scan_3d_camera.LaserPowerLevel>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.LaserPowerLevel:1
+msgid "Descriptor for the LaserPowerLevel camera parameter."
+msgstr "the LaserPowerLevel 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`LaserFringeCodingMode <mecheye.area_scan_3d_camera.LaserFringeCodingMode>`\\"
+" \\(\\)"
+msgstr ""
+":py:obj:`LaserFringeCodingMode <mecheye.area_scan_3d_camera.LaserFringeCodingMode>`\\"
+" \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.LaserFringeCodingMode:1
+msgid "Descriptor for the LaserFringeCodingMode camera parameter."
+msgstr "the LaserFringeCodingMode 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`ProcessingMode <mecheye.area_scan_3d_camera.ProcessingMode>`\\ \\(\\)"
+msgstr ":py:obj:`ProcessingMode <mecheye.area_scan_3d_camera.ProcessingMode>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.ProcessingMode:1
+msgid "Descriptor for the LaserProcessingMode camera parameter."
+msgstr "the LaserProcessingMode 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`LaserFrameRange <mecheye.area_scan_3d_camera.LaserFrameRange>`\\ \\(\\)"
+msgstr ":py:obj:`LaserFrameRange <mecheye.area_scan_3d_camera.LaserFrameRange>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.LaserFrameRange:1
+msgid "Descriptor for the LaserFrameRange camera parameter."
+msgstr "the LaserFrameRange 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`LaserFramePartitionCount "
+"<mecheye.area_scan_3d_camera.LaserFramePartitionCount>`\\ \\(\\)"
+msgstr ""
+":py:obj:`LaserFramePartitionCount "
+"<mecheye.area_scan_3d_camera.LaserFramePartitionCount>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.LaserFramePartitionCount:1
+msgid "Descriptor for the LaserFramePartitionCount camera parameter."
+msgstr "the LaserFramePartitionCount 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`PointCloudSurfaceSmoothing "
+"<mecheye.area_scan_3d_camera.PointCloudSurfaceSmoothing>`\\ \\(\\)"
+msgstr ""
+":py:obj:`PointCloudSurfaceSmoothing "
+"<mecheye.area_scan_3d_camera.PointCloudSurfaceSmoothing>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.PointCloudSurfaceSmoothing:1
+msgid "Descriptor for the PointCloudSurfaceSmoothing camera parameter."
+msgstr "the PointCloudSurfaceSmoothing 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`PointCloudNoiseRemoval "
+"<mecheye.area_scan_3d_camera.PointCloudNoiseRemoval>`\\ \\(\\)"
+msgstr ""
+":py:obj:`PointCloudNoiseRemoval "
+"<mecheye.area_scan_3d_camera.PointCloudNoiseRemoval>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.PointCloudNoiseRemoval:1
+msgid "Descriptor for the PointCloudNoiseRemoval camera parameter."
+msgstr "the PointCloudNoiseRemoval 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`PointCloudDepthSmooth <mecheye.area_scan_3d_camera.PointCloudDepthSmooth>`\\"
+" \\(\\)"
+msgstr ""
+":py:obj:`PointCloudDepthSmooth <mecheye.area_scan_3d_camera.PointCloudDepthSmooth>`\\"
+" \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.PointCloudDepthSmooth:1
+msgid "Descriptor for the DepthSmooth camera parameter."
+msgstr "the DepthSmooth 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`PointCloudDepthHoleFilling "
+"<mecheye.area_scan_3d_camera.PointCloudDepthHoleFilling>`\\ \\(\\)"
+msgstr ""
+":py:obj:`PointCloudDepthHoleFilling "
+"<mecheye.area_scan_3d_camera.PointCloudDepthHoleFilling>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.PointCloudDepthHoleFilling:1
+msgid "Descriptor for the DepthHoleFilling camera parameter."
+msgstr "the DepthHoleFilling 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`PointCloudDepthSurfaceNoiseRemoval "
+"<mecheye.area_scan_3d_camera.PointCloudDepthSurfaceNoiseRemoval>`\\ \\(\\)"
+msgstr ""
+":py:obj:`PointCloudDepthSurfaceNoiseRemoval "
+"<mecheye.area_scan_3d_camera.PointCloudDepthSurfaceNoiseRemoval>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.PointCloudDepthSurfaceNoiseRemoval:1
+msgid "Descriptor for the DepthSurfaceNoiseRemoval camera parameter."
+msgstr "the DepthSurfaceNoiseRemoval 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`PointCloudPhaseClusterOutlierRemoval "
+"<mecheye.area_scan_3d_camera.PointCloudPhaseClusterOutlierRemoval>`\\ \\(\\)"
+msgstr ""
+":py:obj:`PointCloudPhaseClusterOutlierRemoval "
+"<mecheye.area_scan_3d_camera.PointCloudPhaseClusterOutlierRemoval>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.PointCloudPhaseClusterOutlierRemoval:1
+msgid "Descriptor for the PhaseClusterOutlierRemoval camera parameter."
+msgstr "the PhaseClusterOutlierRemoval 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`PointCloudSpuriousPhaseRemoval "
+"<mecheye.area_scan_3d_camera.PointCloudSpuriousPhaseRemoval>`\\ \\(\\)"
+msgstr ""
+":py:obj:`PointCloudSpuriousPhaseRemoval "
+"<mecheye.area_scan_3d_camera.PointCloudSpuriousPhaseRemoval>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.PointCloudSpuriousPhaseRemoval:1
+msgid "Descriptor for the SpuriousPhaseRemoval camera parameter."
+msgstr "the SpuriousPhaseRemoval 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`PointCloudLargeGradNoiseRemoval "
+"<mecheye.area_scan_3d_camera.PointCloudLargeGradNoiseRemoval>`\\ \\(\\)"
+msgstr ""
+":py:obj:`PointCloudLargeGradNoiseRemoval "
+"<mecheye.area_scan_3d_camera.PointCloudLargeGradNoiseRemoval>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.PointCloudLargeGradNoiseRemoval:1
+msgid "Descriptor for the LargeGradNoiseRemoval camera parameter."
+msgstr "the LargeGradNoiseRemoval 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`PointCloudOutlierRemoval "
+"<mecheye.area_scan_3d_camera.PointCloudOutlierRemoval>`\\ \\(\\)"
+msgstr ""
+":py:obj:`PointCloudOutlierRemoval "
+"<mecheye.area_scan_3d_camera.PointCloudOutlierRemoval>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.PointCloudOutlierRemoval:1
+msgid "Descriptor for the PointCloudOutlierRemoval camera parameter."
+msgstr "the PointCloudOutlierRemoval 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`GapFilling <mecheye.area_scan_3d_camera.GapFilling>`\\ \\(\\)"
+msgstr ":py:obj:`GapFilling <mecheye.area_scan_3d_camera.GapFilling>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.GapFilling:1
+msgid "Descriptor for the PointCloudGapFilling camera parameter."
+msgstr "the PointCloudGapFilling 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`PointCloudEdgePreservation "
+"<mecheye.area_scan_3d_camera.PointCloudEdgePreservation>`\\ \\(\\)"
+msgstr ""
+":py:obj:`PointCloudEdgePreservation "
+"<mecheye.area_scan_3d_camera.PointCloudEdgePreservation>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.PointCloudEdgePreservation:1
+msgid "Descriptor for the PointCloudEdgePreservation camera parameter."
+msgstr "the PointCloudEdgePreservation 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`EnableDistortionCorrection "
+"<mecheye.area_scan_3d_camera.EnableDistortionCorrection>`\\ \\(\\)"
+msgstr ""
+":py:obj:`EnableDistortionCorrection "
+"<mecheye.area_scan_3d_camera.EnableDistortionCorrection>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.EnableDistortionCorrection:1
+msgid "Descriptor for the EnableDistortionCorrection camera parameter."
+msgstr "the EnableDistortionCorrection 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`DistortionCorrection <mecheye.area_scan_3d_camera.DistortionCorrection>`\\ "
+"\\(\\)"
+msgstr ""
+":py:obj:`DistortionCorrection <mecheye.area_scan_3d_camera.DistortionCorrection>`\\ "
+"\\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.DistortionCorrection:1
+msgid "Descriptor for the DistortionCorrection camera parameter."
+msgstr "the DistortionCorrection 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`PointCloudFringeContrastThreshold "
+"<mecheye.area_scan_3d_camera.PointCloudFringeContrastThreshold>`\\ \\(\\)"
+msgstr ""
+":py:obj:`PointCloudFringeContrastThreshold "
+"<mecheye.area_scan_3d_camera.PointCloudFringeContrastThreshold>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.PointCloudFringeContrastThreshold:1
+msgid "Descriptor for the FringeContrastThreshold camera parameter."
+msgstr "the FringeContrastThreshold 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`PointCloudFringeMinThreshold "
+"<mecheye.area_scan_3d_camera.PointCloudFringeMinThreshold>`\\ \\(\\)"
+msgstr ""
+":py:obj:`PointCloudFringeMinThreshold "
+"<mecheye.area_scan_3d_camera.PointCloudFringeMinThreshold>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.PointCloudFringeMinThreshold:1
+msgid "Descriptor for the FringeMinThreshold camera parameter."
+msgstr "the FringeMinThreshold 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`EdgeArtifactRemoval <mecheye.area_scan_3d_camera.EdgeArtifactRemoval>`\\ "
+"\\(\\)"
+msgstr ""
+":py:obj:`EdgeArtifactRemoval <mecheye.area_scan_3d_camera.EdgeArtifactRemoval>`\\ "
+"\\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.EdgeArtifactRemoval:1
+msgid "Descriptor for the EdgeArtifactRemoval camera parameter."
+msgstr "the EdgeArtifactRemoval 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`EnableGapFilling <mecheye.area_scan_3d_camera.EnableGapFilling>`\\ \\(\\)"
+msgstr ":py:obj:`EnableGapFilling <mecheye.area_scan_3d_camera.EnableGapFilling>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.EnableGapFilling:1
+msgid "Descriptor for the EnableGapFilling camera parameter."
+msgstr "the EnableGapFilling 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`GapSize <mecheye.area_scan_3d_camera.GapSize>`\\ \\(\\)"
+msgstr ":py:obj:`GapSize <mecheye.area_scan_3d_camera.GapSize>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.GapSize:1
+msgid "Descriptor for the GapSize camera parameter."
+msgstr "the GapSize 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`ProjectorPowerLevel <mecheye.area_scan_3d_camera.ProjectorPowerLevel>`\\ "
+"\\(\\)"
+msgstr ""
+":py:obj:`ProjectorPowerLevel <mecheye.area_scan_3d_camera.ProjectorPowerLevel>`\\ "
+"\\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.ProjectorPowerLevel:1
+msgid "Descriptor for the ProjectorPowerLevel camera parameter."
+msgstr "the ProjectorPowerLevel 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`ProjectorFringeCodingMode "
+"<mecheye.area_scan_3d_camera.ProjectorFringeCodingMode>`\\ \\(\\)"
+msgstr ""
+":py:obj:`ProjectorFringeCodingMode "
+"<mecheye.area_scan_3d_camera.ProjectorFringeCodingMode>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.ProjectorFringeCodingMode:1
+msgid "Descriptor for the ProjectorFringeCodingMode camera parameter."
+msgstr "the ProjectorFringeCodingMode 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`AntiFlickerMode <mecheye.area_scan_3d_camera.AntiFlickerMode>`\\ \\(\\)"
+msgstr ":py:obj:`AntiFlickerMode <mecheye.area_scan_3d_camera.AntiFlickerMode>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.AntiFlickerMode:1
+msgid "Descriptor for the AntiFlickerMode camera parameter."
+msgstr "the AntiFlickerMode 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`ProjectorInterferenceSuppression "
+"<mecheye.area_scan_3d_camera.ProjectorInterferenceSuppression>`\\ \\(\\)"
+msgstr ""
+":py:obj:`ProjectorInterferenceSuppression "
+"<mecheye.area_scan_3d_camera.ProjectorInterferenceSuppression>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.ProjectorInterferenceSuppression:1
+msgid "Descriptor for the InterferenceSuppression camera parameter."
+msgstr "the InterferenceSuppression 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`ProjectorProcessingMode "
+"<mecheye.area_scan_3d_camera.ProjectorProcessingMode>`\\ \\(\\)"
+msgstr ""
+":py:obj:`ProjectorProcessingMode "
+"<mecheye.area_scan_3d_camera.ProjectorProcessingMode>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.ProjectorProcessingMode:1
+msgid "Descriptor for the ProjectorProcessingMode camera parameter."
+msgstr "the ProjectorProcessingMode 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`Scanning2DExposureMode "
+"<mecheye.area_scan_3d_camera.Scanning2DExposureMode>`\\ \\(\\)"
+msgstr ""
+":py:obj:`Scanning2DExposureMode "
+"<mecheye.area_scan_3d_camera.Scanning2DExposureMode>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Scanning2DExposureMode:1
+msgid "Descriptor for the Scan2DExposureMode camera parameter."
+msgstr "the Scan2DExposureMode 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`Scanning2DExposureTime "
+"<mecheye.area_scan_3d_camera.Scanning2DExposureTime>`\\ \\(\\)"
+msgstr ""
+":py:obj:`Scanning2DExposureTime "
+"<mecheye.area_scan_3d_camera.Scanning2DExposureTime>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Scanning2DExposureTime:1
+msgid "Descriptor for the Scan2DExposureTime camera parameter."
+msgstr "the Scan2DExposureTime 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`Scanning2DSharpenFactor "
+"<mecheye.area_scan_3d_camera.Scanning2DSharpenFactor>`\\ \\(\\)"
+msgstr ""
+":py:obj:`Scanning2DSharpenFactor "
+"<mecheye.area_scan_3d_camera.Scanning2DSharpenFactor>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Scanning2DSharpenFactor:1
+msgid "Descriptor for the Scan2DSharpenFactor camera parameter."
+msgstr "the Scan2DSharpenFactor 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`Scanning2DExpectedGrayValue "
+"<mecheye.area_scan_3d_camera.Scanning2DExpectedGrayValue>`\\ \\(\\)"
+msgstr ""
+":py:obj:`Scanning2DExpectedGrayValue "
+"<mecheye.area_scan_3d_camera.Scanning2DExpectedGrayValue>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Scanning2DExpectedGrayValue:1
+msgid "Descriptor for the Scan2DExpectedGrayValue camera parameter."
+msgstr "the Scan2DExpectedGrayValue 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`Scanning2DToneMappingEnable "
+"<mecheye.area_scan_3d_camera.Scanning2DToneMappingEnable>`\\ \\(\\)"
+msgstr ""
+":py:obj:`Scanning2DToneMappingEnable "
+"<mecheye.area_scan_3d_camera.Scanning2DToneMappingEnable>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Scanning2DToneMappingEnable:1
+msgid "Descriptor for the Scan2DToneMappingEnable camera parameter."
+msgstr "the Scan2DToneMappingEnable 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`Scanning2DAutoExposureROI "
+"<mecheye.area_scan_3d_camera.Scanning2DAutoExposureROI>`\\ \\(\\)"
+msgstr ""
+":py:obj:`Scanning2DAutoExposureROI "
+"<mecheye.area_scan_3d_camera.Scanning2DAutoExposureROI>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Scanning2DAutoExposureROI:1
+msgid "Descriptor for the Scan2DROI camera parameter."
+msgstr "the Scan2DROI 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`Scanning2DHDRExposureSequence "
+"<mecheye.area_scan_3d_camera.Scanning2DHDRExposureSequence>`\\ \\(\\)"
+msgstr ""
+":py:obj:`Scanning2DHDRExposureSequence "
+"<mecheye.area_scan_3d_camera.Scanning2DHDRExposureSequence>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Scanning2DHDRExposureSequence:1
+msgid "Descriptor for the Scan2DHDRExposureSequence camera parameter."
+msgstr "the Scan2DHDRExposureSequence 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`Scanning2DDepthSourceExposureMode "
+"<mecheye.area_scan_3d_camera.Scanning2DDepthSourceExposureMode>`\\ \\(\\)"
+msgstr ""
+":py:obj:`Scanning2DDepthSourceExposureMode "
+"<mecheye.area_scan_3d_camera.Scanning2DDepthSourceExposureMode>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Scanning2DDepthSourceExposureMode:1
+msgid "Descriptor for the Scan2DPatternRoleExposureMode camera parameter."
+msgstr "the Scan2DPatternRoleExposureMode 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`Scanning2DDepthSourceExposureTime "
+"<mecheye.area_scan_3d_camera.Scanning2DDepthSourceExposureTime>`\\ \\(\\)"
+msgstr ""
+":py:obj:`Scanning2DDepthSourceExposureTime "
+"<mecheye.area_scan_3d_camera.Scanning2DDepthSourceExposureTime>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Scanning2DDepthSourceExposureTime:1
+msgid "Descriptor for the Scan2DPatternRoleExposureTime camera parameter."
+msgstr "the Scan2DPatternRoleExposureTime 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`Scanning2DFlashAcquisitionMode "
+"<mecheye.area_scan_3d_camera.Scanning2DFlashAcquisitionMode>`\\ \\(\\)"
+msgstr ""
+":py:obj:`Scanning2DFlashAcquisitionMode "
+"<mecheye.area_scan_3d_camera.Scanning2DFlashAcquisitionMode>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Scanning2DFlashAcquisitionMode:1
+msgid "Descriptor for the Scan2DFlashAcquisitionMode camera parameter."
+msgstr "the Scan2DFlashAcquisitionMode 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`Scanning2DFlashExposureTime "
+"<mecheye.area_scan_3d_camera.Scanning2DFlashExposureTime>`\\ \\(\\)"
+msgstr ""
+":py:obj:`Scanning2DFlashExposureTime "
+"<mecheye.area_scan_3d_camera.Scanning2DFlashExposureTime>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Scanning2DFlashExposureTime:1
+msgid "Descriptor for the Scan2DFlashExposureTime camera parameter."
+msgstr "the Scan2DFlashExposureTime 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`Scanning2DGain <mecheye.area_scan_3d_camera.Scanning2DGain>`\\ \\(\\)"
+msgstr ":py:obj:`Scanning2DGain <mecheye.area_scan_3d_camera.Scanning2DGain>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Scanning2DGain:1
+msgid "Descriptor for the Scan2DGain camera parameter."
+msgstr "the Scan2DGain 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`Scanning2DPatternRoleGain "
+"<mecheye.area_scan_3d_camera.Scanning2DPatternRoleGain>`\\ \\(\\)"
+msgstr ""
+":py:obj:`Scanning2DPatternRoleGain "
+"<mecheye.area_scan_3d_camera.Scanning2DPatternRoleGain>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Scanning2DPatternRoleGain:1
+msgid "Descriptor for the Scan2DPatternRoleGain camera parameter."
+msgstr "the Scan2DPatternRoleGain 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`Scanning2DFlashGain <mecheye.area_scan_3d_camera.Scanning2DFlashGain>`\\ "
+"\\(\\)"
+msgstr ""
+":py:obj:`Scanning2DFlashGain <mecheye.area_scan_3d_camera.Scanning2DFlashGain>`\\ "
+"\\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Scanning2DFlashGain:1
+msgid "Descriptor for the Scan2DFlashGain camera parameter."
+msgstr "the Scan2DFlashGain 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`Scanning2DFlashPowerLevel "
+"<mecheye.area_scan_3d_camera.Scanning2DFlashPowerLevel>`\\ \\(\\)"
+msgstr ""
+":py:obj:`Scanning2DFlashPowerLevel "
+"<mecheye.area_scan_3d_camera.Scanning2DFlashPowerLevel>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Scanning2DFlashPowerLevel:1
+msgid "Descriptor for the Scan2DFlashPowerLevel camera parameter."
+msgstr "the Scan2DFlashPowerLevel 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`Scanning3DExposureCount "
+"<mecheye.area_scan_3d_camera.Scanning3DExposureCount>`\\ \\(\\)"
+msgstr ""
+":py:obj:`Scanning3DExposureCount "
+"<mecheye.area_scan_3d_camera.Scanning3DExposureCount>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Scanning3DExposureCount:1
+msgid "Descriptor for the Scan3DExposureCount camera parameter."
+msgstr "the Scan3DExposureCount 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`Scanning3DExposureSequence "
+"<mecheye.area_scan_3d_camera.Scanning3DExposureSequence>`\\ \\(\\)"
+msgstr ""
+":py:obj:`Scanning3DExposureSequence "
+"<mecheye.area_scan_3d_camera.Scanning3DExposureSequence>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Scanning3DExposureSequence:1
+msgid "Descriptor for the Scan3DExposureSequence camera parameter."
+msgstr "the Scan3DExposureSequence 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`Scanning3DGain <mecheye.area_scan_3d_camera.Scanning3DGain>`\\ \\(\\)"
+msgstr ":py:obj:`Scanning3DGain <mecheye.area_scan_3d_camera.Scanning3DGain>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Scanning3DGain:1
+msgid "Descriptor for the Scan3DGain camera parameter."
+msgstr "the Scan3DGain 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`Scanning3DGroupExposureSelector "
+"<mecheye.area_scan_3d_camera.Scanning3DGroupExposureSelector>`\\ \\(\\)"
+msgstr ""
+":py:obj:`Scanning3DGroupExposureSelector "
+"<mecheye.area_scan_3d_camera.Scanning3DGroupExposureSelector>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Scanning3DGroupExposureSelector:1
+msgid "Descriptor for the GroupExposureSelector camera parameter."
+msgstr "the GroupExposureSelector 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`Scanning3DGroupExposureTime "
+"<mecheye.area_scan_3d_camera.Scanning3DGroupExposureTime>`\\ \\(\\)"
+msgstr ""
+":py:obj:`Scanning3DGroupExposureTime "
+"<mecheye.area_scan_3d_camera.Scanning3DGroupExposureTime>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Scanning3DGroupExposureTime:1
+msgid "Descriptor for the GroupScan3DExposureTime camera parameter."
+msgstr "the GroupScan3DExposureTime 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`Scanning3DGroupGain <mecheye.area_scan_3d_camera.Scanning3DGroupGain>`\\ "
+"\\(\\)"
+msgstr ""
+":py:obj:`Scanning3DGroupGain <mecheye.area_scan_3d_camera.Scanning3DGroupGain>`\\ "
+"\\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Scanning3DGroupGain:1
+msgid "Descriptor for the GroupScan3DGain camera parameter."
+msgstr "the GroupScan3DGain 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`Scanning3DGroupDlpPowerLevel "
+"<mecheye.area_scan_3d_camera.Scanning3DGroupDlpPowerLevel>`\\ \\(\\)"
+msgstr ""
+":py:obj:`Scanning3DGroupDlpPowerLevel "
+"<mecheye.area_scan_3d_camera.Scanning3DGroupDlpPowerLevel>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Scanning3DGroupDlpPowerLevel:1
+msgid "Descriptor for the GroupDlpPowerLevel camera parameter."
+msgstr "the GroupDlpPowerLevel 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`Scanning3DROI <mecheye.area_scan_3d_camera.Scanning3DROI>`\\ \\(\\)"
+msgstr ":py:obj:`Scanning3DROI <mecheye.area_scan_3d_camera.Scanning3DROI>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Scanning3DROI:1
+msgid "Descriptor for the Scan3DROI camera parameter."
+msgstr "the Scan3DROI 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ""
+":py:obj:`Scanning3DDepthRange <mecheye.area_scan_3d_camera.Scanning3DDepthRange>`\\ "
+"\\(\\)"
+msgstr ""
+":py:obj:`Scanning3DDepthRange <mecheye.area_scan_3d_camera.Scanning3DDepthRange>`\\ "
+"\\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.Scanning3DDepthRange:1
+msgid "Descriptor for the DepthRange camera parameter."
+msgstr "the DepthRange 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`UhpCaptureMode <mecheye.area_scan_3d_camera.UhpCaptureMode>`\\ \\(\\)"
+msgstr ":py:obj:`UhpCaptureMode <mecheye.area_scan_3d_camera.UhpCaptureMode>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.UhpCaptureMode:1
+msgid "Descriptor for the UhpCaptureMode camera parameter."
+msgstr "the UhpCaptureMode 相机参数的描述符。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`EventCallbackBase <mecheye.area_scan_3d_camera.EventCallbackBase>`\\ \\(\\)"
+msgstr ":py:obj:`EventCallbackBase <mecheye.area_scan_3d_camera.EventCallbackBase>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.EventCallbackBase:1
+msgid "Override run(), process_event(), or process_event_with_payload() to receive events."
+msgstr "重写 run()、process_event() 或 process_event_with_payload() 以接收事件。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+msgid ":py:obj:`CameraEvent <mecheye.area_scan_3d_camera.CameraEvent>`\\ \\(\\)"
+msgstr ":py:obj:`CameraEvent <mecheye.area_scan_3d_camera.CameraEvent>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:107:<autosummary>:1
+#: mecheye.area_scan_3d_camera.CameraEvent:1
+msgid "Manage SDK event registration and dispatch Python callbacks safely."
+msgstr "管理 SDK 事件注册，并安全地分发 Python 回调。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:109
+#: docs/api/_generated/area_scan_3d_camera_utils.rst:10 docs/api/_generated/shared.rst:58
+msgid "Functions"
+msgstr "函数"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:125:<autosummary>:1
+msgid ""
+":py:obj:`camera_intrinsics_to_wrapped "
+"<mecheye.area_scan_3d_camera.camera_intrinsics_to_wrapped>`\\ \\(...\\)"
+msgstr ""
+":py:obj:`camera_intrinsics_to_wrapped "
+"<mecheye.area_scan_3d_camera.camera_intrinsics_to_wrapped>`\\ \\(...\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:125:<autosummary>:1
+#: mecheye.area_scan_3d_camera.camera_intrinsics_to_wrapped:1
+msgid "Copy intrinsics into the supplied wrappedIntrinsics output; return None."
+msgstr "将 intrinsics 复制到提供的 wrappedIntrinsics 输出对象；返回 None。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:125:<autosummary>:1
+msgid ""
+":py:obj:`wrapped_to_camera_intrinsics "
+"<mecheye.area_scan_3d_camera.wrapped_to_camera_intrinsics>`\\ \\(intrinsics\\, ...\\)"
+msgstr ""
+":py:obj:`wrapped_to_camera_intrinsics "
+"<mecheye.area_scan_3d_camera.wrapped_to_camera_intrinsics>`\\ \\(intrinsics\\, ...\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:125:<autosummary>:1
+#: mecheye.area_scan_3d_camera.wrapped_to_camera_intrinsics:1
+msgid "Copy wrappedIntrinsics into the supplied intrinsics output; return None."
+msgstr "将 wrappedIntrinsics 复制到提供的 intrinsics 输出对象；返回 None。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:125:<autosummary>:1
+msgid ""
+":py:obj:`wrapped_to_frame_transformation "
+"<mecheye.area_scan_3d_camera.wrapped_to_frame_transformation>`\\ \\(...\\)"
+msgstr ""
+":py:obj:`wrapped_to_frame_transformation "
+"<mecheye.area_scan_3d_camera.wrapped_to_frame_transformation>`\\ \\(...\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:125:<autosummary>:1
+#: mecheye.area_scan_3d_camera.wrapped_to_frame_transformation:1
+msgid "Copy wrappedFrameTransformation into frameTransformation; return None."
+msgstr "将 wrappedFrameTransformation 复制到 frameTransformation；返回 None。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:125:<autosummary>:1
+msgid ""
+":py:obj:`frame_transformation_towrapped "
+"<mecheye.area_scan_3d_camera.frame_transformation_towrapped>`\\ \\(...\\)"
+msgstr ""
+":py:obj:`frame_transformation_towrapped "
+"<mecheye.area_scan_3d_camera.frame_transformation_towrapped>`\\ \\(...\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:125:<autosummary>:1
+#: mecheye.area_scan_3d_camera.frame_transformation_towrapped:1
+msgid "Copy frameTransformation into wrappedFrameTransformation; return None."
+msgstr "将 frameTransformation 复制到 wrappedFrameTransformation；返回 None。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:125:<autosummary>:1
+msgid ""
+":py:obj:`get_point_cloud_after_mapping "
+"<mecheye.area_scan_3d_camera.get_point_cloud_after_mapping>`\\ \\(\\*args\\)"
+msgstr ""
+":py:obj:`get_point_cloud_after_mapping "
+"<mecheye.area_scan_3d_camera.get_point_cloud_after_mapping>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:125:<autosummary>:1
+#: mecheye.area_scan_3d_camera.get_point_cloud_after_mapping:1
+msgid "Map a depth grid into the supplied output point cloud with SDK intrinsics."
+msgstr "使用 SDK 内参将深度图映射到提供的输出点云。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:125:<autosummary>:1
+msgid ""
+":py:obj:`transform_point_cloud <mecheye.area_scan_3d_camera.transform_point_cloud>`\\"
+" \\(...\\)"
+msgstr ""
+":py:obj:`transform_point_cloud <mecheye.area_scan_3d_camera.transform_point_cloud>`\\"
+" \\(...\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:125:<autosummary>:1
+#: mecheye.area_scan_3d_camera.transform_point_cloud:1
+#: mecheye.area_scan_3d_camera.transform_point_cloud_with_normals:1
+#: mecheye.area_scan_3d_camera.transform_textured_point_cloud:1
+#: mecheye.area_scan_3d_camera.transform_textured_point_cloud_with_normals:1
+msgid "Return a transformed point-cloud container without changing the input."
+msgstr "返回经过变换的点云容器，不修改输入。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:125:<autosummary>:1
+msgid ""
+":py:obj:`transform_point_cloud_with_normals "
+"<mecheye.area_scan_3d_camera.transform_point_cloud_with_normals>`\\ \\(...\\)"
+msgstr ""
+":py:obj:`transform_point_cloud_with_normals "
+"<mecheye.area_scan_3d_camera.transform_point_cloud_with_normals>`\\ \\(...\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:125:<autosummary>:1
+msgid ""
+":py:obj:`transform_textured_point_cloud "
+"<mecheye.area_scan_3d_camera.transform_textured_point_cloud>`\\ \\(...\\)"
+msgstr ""
+":py:obj:`transform_textured_point_cloud "
+"<mecheye.area_scan_3d_camera.transform_textured_point_cloud>`\\ \\(...\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:125:<autosummary>:1
+msgid ""
+":py:obj:`transform_textured_point_cloud_with_normals "
+"<mecheye.area_scan_3d_camera.transform_textured_point_cloud_with_normals>`\\ "
+"\\(...\\)"
+msgstr ""
+":py:obj:`transform_textured_point_cloud_with_normals "
+"<mecheye.area_scan_3d_camera.transform_textured_point_cloud_with_normals>`\\ "
+"\\(...\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:125:<autosummary>:1
+msgid ""
+":py:obj:`get_transformation_params "
+"<mecheye.area_scan_3d_camera.get_transformation_params>`\\ \\(camera\\)"
+msgstr ""
+":py:obj:`get_transformation_params "
+"<mecheye.area_scan_3d_camera.get_transformation_params>`\\ \\(camera\\)"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:125:<autosummary>:1
+#: mecheye.area_scan_3d_camera.get_transformation_params:1
+msgid "Return the SDK Transformation for a connected camera."
+msgstr "返回已连接相机的 SDK Transformation。"
+
+#: docs/api/_generated/area_scan_3d_camera.rst:127
+#: docs/api/_generated/area_scan_3d_camera_utils.rst:29 docs/api/_generated/shared.rst:70
+msgid "Constants"
+msgstr "常量"
+
+#: docstring mecheye.area_scan_3d_camera.ColorTypeOf2DCamera_Color:1
+#: mecheye.area_scan_3d_camera.ColorTypeOf2DCamera_Monochrome:1
+#: mecheye.area_scan_3d_camera.ColorTypeOf2DCamera_Undefined:1
+#: mecheye.area_scan_3d_camera_utils.ColorTypeOf2DCamera_Color:1
+#: mecheye.area_scan_3d_camera_utils.ColorTypeOf2DCamera_Monochrome:1
+#: mecheye.area_scan_3d_camera_utils.ColorTypeOf2DCamera_Undefined:1
+#: mecheye.area_scan_3d_camera_utils.CoordinateUnit_Meter:1
+#: mecheye.area_scan_3d_camera_utils.CoordinateUnit_Millimeter:1
+#: mecheye.area_scan_3d_camera_utils.FileFormat_CSV:1
+#: mecheye.area_scan_3d_camera_utils.FileFormat_PCD:1
+#: mecheye.area_scan_3d_camera_utils.FileFormat_PLY:1
+#: mecheye.area_scan_3d_camera_utils.IpAssignmentMethod_DHCP:1
+#: mecheye.area_scan_3d_camera_utils.IpAssignmentMethod_LLA:1
+#: mecheye.area_scan_3d_camera_utils.IpAssignmentMethod_Static:1
+#: mecheye.area_scan_3d_camera_utils.IpAssignmentMethod_Unknown:1
+#: mecheye.area_scan_3d_camera_utils.Platform_PLATFORM_A:1
+#: mecheye.area_scan_3d_camera_utils.Platform_PLATFORM_B:1
+#: mecheye.area_scan_3d_camera_utils.Platform_PLATFORM_C:1
+#: mecheye.area_scan_3d_camera_utils.Platform_PLATFORM_D:1
+#: mecheye.area_scan_3d_camera_utils.Platform_PLATFORM_E:1
+#: mecheye.area_scan_3d_camera_utils.Platform_PLATFORM_F:1
+#: mecheye.area_scan_3d_camera_utils.Platform_PLATFORM_G:1
+#: mecheye.area_scan_3d_camera_utils.Platform_PLATFORM_H:1
+#: mecheye.shared.CoordinateUnit_Meter:1 mecheye.shared.CoordinateUnit_Millimeter:1
+#: mecheye.shared.FileFormat_CSV:1 mecheye.shared.FileFormat_PCD:1
+#: mecheye.shared.FileFormat_PLY:1 mecheye.shared.IpAssignmentMethod_DHCP:1
+#: mecheye.shared.IpAssignmentMethod_LLA:1 mecheye.shared.IpAssignmentMethod_Static:1
+#: mecheye.shared.IpAssignmentMethod_Unknown:1 mecheye.shared.Platform_PLATFORM_A:1
+#: mecheye.shared.Platform_PLATFORM_B:1 mecheye.shared.Platform_PLATFORM_C:1
+#: mecheye.shared.Platform_PLATFORM_D:1 mecheye.shared.Platform_PLATFORM_E:1
+#: mecheye.shared.Platform_PLATFORM_F:1 mecheye.shared.Platform_PLATFORM_G:1
+#: mecheye.shared.Platform_PLATFORM_H:1
+msgid "int([x]) -> integer int(x, base=10) -> integer"
+msgstr "int([x]) -> integer int(x, base=10) -> integer"
+
+#: docstring mecheye.area_scan_3d_camera.ColorTypeOf2DCamera_Color:4
+#: mecheye.area_scan_3d_camera.ColorTypeOf2DCamera_Monochrome:4
+#: mecheye.area_scan_3d_camera.ColorTypeOf2DCamera_Undefined:4
+#: mecheye.area_scan_3d_camera_utils.ColorTypeOf2DCamera_Color:4
+#: mecheye.area_scan_3d_camera_utils.ColorTypeOf2DCamera_Monochrome:4
+#: mecheye.area_scan_3d_camera_utils.ColorTypeOf2DCamera_Undefined:4
+#: mecheye.area_scan_3d_camera_utils.CoordinateUnit_Meter:4
+#: mecheye.area_scan_3d_camera_utils.CoordinateUnit_Millimeter:4
+#: mecheye.area_scan_3d_camera_utils.FileFormat_CSV:4
+#: mecheye.area_scan_3d_camera_utils.FileFormat_PCD:4
+#: mecheye.area_scan_3d_camera_utils.FileFormat_PLY:4
+#: mecheye.area_scan_3d_camera_utils.IpAssignmentMethod_DHCP:4
+#: mecheye.area_scan_3d_camera_utils.IpAssignmentMethod_LLA:4
+#: mecheye.area_scan_3d_camera_utils.IpAssignmentMethod_Static:4
+#: mecheye.area_scan_3d_camera_utils.IpAssignmentMethod_Unknown:4
+#: mecheye.area_scan_3d_camera_utils.Platform_PLATFORM_A:4
+#: mecheye.area_scan_3d_camera_utils.Platform_PLATFORM_B:4
+#: mecheye.area_scan_3d_camera_utils.Platform_PLATFORM_C:4
+#: mecheye.area_scan_3d_camera_utils.Platform_PLATFORM_D:4
+#: mecheye.area_scan_3d_camera_utils.Platform_PLATFORM_E:4
+#: mecheye.area_scan_3d_camera_utils.Platform_PLATFORM_F:4
+#: mecheye.area_scan_3d_camera_utils.Platform_PLATFORM_G:4
+#: mecheye.area_scan_3d_camera_utils.Platform_PLATFORM_H:4
+#: mecheye.shared.CoordinateUnit_Meter:4 mecheye.shared.CoordinateUnit_Millimeter:4
+#: mecheye.shared.FileFormat_CSV:4 mecheye.shared.FileFormat_PCD:4
+#: mecheye.shared.FileFormat_PLY:4 mecheye.shared.IpAssignmentMethod_DHCP:4
+#: mecheye.shared.IpAssignmentMethod_LLA:4 mecheye.shared.IpAssignmentMethod_Static:4
+#: mecheye.shared.IpAssignmentMethod_Unknown:4 mecheye.shared.Platform_PLATFORM_A:4
+#: mecheye.shared.Platform_PLATFORM_B:4 mecheye.shared.Platform_PLATFORM_C:4
+#: mecheye.shared.Platform_PLATFORM_D:4 mecheye.shared.Platform_PLATFORM_E:4
+#: mecheye.shared.Platform_PLATFORM_F:4 mecheye.shared.Platform_PLATFORM_G:4
+#: mecheye.shared.Platform_PLATFORM_H:4
+msgid ""
+"Convert a number or string to an integer, or return 0 if no arguments are given.  If "
+"x is a number, return x.__int__().  For floating-point numbers, this truncates "
+"towards zero."
+msgstr "将数字或字符串转换为整数；不传入参数时返回 0。若 x 为数字，则返回 x.__int__()；浮点数向零截断。"
+
+#: docstring mecheye.area_scan_3d_camera.ColorTypeOf2DCamera_Color:8
+#: mecheye.area_scan_3d_camera.ColorTypeOf2DCamera_Monochrome:8
+#: mecheye.area_scan_3d_camera.ColorTypeOf2DCamera_Undefined:8
+#: mecheye.area_scan_3d_camera_utils.ColorTypeOf2DCamera_Color:8
+#: mecheye.area_scan_3d_camera_utils.ColorTypeOf2DCamera_Monochrome:8
+#: mecheye.area_scan_3d_camera_utils.ColorTypeOf2DCamera_Undefined:8
+#: mecheye.area_scan_3d_camera_utils.CoordinateUnit_Meter:8
+#: mecheye.area_scan_3d_camera_utils.CoordinateUnit_Millimeter:8
+#: mecheye.area_scan_3d_camera_utils.FileFormat_CSV:8
+#: mecheye.area_scan_3d_camera_utils.FileFormat_PCD:8
+#: mecheye.area_scan_3d_camera_utils.FileFormat_PLY:8
+#: mecheye.area_scan_3d_camera_utils.IpAssignmentMethod_DHCP:8
+#: mecheye.area_scan_3d_camera_utils.IpAssignmentMethod_LLA:8
+#: mecheye.area_scan_3d_camera_utils.IpAssignmentMethod_Static:8
+#: mecheye.area_scan_3d_camera_utils.IpAssignmentMethod_Unknown:8
+#: mecheye.area_scan_3d_camera_utils.Platform_PLATFORM_A:8
+#: mecheye.area_scan_3d_camera_utils.Platform_PLATFORM_B:8
+#: mecheye.area_scan_3d_camera_utils.Platform_PLATFORM_C:8
+#: mecheye.area_scan_3d_camera_utils.Platform_PLATFORM_D:8
+#: mecheye.area_scan_3d_camera_utils.Platform_PLATFORM_E:8
+#: mecheye.area_scan_3d_camera_utils.Platform_PLATFORM_F:8
+#: mecheye.area_scan_3d_camera_utils.Platform_PLATFORM_G:8
+#: mecheye.area_scan_3d_camera_utils.Platform_PLATFORM_H:8
+#: mecheye.shared.CoordinateUnit_Meter:8 mecheye.shared.CoordinateUnit_Millimeter:8
+#: mecheye.shared.FileFormat_CSV:8 mecheye.shared.FileFormat_PCD:8
+#: mecheye.shared.FileFormat_PLY:8 mecheye.shared.IpAssignmentMethod_DHCP:8
+#: mecheye.shared.IpAssignmentMethod_LLA:8 mecheye.shared.IpAssignmentMethod_Static:8
+#: mecheye.shared.IpAssignmentMethod_Unknown:8 mecheye.shared.Platform_PLATFORM_A:8
+#: mecheye.shared.Platform_PLATFORM_B:8 mecheye.shared.Platform_PLATFORM_C:8
+#: mecheye.shared.Platform_PLATFORM_D:8 mecheye.shared.Platform_PLATFORM_E:8
+#: mecheye.shared.Platform_PLATFORM_F:8 mecheye.shared.Platform_PLATFORM_G:8
+#: mecheye.shared.Platform_PLATFORM_H:8
+msgid ""
+"If x is not a number or if base is given, then x must be a string, bytes, or "
+"bytearray instance representing an integer literal in the given base.  The literal "
+"can be preceded by '+' or '-' and be surrounded by whitespace.  The base defaults to "
+"10.  Valid bases are 0 and 2-36. Base 0 means to interpret the base from the string "
+"as an integer literal. >>> int('0b100', base=0) 4"
+msgstr ""
+"如果 x 不是数字，或指定了 base，则 x 必须是以指定进制表示整数字面值的 str、bytes 或 bytearray。字面值可以带有 '+' 或 '-' "
+"前缀，两侧可以包含空白。base 默认为 10，可取 0 或 2–36；base 为 0 时从字符串的整数字面值推断进制。例如 int('0b100', base=0) "
+"返回 4。"
+
+#: docs/api/_generated/area_scan_3d_camera_utils.rst:2
+msgid "mecheye.area_scan_3d_camera_utils"
+msgstr "mecheye.area_scan_3d_camera_utils"
+
+#: mecheye.area_scan_3d_camera_utils:1
+msgid "NumPy utilities for area-scan camera images."
+msgstr "用于面阵相机图像的 NumPy 工具。"
+
+#: docs/api/_generated/area_scan_3d_camera_utils.rst:6
+msgid ""
+"This module also re-exports camera and shared types. Their canonical definitions are "
+"documented on the other API module pages."
+msgstr "此模块也重新导出相机类型和共享类型；它们的定义见其他 API 模块页面。"
+
+#: docs/api/_generated/area_scan_3d_camera_utils.rst:27:<autosummary>:1
+msgid ""
+":py:obj:`image_to_gray <mecheye.area_scan_3d_camera_utils.image_to_gray>`\\ "
+"\\(image\\_data\\)"
+msgstr ""
+":py:obj:`image_to_gray <mecheye.area_scan_3d_camera_utils.image_to_gray>`\\ "
+"\\(image\\_data\\)"
+
+#: docs/api/_generated/area_scan_3d_camera_utils.rst:27:<autosummary>:1
+#: mecheye.area_scan_3d_camera_utils.image_to_gray:1
+msgid "Copy a grayscale/BGR/BGRA image into an independent grayscale array, ignoring alpha."
+msgstr "将灰度、BGR 或 BGRA 图像复制为独立的灰度数组，忽略 alpha 通道。"
+
+#: docs/api/_generated/area_scan_3d_camera_utils.rst:27:<autosummary>:1
+msgid ""
+":py:obj:`print_camera_info <mecheye.area_scan_3d_camera_utils.print_camera_info>`\\ "
+"\\(camera\\_info\\)"
+msgstr ""
+":py:obj:`print_camera_info <mecheye.area_scan_3d_camera_utils.print_camera_info>`\\ "
+"\\(camera\\_info\\)"
+
+#: docs/api/_generated/area_scan_3d_camera_utils.rst:27:<autosummary>:1
+#: mecheye.area_scan_3d_camera_utils.print_camera_info:1
+msgid "Print information explicitly requested by the caller."
+msgstr "仅在调用者显式请求时打印信息。"
+
+#: docs/api/_generated/area_scan_3d_camera_utils.rst:27:<autosummary>:1
+msgid ""
+":py:obj:`print_camera_status "
+"<mecheye.area_scan_3d_camera_utils.print_camera_status>`\\ \\(camera\\_status\\)"
+msgstr ""
+":py:obj:`print_camera_status "
+"<mecheye.area_scan_3d_camera_utils.print_camera_status>`\\ \\(camera\\_status\\)"
+
+#: docs/api/_generated/area_scan_3d_camera_utils.rst:27:<autosummary>:1
+#: mecheye.area_scan_3d_camera_utils.print_camera_status:1
+msgid "Explicitly print CPU and projector temperatures in degrees Celsius."
+msgstr "显式打印 CPU 和投影器的温度，单位为摄氏度。"
+
+#: docs/api/_generated/area_scan_3d_camera_utils.rst:27:<autosummary>:1
+msgid ""
+":py:obj:`print_camera_resolution "
+"<mecheye.area_scan_3d_camera_utils.print_camera_resolution>`\\ "
+"\\(camera\\_resolution\\)"
+msgstr ""
+":py:obj:`print_camera_resolution "
+"<mecheye.area_scan_3d_camera_utils.print_camera_resolution>`\\ "
+"\\(camera\\_resolution\\)"
+
+#: docs/api/_generated/area_scan_3d_camera_utils.rst:27:<autosummary>:1
+#: mecheye.area_scan_3d_camera_utils.print_camera_resolution:1
+msgid "Explicitly print texture and depth image dimensions in pixels."
+msgstr "显式打印纹理图像和深度图像的尺寸，单位为像素。"
+
+#: docs/api/_generated/area_scan_3d_camera_utils.rst:27:<autosummary>:1
+msgid ""
+":py:obj:`print_camera_matrix "
+"<mecheye.area_scan_3d_camera_utils.print_camera_matrix>`\\ \\(title\\, "
+"camera\\_matrix\\)"
+msgstr ""
+":py:obj:`print_camera_matrix "
+"<mecheye.area_scan_3d_camera_utils.print_camera_matrix>`\\ \\(title\\, "
+"camera\\_matrix\\)"
+
+#: docs/api/_generated/area_scan_3d_camera_utils.rst:27:<autosummary>:1
+#: mecheye.area_scan_3d_camera_utils.print_camera_matrix:1
+msgid "Explicitly print title and the 3-by-3 intrinsic camera matrix."
+msgstr "显式打印 title 和 3×3 相机内参矩阵。"
+
+#: docs/api/_generated/area_scan_3d_camera_utils.rst:27:<autosummary>:1
+msgid ""
+":py:obj:`print_camera_dist_coeffs "
+"<mecheye.area_scan_3d_camera_utils.print_camera_dist_coeffs>`\\ \\(title\\, "
+"dist\\_coeffs\\)"
+msgstr ""
+":py:obj:`print_camera_dist_coeffs "
+"<mecheye.area_scan_3d_camera_utils.print_camera_dist_coeffs>`\\ \\(title\\, "
+"dist\\_coeffs\\)"
+
+#: docs/api/_generated/area_scan_3d_camera_utils.rst:27:<autosummary>:1
+#: mecheye.area_scan_3d_camera_utils.print_camera_dist_coeffs:1
+msgid "Explicitly print title and k1, k2, p1, p2, k3 distortion coefficients."
+msgstr "显式打印 title 以及 k1、k2、p1、p2、k3 畸变系数。"
+
+#: docs/api/_generated/area_scan_3d_camera_utils.rst:27:<autosummary>:1
+msgid ""
+":py:obj:`print_transform <mecheye.area_scan_3d_camera_utils.print_transform>`\\ "
+"\\(title\\, transformation\\)"
+msgstr ""
+":py:obj:`print_transform <mecheye.area_scan_3d_camera_utils.print_transform>`\\ "
+"\\(title\\, transformation\\)"
+
+#: docs/api/_generated/area_scan_3d_camera_utils.rst:27:<autosummary>:1
+#: mecheye.area_scan_3d_camera_utils.print_transform:1
+msgid "Explicitly print title, rotation matrix, and translation in millimeters."
+msgstr "显式打印 title、旋转矩阵和平移，平移单位为毫米。"
+
+#: docs/api/_generated/area_scan_3d_camera_utils.rst:27:<autosummary>:1
+msgid ""
+":py:obj:`print_camera_intrinsics "
+"<mecheye.area_scan_3d_camera_utils.print_camera_intrinsics>`\\ \\(intrinsics\\)"
+msgstr ""
+":py:obj:`print_camera_intrinsics "
+"<mecheye.area_scan_3d_camera_utils.print_camera_intrinsics>`\\ \\(intrinsics\\)"
+
+#: docs/api/_generated/area_scan_3d_camera_utils.rst:27:<autosummary>:1
+#: mecheye.area_scan_3d_camera_utils.print_camera_intrinsics:1
+msgid "Explicitly print both camera calibrations and their depth-to-texture transform."
+msgstr "显式打印两个相机的标定参数和深度坐标到纹理坐标的变换。"
+
+#: docs/api/_generated/area_scan_3d_camera_utils.rst:27:<autosummary>:1
+msgid ""
+":py:obj:`find_and_connect <mecheye.area_scan_3d_camera_utils.find_and_connect>`\\ "
+"\\(camera\\)"
+msgstr ""
+":py:obj:`find_and_connect <mecheye.area_scan_3d_camera_utils.find_and_connect>`\\ "
+"\\(camera\\)"
+
+#: docs/api/_generated/area_scan_3d_camera_utils.rst:27:<autosummary>:1
+#: mecheye.area_scan_3d_camera_utils.find_and_connect:1
+msgid "Interactively select a discovered camera; return whether connection succeeded."
+msgstr "交互式选择已发现的相机；返回连接是否成功。"
+
+#: docs/api/_generated/area_scan_3d_camera_utils.rst:27:<autosummary>:1
+msgid ""
+":py:obj:`find_and_connect_multi_camera "
+"<mecheye.area_scan_3d_camera_utils.find_and_connect_multi_camera>`\\ \\(\\)"
+msgstr ""
+":py:obj:`find_and_connect_multi_camera "
+"<mecheye.area_scan_3d_camera_utils.find_and_connect_multi_camera>`\\ \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera_utils.rst:27:<autosummary>:1
+#: mecheye.area_scan_3d_camera_utils.find_and_connect_multi_camera:1
+msgid "Interactively select cameras, ending with c; return connected Camera objects."
+msgstr "交互式选择相机，输入 c 结束；返回已连接的 Camera 对象。"
+
+#: docs/api/_generated/area_scan_3d_camera_utils.rst:27:<autosummary>:1
+msgid ""
+":py:obj:`confirm_capture_3d <mecheye.area_scan_3d_camera_utils.confirm_capture_3d>`\\"
+" \\(\\)"
+msgstr ""
+":py:obj:`confirm_capture_3d <mecheye.area_scan_3d_camera_utils.confirm_capture_3d>`\\"
+" \\(\\)"
+
+#: docs/api/_generated/area_scan_3d_camera_utils.rst:27:<autosummary>:1
+#: mecheye.area_scan_3d_camera_utils.confirm_capture_3d:1
+msgid "Ask whether 3D capture should proceed; return a boolean."
+msgstr "询问是否继续进行 3D 采集；返回布尔值。"
+
+#: docstring mecheye.area_scan_3d_camera_utils.PI:1 mecheye.shared.PI:1
+msgid "Convert a string or number to a floating-point number, if possible."
+msgstr "在可转换时，将字符串或数字转换为浮点数。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.AntiFlickerMode.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.AntiFlickerMode"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.AntiFlickerMode"
+
+#: mecheye.area_scan_3d_camera.AntiFlickerMode:3
+#: mecheye.area_scan_3d_camera.DistortionCorrection:3
+#: mecheye.area_scan_3d_camera.EdgeArtifactRemoval:3
+#: mecheye.area_scan_3d_camera.EnableDistortionCorrection:3
+#: mecheye.area_scan_3d_camera.EnableGapFilling:3 mecheye.area_scan_3d_camera.GapFilling:3
+#: mecheye.area_scan_3d_camera.GapSize:3
+#: mecheye.area_scan_3d_camera.LaserFramePartitionCount:3
+#: mecheye.area_scan_3d_camera.LaserFrameRange:3
+#: mecheye.area_scan_3d_camera.LaserFringeCodingMode:3
+#: mecheye.area_scan_3d_camera.LaserPowerLevel:3
+#: mecheye.area_scan_3d_camera.PointCloudDepthHoleFilling:3
+#: mecheye.area_scan_3d_camera.PointCloudDepthSmooth:3
+#: mecheye.area_scan_3d_camera.PointCloudDepthSurfaceNoiseRemoval:3
+#: mecheye.area_scan_3d_camera.PointCloudEdgePreservation:3
+#: mecheye.area_scan_3d_camera.PointCloudFringeContrastThreshold:3
+#: mecheye.area_scan_3d_camera.PointCloudFringeMinThreshold:3
+#: mecheye.area_scan_3d_camera.PointCloudLargeGradNoiseRemoval:3
+#: mecheye.area_scan_3d_camera.PointCloudNoiseRemoval:3
+#: mecheye.area_scan_3d_camera.PointCloudOutlierRemoval:3
+#: mecheye.area_scan_3d_camera.PointCloudPhaseClusterOutlierRemoval:3
+#: mecheye.area_scan_3d_camera.PointCloudSpuriousPhaseRemoval:3
+#: mecheye.area_scan_3d_camera.PointCloudSurfaceSmoothing:3
+#: mecheye.area_scan_3d_camera.ProcessingMode:3
+#: mecheye.area_scan_3d_camera.ProjectorFringeCodingMode:3
+#: mecheye.area_scan_3d_camera.ProjectorInterferenceSuppression:3
+#: mecheye.area_scan_3d_camera.ProjectorPowerLevel:3
+#: mecheye.area_scan_3d_camera.ProjectorProcessingMode:3
+#: mecheye.area_scan_3d_camera.Scanning2DAutoExposureROI:3
+#: mecheye.area_scan_3d_camera.Scanning2DDepthSourceExposureMode:3
+#: mecheye.area_scan_3d_camera.Scanning2DDepthSourceExposureTime:3
+#: mecheye.area_scan_3d_camera.Scanning2DExpectedGrayValue:3
+#: mecheye.area_scan_3d_camera.Scanning2DExposureMode:3
+#: mecheye.area_scan_3d_camera.Scanning2DExposureTime:3
+#: mecheye.area_scan_3d_camera.Scanning2DFlashAcquisitionMode:3
+#: mecheye.area_scan_3d_camera.Scanning2DFlashExposureTime:3
+#: mecheye.area_scan_3d_camera.Scanning2DFlashGain:3
+#: mecheye.area_scan_3d_camera.Scanning2DFlashPowerLevel:3
+#: mecheye.area_scan_3d_camera.Scanning2DGain:3
+#: mecheye.area_scan_3d_camera.Scanning2DHDRExposureSequence:3
+#: mecheye.area_scan_3d_camera.Scanning2DPatternRoleGain:3
+#: mecheye.area_scan_3d_camera.Scanning2DSharpenFactor:3
+#: mecheye.area_scan_3d_camera.Scanning2DToneMappingEnable:3
+#: mecheye.area_scan_3d_camera.Scanning3DDepthRange:3
+#: mecheye.area_scan_3d_camera.Scanning3DExposureCount:3
+#: mecheye.area_scan_3d_camera.Scanning3DExposureSequence:3
+#: mecheye.area_scan_3d_camera.Scanning3DGain:3
+#: mecheye.area_scan_3d_camera.Scanning3DGroupDlpPowerLevel:3
+#: mecheye.area_scan_3d_camera.Scanning3DGroupExposureSelector:3
+#: mecheye.area_scan_3d_camera.Scanning3DGroupExposureTime:3
+#: mecheye.area_scan_3d_camera.Scanning3DGroupGain:3
+#: mecheye.area_scan_3d_camera.Scanning3DROI:3 mecheye.area_scan_3d_camera.UhpCaptureMode:3
+msgid ""
+"Use name with UserSet getters/setters. Constants describe the SDK type, enum entries,"
+" units, and nominal limits; check device-specific availability before use."
+msgstr "将 name 用于 UserSet 的读写方法。常量描述 SDK 类型、枚举值、单位和标称限制；使用前应检查具体设备的可用性。"
+
+#: mecheye.area_scan_3d_camera.AntiFlickerMode.thisown:1
+#: mecheye.area_scan_3d_camera.DistortionCorrection.thisown:1
+#: mecheye.area_scan_3d_camera.EdgeArtifactRemoval.thisown:1
+#: mecheye.area_scan_3d_camera.EnableDistortionCorrection.thisown:1
+#: mecheye.area_scan_3d_camera.EnableGapFilling.thisown:1
+#: mecheye.area_scan_3d_camera.GapFilling.thisown:1
+#: mecheye.area_scan_3d_camera.GapSize.thisown:1
+#: mecheye.area_scan_3d_camera.LaserFramePartitionCount.thisown:1
+#: mecheye.area_scan_3d_camera.LaserFrameRange.thisown:1
+#: mecheye.area_scan_3d_camera.LaserFringeCodingMode.thisown:1
+#: mecheye.area_scan_3d_camera.LaserPowerLevel.thisown:1
+#: mecheye.area_scan_3d_camera.PointCloudDepthHoleFilling.thisown:1
+#: mecheye.area_scan_3d_camera.PointCloudDepthSmooth.thisown:1
+#: mecheye.area_scan_3d_camera.PointCloudDepthSurfaceNoiseRemoval.thisown:1
+#: mecheye.area_scan_3d_camera.PointCloudEdgePreservation.thisown:1
+#: mecheye.area_scan_3d_camera.PointCloudFringeContrastThreshold.thisown:1
+#: mecheye.area_scan_3d_camera.PointCloudFringeMinThreshold.thisown:1
+#: mecheye.area_scan_3d_camera.PointCloudLargeGradNoiseRemoval.thisown:1
+#: mecheye.area_scan_3d_camera.PointCloudNoiseRemoval.thisown:1
+#: mecheye.area_scan_3d_camera.PointCloudOutlierRemoval.thisown:1
+#: mecheye.area_scan_3d_camera.PointCloudPhaseClusterOutlierRemoval.thisown:1
+#: mecheye.area_scan_3d_camera.PointCloudSpuriousPhaseRemoval.thisown:1
+#: mecheye.area_scan_3d_camera.PointCloudSurfaceSmoothing.thisown:1
+#: mecheye.area_scan_3d_camera.ProcessingMode.thisown:1
+#: mecheye.area_scan_3d_camera.ProjectorFringeCodingMode.thisown:1
+#: mecheye.area_scan_3d_camera.ProjectorInterferenceSuppression.thisown:1
+#: mecheye.area_scan_3d_camera.ProjectorPowerLevel.thisown:1
+#: mecheye.area_scan_3d_camera.ProjectorProcessingMode.thisown:1
+#: mecheye.area_scan_3d_camera.Scanning2DAutoExposureROI.thisown:1
+#: mecheye.area_scan_3d_camera.Scanning2DDepthSourceExposureMode.thisown:1
+#: mecheye.area_scan_3d_camera.Scanning2DDepthSourceExposureTime.thisown:1
+#: mecheye.area_scan_3d_camera.Scanning2DExpectedGrayValue.thisown:1
+#: mecheye.area_scan_3d_camera.Scanning2DExposureMode.thisown:1
+#: mecheye.area_scan_3d_camera.Scanning2DExposureTime.thisown:1
+#: mecheye.area_scan_3d_camera.Scanning2DFlashAcquisitionMode.thisown:1
+#: mecheye.area_scan_3d_camera.Scanning2DFlashExposureTime.thisown:1
+#: mecheye.area_scan_3d_camera.Scanning2DFlashGain.thisown:1
+#: mecheye.area_scan_3d_camera.Scanning2DFlashPowerLevel.thisown:1
+#: mecheye.area_scan_3d_camera.Scanning2DGain.thisown:1
+#: mecheye.area_scan_3d_camera.Scanning2DHDRExposureSequence.thisown:1
+#: mecheye.area_scan_3d_camera.Scanning2DPatternRoleGain.thisown:1
+#: mecheye.area_scan_3d_camera.Scanning2DSharpenFactor.thisown:1
+#: mecheye.area_scan_3d_camera.Scanning2DToneMappingEnable.thisown:1
+#: mecheye.area_scan_3d_camera.Scanning3DDepthRange.thisown:1
+#: mecheye.area_scan_3d_camera.Scanning3DExposureCount.thisown:1
+#: mecheye.area_scan_3d_camera.Scanning3DExposureSequence.thisown:1
+#: mecheye.area_scan_3d_camera.Scanning3DGain.thisown:1
+#: mecheye.area_scan_3d_camera.Scanning3DGroupDlpPowerLevel.thisown:1
+#: mecheye.area_scan_3d_camera.Scanning3DGroupExposureSelector.thisown:1
+#: mecheye.area_scan_3d_camera.Scanning3DGroupExposureTime.thisown:1
+#: mecheye.area_scan_3d_camera.Scanning3DGroupGain.thisown:1
+#: mecheye.area_scan_3d_camera.Scanning3DROI.thisown:1
+#: mecheye.area_scan_3d_camera.UhpCaptureMode.thisown:1
+msgid "Retained ownership flag; Python continues to manage native object lifetimes."
+msgstr "保留的所有权标志；原生对象的生命周期仍由 Python 管理。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Camera.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Camera"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Camera"
+
+#: mecheye.area_scan_3d_camera.Camera:3
+msgid ""
+"``Camera()`` requires explicit connect(). ``Camera(ip)`` remembers an IP and connects"
+" on context entry or first convenience capture/configuration. "
+"``Camera(other_camera)`` shares the native connection and callback registry. "
+"Construction does not connect. Use a context manager or disconnect() to release a "
+"connection; close() is the same operation."
+msgstr ""
+"``Camera()`` 需要显式调用 connect()。``Camera(ip)`` 记录 "
+"IP，并在进入上下文或首次使用便捷采集／配置功能时连接。``Camera(other_camera)`` 共享原生连接和回调注册表。构造本身不会连接。使用上下文管理器或 "
+"disconnect() 释放连接；close() 执行相同操作。"
+
+#: mecheye.area_scan_3d_camera.Camera:9
+msgid ""
+"SDK methods return ErrorStatus and never retry implicitly. Convenience methods raise "
+"the MechEyeError subclasses from mecheye.shared on failure. SDK access is serialized "
+"across camera instances; user code must synchronize writes to returned NumPy arrays "
+"and to its own callback state."
+msgstr ""
+"SDK 方法返回 ErrorStatus，且不会隐式重试。便捷方法失败时抛出 mecheye.shared 中的 MechEyeError 子类异常。不同相机实例之间的 "
+"SDK 访问会串行执行；调用者需要同步对返回的 NumPy 数组和自身回调状态的写入。"
+
+#: mecheye.area_scan_3d_camera.Camera.discover_cameras:1
+msgid "Discover cameras on reachable interfaces without connecting."
+msgstr "在可访问的网络接口上发现相机，不建立连接。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Camera.rst
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Frame2DAnd3D.rst
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Frame3D.rst
+#: docs/api/_generated/objects/mecheye.shared.BoolParameter.rst
+#: docs/api/_generated/objects/mecheye.shared.EnumParameter.rst
+#: docs/api/_generated/objects/mecheye.shared.FloatArrayParameter.rst
+#: docs/api/_generated/objects/mecheye.shared.FloatParameter.rst
+#: docs/api/_generated/objects/mecheye.shared.IntParameter.rst
+#: docs/api/_generated/objects/mecheye.shared.Parameter.rst
+#: docs/api/_generated/objects/mecheye.shared.ProfileRoiParameter.rst
+#: docs/api/_generated/objects/mecheye.shared.RangeParameter.rst
+#: docs/api/_generated/objects/mecheye.shared.RoiArrayParameter.rst
+#: docs/api/_generated/objects/mecheye.shared.RoiParameter.rst
+#: mecheye.area_scan_3d_camera.Camera.capture_points
+msgid "Parameters"
+msgstr "参数"
+
+#: mecheye.area_scan_3d_camera.Camera.discover_cameras:3
+msgid "Discovery timeout in milliseconds."
+msgstr "发现超时，单位为毫秒。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Camera.rst
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.EventInfos.rst
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Frame2DAnd3D.rst
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Frame3D.rst
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Payload.rst
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.VectorCameraInfo.rst
+#: docs/api/_generated/objects/mecheye.shared.BoolParameter.rst
+#: docs/api/_generated/objects/mecheye.shared.EnumParameter.rst
+#: docs/api/_generated/objects/mecheye.shared.FloatArrayParameter.rst
+#: docs/api/_generated/objects/mecheye.shared.FloatParameter.rst
+#: docs/api/_generated/objects/mecheye.shared.IntParameter.rst
+#: docs/api/_generated/objects/mecheye.shared.MechEyeVectorParameterPointer.rst
+#: docs/api/_generated/objects/mecheye.shared.MechEyeVectorROI.rst
+#: docs/api/_generated/objects/mecheye.shared.MechEyeVectorString.rst
+#: docs/api/_generated/objects/mecheye.shared.Parameter.rst
+#: docs/api/_generated/objects/mecheye.shared.ProfileRoiParameter.rst
+#: docs/api/_generated/objects/mecheye.shared.RangeParameter.rst
+#: docs/api/_generated/objects/mecheye.shared.RoiArrayParameter.rst
+#: docs/api/_generated/objects/mecheye.shared.RoiParameter.rst
+#: mecheye.area_scan_3d_camera.Camera.capture_points
+msgid "Returns"
+msgstr "返回值"
+
+#: mecheye.area_scan_3d_camera.Camera.discover_cameras:4
+msgid "A VectorCameraInfo containing discovered device information."
+msgstr "包含已发现设备信息的 VectorCameraInfo。"
+
+#: mecheye.area_scan_3d_camera.Camera.connect:1
+msgid "Connect using an IP address or CameraInfo and an optional timeout."
+msgstr "使用 IP 地址或 CameraInfo 连接，可指定超时时间。"
+
+#: mecheye.area_scan_3d_camera.Camera.connect:3
+msgid ""
+"Accepted forms are ``connect(ip)`` and ``connect(info)``, with an optional second "
+"positional ``timeoutMs`` argument (default 5000 milliseconds). The IP is remembered "
+"after a successful connection. No retries are performed."
+msgstr ""
+"支持 ``connect(ip)`` 和 ``connect(info)``，第二个位置参数可指定 ``timeoutMs``，默认为 5000 毫秒。连接成功后记录 "
+"IP。不会重试。"
+
+#: mecheye.area_scan_3d_camera.Camera.connect:7
+msgid "ErrorStatus; inspect is_ok() before using the connection."
+msgstr "ErrorStatus；使用连接前应检查 is_ok()。"
+
+#: mecheye.area_scan_3d_camera.Camera.disconnect:1
+msgid "Disconnect and stop this connection's callback registrations."
+msgstr "断开连接并停止该连接的回调注册。"
+
+#: mecheye.area_scan_3d_camera.Camera.disconnect:3
+msgid ""
+"Camera copies share the connection, so disconnecting one also affects the others. "
+"This method can be called repeatedly."
+msgstr "相机副本共享连接，因此断开一个副本也会影响其他副本。此方法可以重复调用。"
+
+#: mecheye.area_scan_3d_camera.Camera.disconnect:6
+msgid "None."
+msgstr "None。"
+
+#: mecheye.area_scan_3d_camera.Camera.connected:1
+msgid "Whether the shared native camera connection is currently active."
+msgstr "共享的原生相机连接当前是否处于活动状态。"
+
+#: mecheye.area_scan_3d_camera.Camera.ip:1
+msgid "The optional or last successfully connected IP address, or None."
+msgstr "构造时指定的 IP、最近成功连接的 IP，或 None。"
+
+#: mecheye.area_scan_3d_camera.Camera.device_info:1
+msgid "Read device metadata into a new Python dictionary."
+msgstr "将设备元数据读取到新的 Python 字典。"
+
+#: mecheye.area_scan_3d_camera.Camera.device_info:3
+msgid ""
+"Includes model, device name, serial number, SDK and firmware versions, IP address, "
+"subnet mask, assignment method, port, and support information."
+msgstr "包含型号、设备名称、序列号、SDK 与固件版本、IP 地址、子网掩码、地址分配方式、端口和支持信息。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Camera.rst
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Color2DImage.rst
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.DepthMap.rst
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.EventInfos.rst
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.GrayScale2DImage.rst
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Payload.rst
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.TexturedPointCloud.rst
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.TexturedPointCloudWithNormals.rst
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.UntexturedPointCloud.rst
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.UntexturedPointCloudWithNormals.rst
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.VectorCameraInfo.rst
+#: docs/api/_generated/objects/mecheye.shared.BoolParameter.rst
+#: docs/api/_generated/objects/mecheye.shared.EnumParameter.rst
+#: docs/api/_generated/objects/mecheye.shared.FloatArrayParameter.rst
+#: docs/api/_generated/objects/mecheye.shared.FloatParameter.rst
+#: docs/api/_generated/objects/mecheye.shared.IntParameter.rst
+#: docs/api/_generated/objects/mecheye.shared.MechEyeVectorParameterPointer.rst
+#: docs/api/_generated/objects/mecheye.shared.MechEyeVectorROI.rst
+#: docs/api/_generated/objects/mecheye.shared.MechEyeVectorString.rst
+#: docs/api/_generated/objects/mecheye.shared.Parameter.rst
+#: docs/api/_generated/objects/mecheye.shared.ProfileRoiParameter.rst
+#: docs/api/_generated/objects/mecheye.shared.RangeParameter.rst
+#: docs/api/_generated/objects/mecheye.shared.RoiArrayParameter.rst
+#: docs/api/_generated/objects/mecheye.shared.RoiParameter.rst
+#: docs/api/_generated/objects/mecheye.shared.SwigPyIterator.rst
+#: mecheye.area_scan_3d_camera.Camera.capture_points
+msgid "Raises"
+msgstr "异常"
+
+#: mecheye.area_scan_3d_camera.Camera.device_info:6
+msgid "The SDK cannot read the device information."
+msgstr "SDK 无法读取设备信息。"
+
+#: mecheye.area_scan_3d_camera.Camera.camera_parameters:1
+msgid "Read camera matrices, distortion coefficients, and depth-to-texture transform."
+msgstr "读取相机矩阵、畸变系数和深度坐标到纹理坐标的变换。"
+
+#: mecheye.area_scan_3d_camera.Camera.camera_parameters:3
+msgid ""
+"The returned dictionary contains ``depth`` and ``texture`` dictionaries with flat "
+"3-by-3 ``intrinsic_matrix`` values and five distortion coefficients. "
+"``T_texture_camera_depth_camera_matrix_mm`` is a 4-by-4 nested list."
+msgstr ""
+"返回的字典包含 ``depth`` 和 ``texture`` 子字典，其中 ``intrinsic_matrix`` 是展开的 3×3 "
+"内参矩阵，并包含五个畸变系数。``T_texture_camera_depth_camera_matrix_mm`` 是 4×4 嵌套列表。"
+
+#: mecheye.area_scan_3d_camera.Camera.camera_parameters:7
+msgid "The SDK cannot read the intrinsics."
+msgstr "SDK 无法读取内参。"
+
+#: mecheye.area_scan_3d_camera.Camera.configure_depth_source_2d_exposure:1
+msgid "Set and verify the depth-source 2D exposure mode."
+msgstr "设置并验证深度源 2D 曝光模式。"
+
+#: mecheye.area_scan_3d_camera.Camera.configure_depth_source_2d_exposure:3
+msgid "Either ``\"timed\"`` or ``\"flash\"``."
+msgstr "``\"timed\"`` 或 ``\"flash\"``。"
+
+#: mecheye.area_scan_3d_camera.Camera.configure_depth_source_2d_exposure:4
+msgid "The requested mode after successful device readback."
+msgstr "设备读回验证成功后返回请求的模式。"
+
+#: mecheye.area_scan_3d_camera.Camera.configure_depth_source_2d_exposure:5
+msgid "The mode is not supported."
+msgstr "不支持该模式。"
+
+#: mecheye.area_scan_3d_camera.Camera.configure_depth_source_2d_exposure:6
+msgid "The camera cannot be connected."
+msgstr "无法连接相机。"
+
+#: mecheye.area_scan_3d_camera.Camera.configure_depth_source_2d_exposure:7
+msgid "Configuration or readback fails."
+msgstr "配置或读回验证失败。"
+
+#: mecheye.area_scan_3d_camera.Camera.capture_points:1
+msgid "Capture aligned grayscale and organized XYZ arrays in millimeters."
+msgstr "采集对齐的灰度图和保留图像网格结构的 XYZ 数组，坐标单位为毫米。"
+
+#: mecheye.area_scan_3d_camera.Camera.capture_points:3
+msgid ""
+"Uses depth-source 2D and 3D capture, camera intrinsics, and SDK mapping. The camera "
+"model must support depth-source 2D capture. An optional constructor IP enables lazy "
+"connection; SDK capture errors are not retried."
+msgstr "使用深度源 2D 与 3D 采集、相机内参和 SDK 映射。相机型号必须支持深度源 2D 采集。构造时指定 IP 可以延迟连接；SDK 采集错误不会重试。"
+
+#: mecheye.area_scan_3d_camera.Camera.capture_points:7
+msgid "Capture timeout in milliseconds."
+msgstr "采集超时，单位为毫秒。"
+
+#: mecheye.area_scan_3d_camera.Camera.capture_points:8
+msgid ""
+"``(image, points)`` with owned NumPy buffers. ``image`` has shape ``(height, width)``"
+" and dtype ``uint8``; ``points`` has shape ``(height, width, 3)`` and dtype "
+"``float64``. All-zero SDK points become NaN triplets; non-finite coordinate "
+"components become NaN."
+msgstr ""
+"返回 ``(image, points)``，二者具有独立的 NumPy 缓冲区。``image`` 的形状为 ``(height, width)``，dtype 为 "
+"``uint8``；``points`` 的形状为 ``(height, width, 3)``，dtype 为 ``float64``。SDK 全零点转换为三个 "
+"NaN；非有限坐标分量转换为 NaN。"
+
+#: mecheye.area_scan_3d_camera.Camera.capture_points:12
+msgid "Connection is unavailable."
+msgstr "连接不可用。"
+
+#: mecheye.area_scan_3d_camera.Camera.capture_points:13
+msgid "Capture, frame validation, or intrinsics fail."
+msgstr "采集、帧校验或内参读取失败。"
+
+#: mecheye.area_scan_3d_camera.Camera.capture_points:14
+msgid "Mapping fails or produces an invalid grid."
+msgstr "映射失败或生成无效网格。"
+
+#: mecheye.area_scan_3d_camera.Camera.capture_points:15
+msgid "Restoring the previous cloud unit fails."
+msgstr "恢复先前的点云单位失败。"
+
+#: mecheye.area_scan_3d_camera.Camera.capture_points:17
+msgid ""
+"The previous cloud unit is restored after capture or mapping succeeds or fails. If "
+"restoration itself fails, that configuration error is raised."
+msgstr "无论采集或映射成功与否，都会恢复先前的点云单位。如果恢复操作本身失败，则抛出该配置错误。"
+
+#: mecheye.area_scan_3d_camera.Camera.pop_callback_errors:1
+msgid "Return and clear pending callback exceptions in registration context order."
+msgstr "按注册上下文顺序返回并清空待处理的回调异常。"
+
+#: mecheye.area_scan_3d_camera.Camera.pop_callback_errors:3
+msgid ""
+"Camera copies share the error queue. Exceptions are retained without printing. "
+":return: A new list of exceptions."
+msgstr "相机副本共享异常队列。异常会保留而不打印。:return: 新的异常列表。"
+
+#: mecheye.area_scan_3d_camera.Camera.set_heartbeat_interval:1
+msgid "Set the SDK heartbeat interval in milliseconds; return ErrorStatus."
+msgstr "设置 SDK 心跳间隔，单位为毫秒；返回 ErrorStatus。"
+
+#: mecheye.area_scan_3d_camera.Camera.get_camera_info:1
+msgid "Fill the supplied CameraInfo with device metadata; return ErrorStatus."
+msgstr "将设备元数据写入提供的 CameraInfo；返回 ErrorStatus。"
+
+#: mecheye.area_scan_3d_camera.Camera.get_camera_status:1
+msgid "Fill the supplied CameraStatus with temperatures; return ErrorStatus."
+msgstr "将温度写入提供的 CameraStatus；返回 ErrorStatus。"
+
+#: mecheye.area_scan_3d_camera.Camera.get_camera_resolutions:1
+msgid "Fill the supplied CameraResolutions with image sizes; return ErrorStatus."
+msgstr "将图像尺寸写入提供的 CameraResolutions；返回 ErrorStatus。"
+
+#: mecheye.area_scan_3d_camera.Camera.current_user_set:1
+msgid "Return a handle to the current device UserSet."
+msgstr "返回当前设备 UserSet 的句柄。"
+
+#: mecheye.area_scan_3d_camera.Camera.current_user_set:3
+msgid ""
+"Read and write operations on the handle report SDK status values. Obtain a new handle"
+" after reconnecting or changing the selected configuration."
+msgstr "句柄的读写操作反馈 SDK 状态值。重新连接或切换配置后应获取新的句柄。"
+
+#: mecheye.area_scan_3d_camera.Camera.user_set_manager:1
+msgid "Return the connection's UserSetManager for selecting and persisting user sets."
+msgstr "返回该连接的 UserSetManager，用于选择和保存用户集。"
+
+#: mecheye.area_scan_3d_camera.Camera.capture_3d:1
+msgid "Capture a 3D frame into the supplied output container."
+msgstr "将 3D 帧采集到提供的输出容器。"
+
+#: mecheye.area_scan_3d_camera.Camera.capture_2d:3
+#: mecheye.area_scan_3d_camera.Camera.capture_2d_and_3d:3
+#: mecheye.area_scan_3d_camera.Camera.capture_2d_and_3d_with_normal:3
+#: mecheye.area_scan_3d_camera.Camera.capture_3d:3
+#: mecheye.area_scan_3d_camera.Camera.capture_3d_with_normal:3
+#: mecheye.area_scan_3d_camera.Camera.capture_depth_source_2d:3
+#: mecheye.area_scan_3d_camera.Camera.capture_depth_source_2d_and_3d:3
+msgid ""
+"``timeoutMs`` is measured in milliseconds. The camera must already be connected; this"
+" SDK operation does not initiate a connection or retry a failure. :return: "
+"ErrorStatus; only read output data after is_ok() succeeds."
+msgstr ""
+"``timeoutMs`` 的单位为毫秒。相机必须已连接；此 SDK 操作不会建立连接或重试失败。:return: ErrorStatus；仅在 is_ok() "
+"返回成功后读取输出数据。"
+
+#: mecheye.area_scan_3d_camera.Camera.capture_3d_with_normal:1
+msgid "Capture a 3D frame with normals into the supplied output container."
+msgstr "将带法向量的 3D 帧采集到提供的输出容器。"
+
+#: mecheye.area_scan_3d_camera.Camera.capture_2d:1
+msgid "Capture a 2D frame into the supplied output container."
+msgstr "将 2D 帧采集到提供的输出容器。"
+
+#: mecheye.area_scan_3d_camera.Camera.capture_depth_source_2d:1
+msgid "Capture the depth-source 2D frame into the supplied output container."
+msgstr "将深度源 2D 帧采集到提供的输出容器。"
+
+#: mecheye.area_scan_3d_camera.Camera.capture_2d_and_3d:1
+msgid "Capture a combined texture 2D and 3D frame into the supplied output container."
+msgstr "将纹理 2D 与 3D 组合帧采集到提供的输出容器。"
+
+#: mecheye.area_scan_3d_camera.Camera.capture_depth_source_2d_and_3d:1
+msgid "Capture a combined depth-source 2D and 3D frame into the supplied output container."
+msgstr "将深度源 2D 与 3D 组合帧采集到提供的输出容器。"
+
+#: mecheye.area_scan_3d_camera.Camera.capture_2d_and_3d_with_normal:1
+msgid "Capture a combined 2D and 3D frame with normals into the supplied output container."
+msgstr "将带法向量的 2D 与 3D 组合帧采集到提供的输出容器。"
+
+#: mecheye.area_scan_3d_camera.Camera.capture_stereo_2d:1
+msgid "Capture left and right stereo 2D frames into the supplied output container."
+msgstr "将左右立体 2D 帧采集到提供的输出容器。"
+
+#: mecheye.area_scan_3d_camera.Camera.capture_stereo_2d:3
+msgid ""
+"``timeoutMs`` is measured in milliseconds. The camera must already be connected; this"
+" SDK operation does not initiate a connection or retry a failure. :return: "
+"ErrorStatus; only read output data after is_ok() succeeds. :param isRectified: "
+"Whether the SDK should rectify the stereo images."
+msgstr ""
+"``timeoutMs`` 的单位为毫秒。相机必须已连接；此 SDK 操作不会建立连接或重试失败。:return: ErrorStatus；仅在 is_ok() "
+"返回成功后读取输出数据。:param isRectified: SDK 是否应校正立体图像。"
+
+#: mecheye.area_scan_3d_camera.Camera.set_point_cloud_unit:1
+msgid "Set CoordinateUnit_Millimeter or CoordinateUnit_Meter; return ErrorStatus."
+msgstr "设置 CoordinateUnit_Millimeter 或 CoordinateUnit_Meter；返回 ErrorStatus。"
+
+#: mecheye.area_scan_3d_camera.Camera.save_virtual_device_file:1
+msgid "Save a virtual-device file at fileName through the SDK; return ErrorStatus."
+msgstr "通过 SDK 将虚拟设备文件保存到 fileName；返回 ErrorStatus。"
+
+#: mecheye.area_scan_3d_camera.Camera.get_camera_intrinsics:1
+msgid "Fill the supplied CameraIntrinsics with calibration values; return ErrorStatus."
+msgstr "将标定参数写入提供的 CameraIntrinsics；返回 ErrorStatus。"
+
+#: mecheye.area_scan_3d_camera.Camera.get_point_cloud_unit:1
+msgid "Return ``[status, unit]`` for the SDK's current CoordinateUnit selection."
+msgstr "返回 ``[status, unit]``，反映 SDK 当前选择的 CoordinateUnit。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.CameraDistortion.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.CameraDistortion"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.CameraDistortion"
+
+#: mecheye.area_scan_3d_camera.CameraDistortion:3 mecheye.area_scan_3d_camera.CameraInfo:3
+#: mecheye.area_scan_3d_camera.CameraIntrinsics:3
+#: mecheye.area_scan_3d_camera.CameraMatrix:3
+#: mecheye.area_scan_3d_camera.CameraResolutions:3
+#: mecheye.area_scan_3d_camera.CameraStatus:3 mecheye.area_scan_3d_camera.ColorBGR:3
+#: mecheye.area_scan_3d_camera.DeviceTemperature:3 mecheye.area_scan_3d_camera.EventData:3
+#: mecheye.area_scan_3d_camera.EventInfo:3
+#: mecheye.area_scan_3d_camera.FrameTransformation:3 mecheye.area_scan_3d_camera.Gray:3
+#: mecheye.area_scan_3d_camera.HandEyeTransformation:3
+#: mecheye.area_scan_3d_camera.Intrinsics2DCamera:3
+#: mecheye.area_scan_3d_camera.MemberValue:3 mecheye.area_scan_3d_camera.NormalVector:3
+#: mecheye.area_scan_3d_camera.PayloadMember:3 mecheye.area_scan_3d_camera.PointXYZBGR:3
+#: mecheye.area_scan_3d_camera.PointXYZBGRWithNormals:3
+#: mecheye.area_scan_3d_camera.PointXYZWithNormals:3 mecheye.area_scan_3d_camera.PointZ:3
+#: mecheye.area_scan_3d_camera.Transformation:3 mecheye.shared.ErrorStatus:3
+#: mecheye.shared.FrameTransformation:3 mecheye.shared.PointXYZ:3
+#: mecheye.shared.ProfileROI:3 mecheye.shared.ROI:3 mecheye.shared.RangeDouble:3
+#: mecheye.shared.RangeFloat:3 mecheye.shared.RangeInt:3 mecheye.shared.Size:3
+#: mecheye.shared.SizeF:3
+msgid "Field access is serialized; nested values retain native ownership."
+msgstr "字段访问会串行执行；嵌套值保留原生所有权。"
+
+#: mecheye.area_scan_3d_camera.CameraDistortion.k1:1
+msgid "First radial distortion coefficient."
+msgstr "第一个径向畸变系数。"
+
+#: mecheye.area_scan_3d_camera.CameraDistortion.k2:1
+msgid "Second radial distortion coefficient."
+msgstr "第二个径向畸变系数。"
+
+#: mecheye.area_scan_3d_camera.CameraDistortion.k3:1
+msgid "Third radial distortion coefficient."
+msgstr "第三个径向畸变系数。"
+
+#: mecheye.area_scan_3d_camera.CameraDistortion.p1:1
+msgid "First tangential distortion coefficient."
+msgstr "第一个切向畸变系数。"
+
+#: mecheye.area_scan_3d_camera.CameraDistortion.p2:1
+msgid "Second tangential distortion coefficient."
+msgstr "第二个切向畸变系数。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.CameraEvent.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.CameraEvent"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.CameraEvent"
+
+#: mecheye.area_scan_3d_camera.CameraEvent.get_supported_events:1
+msgid "Fill eventInfos with supported EventInfo values; return ErrorStatus."
+msgstr "将支持的 EventInfo 写入 eventInfos；返回 ErrorStatus。"
+
+#: mecheye.area_scan_3d_camera.CameraEvent.register_camera_event_callback:1
+msgid "Register a callback for a connected camera and event identifier."
+msgstr "为已连接相机的指定事件标识注册回调。"
+
+#: mecheye.area_scan_3d_camera.CameraEvent.register_camera_event_callback:3
+msgid ""
+"Use ``(camera, event, callback)`` with EventCallbackBase.process_event() or "
+"process_event_with_payload(). The four-argument form ``(camera, callback, user, "
+"event)`` calls run(event_id); user is accepted but is not forwarded. CAMERA_EVENT_ALL"
+" subscribes to all events."
+msgstr ""
+"``(camera, event, callback)`` 使用 EventCallbackBase.process_event() 或 "
+"process_event_with_payload()。四参数形式 ``(camera, callback, user, event)`` 调用 "
+"run(event_id)；接受 user 参数，但不会转发。CAMERA_EVENT_ALL 订阅所有事件。"
+
+#: mecheye.area_scan_3d_camera.CameraEvent.register_camera_event_callback:8
+msgid ""
+"Event values are copied before Python dispatch. Callback exceptions are retained by "
+"Camera.pop_callback_errors(). SDK calls in callbacks wait for other SDK calls to "
+"finish. :return: ErrorStatus. :raises TypeError: The argument count or camera type is"
+" invalid."
+msgstr ""
+"事件值会在 Python 分发前复制。回调异常由 Camera.pop_callback_errors() 保留。回调中的 SDK 调用会等待其他 SDK "
+"调用完成。:return: ErrorStatus。:raises TypeError: 参数数量或相机类型无效。"
+
+#: mecheye.area_scan_3d_camera.CameraEvent.unregister_camera_event_callback:1
+msgid "Unregister an event, or all events with CAMERA_EVENT_ALL; return ErrorStatus."
+msgstr "注销指定事件，或使用 CAMERA_EVENT_ALL 注销所有事件；返回 ErrorStatus。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.CameraInfo.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.CameraInfo"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.CameraInfo"
+
+#: mecheye.area_scan_3d_camera.CameraInfo.device_name:1
+msgid "User-assigned camera name."
+msgstr "用户设置的相机名称。"
+
+#: mecheye.area_scan_3d_camera.CameraInfo.firmware_version:1
+msgid "Firmware Version value."
+msgstr "固件 Version 值。"
+
+#: mecheye.area_scan_3d_camera.CameraInfo.hardware_version:1
+msgid "Hardware Version value."
+msgstr "硬件 Version 值。"
+
+#: mecheye.area_scan_3d_camera.CameraInfo.ip_address:1
+msgid "Camera IP address."
+msgstr "相机 IP 地址。"
+
+#: mecheye.area_scan_3d_camera.CameraInfo.ip_assignment_method:1
+msgid "SDK ``IpAssignmentMethod_*`` value."
+msgstr "SDK ``IpAssignmentMethod_*`` 值。"
+
+#: mecheye.area_scan_3d_camera.CameraInfo.last_supported_version:1
+msgid "Last supported SDK Version reported for the device."
+msgstr "设备报告的最后受支持 SDK Version。"
+
+#: mecheye.area_scan_3d_camera.CameraInfo.model:1
+msgid "Camera model identifier."
+msgstr "相机型号标识。"
+
+#: mecheye.area_scan_3d_camera.CameraInfo.platform:1
+msgid "SDK ``Platform_*`` hardware platform value."
+msgstr "SDK ``Platform_*`` 硬件平台值。"
+
+#: mecheye.area_scan_3d_camera.CameraInfo.port:1
+msgid "Device communication port."
+msgstr "设备通信端口。"
+
+#: mecheye.area_scan_3d_camera.CameraInfo.serial_number:1
+msgid "Device serial number."
+msgstr "设备序列号。"
+
+#: mecheye.area_scan_3d_camera.CameraInfo.subnet_mask:1
+msgid "Camera IPv4 subnet mask."
+msgstr "相机 IPv4 子网掩码。"
+
+#: mecheye.area_scan_3d_camera.CameraInfo.supported:1
+msgid "Whether the SDK reports this camera version as supported."
+msgstr "SDK 是否报告该相机版本受支持。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.CameraIntrinsics.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.CameraIntrinsics"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.CameraIntrinsics"
+
+#: mecheye.area_scan_3d_camera.CameraIntrinsics.depth:1
+#: mecheye.area_scan_3d_camera.CameraResolutions.depth:1
+msgid "Depth-camera calibration or image size, depending on the owning type."
+msgstr "深度相机的标定参数或图像尺寸，具体取决于所属类型。"
+
+#: mecheye.area_scan_3d_camera.CameraIntrinsics.depth_to_texture:1
+msgid "Rigid transformation from depth-camera to texture-camera coordinates."
+msgstr "从深度相机坐标到纹理相机坐标的刚体变换。"
+
+#: mecheye.area_scan_3d_camera.CameraIntrinsics.texture:1
+#: mecheye.area_scan_3d_camera.CameraResolutions.texture:1
+msgid "Texture-camera calibration or image size, depending on the owning type."
+msgstr "纹理相机的标定参数或图像尺寸，具体取决于所属类型。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.CameraMatrix.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.CameraMatrix"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.CameraMatrix"
+
+#: mecheye.area_scan_3d_camera.CameraMatrix.cx:1
+msgid "Horizontal principal-point coordinate in pixels."
+msgstr "主点的水平坐标，单位为像素。"
+
+#: mecheye.area_scan_3d_camera.CameraMatrix.cy:1
+msgid "Vertical principal-point coordinate in pixels."
+msgstr "主点的垂直坐标，单位为像素。"
+
+#: mecheye.area_scan_3d_camera.CameraMatrix.fx:1
+msgid "Horizontal focal length in pixels."
+msgstr "水平焦距，单位为像素。"
+
+#: mecheye.area_scan_3d_camera.CameraMatrix.fy:1
+msgid "Vertical focal length in pixels."
+msgstr "垂直焦距，单位为像素。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.CameraResolutions.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.CameraResolutions"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.CameraResolutions"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.CameraStatus.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.CameraStatus"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.CameraStatus"
+
+#: mecheye.area_scan_3d_camera.CameraStatus.temperature:1
+msgid "DeviceTemperature measurement."
+msgstr "DeviceTemperature 测量值。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Color2DImage.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Color2DImage"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Color2DImage"
+
+#: mecheye.area_scan_3d_camera.Color2DImage:3 mecheye.area_scan_3d_camera.DepthMap:3
+#: mecheye.area_scan_3d_camera.GrayScale2DImage:3
+#: mecheye.area_scan_3d_camera.TexturedPointCloud:3
+#: mecheye.area_scan_3d_camera.TexturedPointCloudWithNormals:3
+#: mecheye.area_scan_3d_camera.UntexturedPointCloud:3
+#: mecheye.area_scan_3d_camera.UntexturedPointCloudWithNormals:3
+msgid ""
+"NumPy accessors copy data; empty accessors return a float64 zero array of shape (1,)."
+" Pixel references expire after a size-changing resize or release."
+msgstr "NumPy 访问方法会复制数据；空数据返回形状为 (1,) 的 float64 零数组。改变尺寸或释放数据后，已有像素引用会失效。"
+
+#: mecheye._compat.Array2D.at:1
+msgid "Return a mutable pixel reference at row and col."
+msgstr "返回 row、col 位置可修改的像素引用。"
+
+#: mecheye._compat.Array2D.at:3
+msgid "A coordinate is outside the grid."
+msgstr "坐标超出网格范围。"
+
+#: mecheye._compat.Array2D.at:4
+msgid "Later access follows a resize or release that expired the reference."
+msgstr "后续访问发生在改变尺寸或释放数据导致引用失效之后。"
+
+#: mecheye._compat.Array2D.clone:1
+msgid "Return an independent SDK grid with a deep copy of the stored values."
+msgstr "返回独立的 SDK 网格，深度复制已存储的值。"
+
+#: mecheye._compat.array_type.<locals>.<lambda>:1
+msgid "Return an owned uint8 BGR array with shape (height, width, 3)."
+msgstr "返回独立的 uint8 BGR 数组，形状为 (height, width, 3)。"
+
+#: mecheye._compat.array_type.<locals>.<lambda>:3
+msgid "An empty grid returns a float64 zero array of shape (1,)."
+msgstr "空网格返回形状为 (1,) 的 float64 零数组。"
+
+#: mecheye._compat.Array2D.height:1
+msgid "Return the grid height in pixels."
+msgstr "返回网格高度，单位为像素。"
+
+#: mecheye._compat.Array2D.is_empty:1
+msgid "Return whether the grid has no elements."
+msgstr "返回网格是否不包含元素。"
+
+#: mecheye._compat.Array2D.release:1
+msgid "Release native grid storage and invalidate existing pixel references."
+msgstr "释放原生网格存储，并使已有像素引用失效。"
+
+#: mecheye._compat.Array2D.resize:1
+msgid "Resize the grid to width by height pixels."
+msgstr "将网格调整为 width × height 像素。"
+
+#: mecheye._compat.Array2D.resize:3
+msgid ""
+"Existing pixel references expire if the dimensions change. NumPy copies remain valid "
+"independently of the grid."
+msgstr "尺寸改变时，已有像素引用会失效。NumPy 副本独立于网格，仍然有效。"
+
+#: mecheye._compat.Array2D.width:1
+msgid "Return the grid width in pixels."
+msgstr "返回网格宽度，单位为像素。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.ColorBGR.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.ColorBGR"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.ColorBGR"
+
+#: mecheye.area_scan_3d_camera.ColorBGR.b:1 mecheye.area_scan_3d_camera.PointXYZBGR.b:1
+msgid "Unsigned 8-bit blue channel."
+msgstr "无符号 8 位蓝色通道。"
+
+#: mecheye.area_scan_3d_camera.ColorBGR.g:1 mecheye.area_scan_3d_camera.PointXYZBGR.g:1
+msgid "Unsigned 8-bit green channel."
+msgstr "无符号 8 位绿色通道。"
+
+#: mecheye.area_scan_3d_camera.ColorBGR.r:1 mecheye.area_scan_3d_camera.PointXYZBGR.r:1
+msgid "Unsigned 8-bit red channel."
+msgstr "无符号 8 位红色通道。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.DepthMap.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.DepthMap"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.DepthMap"
+
+#: mecheye._compat.array_type.<locals>.<lambda>:1
+msgid "Return an owned float32 Z array with shape (height, width)."
+msgstr "返回独立的 float32 Z 数组，形状为 (height, width)。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.DeviceTemperature.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.DeviceTemperature"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.DeviceTemperature"
+
+#: mecheye.area_scan_3d_camera.DeviceTemperature.cpu_temperature:1
+msgid "CPU temperature in degrees Celsius."
+msgstr "CPU 温度，单位为摄氏度。"
+
+#: mecheye.area_scan_3d_camera.DeviceTemperature.projector_temperature:1
+msgid "Projector temperature in degrees Celsius."
+msgstr "投影器温度，单位为摄氏度。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.DistortionCorrection.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.DistortionCorrection"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.DistortionCorrection"
+
+#: mecheye.area_scan_3d_camera._range:1
+msgid "Return an independent copy of the descriptor's nominal range."
+msgstr "返回描述符标称范围的独立副本。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.EdgeArtifactRemoval.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.EdgeArtifactRemoval"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.EdgeArtifactRemoval"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.EnableDistortionCorrection.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.EnableDistortionCorrection"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.EnableDistortionCorrection"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.EnableGapFilling.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.EnableGapFilling"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.EnableGapFilling"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.EventCallbackBase.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.EventCallbackBase"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.EventCallbackBase"
+
+#: mecheye.area_scan_3d_camera.EventCallbackBase.run:1
+msgid "Override to handle an event identifier from the four-argument registration form."
+msgstr "重写此方法以处理四参数注册形式传入的事件标识。"
+
+#: mecheye.area_scan_3d_camera.EventCallbackBase.process_event:1
+msgid "Override to receive a copied EventData value on the dispatch thread."
+msgstr "重写此方法，在分发线程上接收复制的 EventData 值。"
+
+#: mecheye.area_scan_3d_camera.EventCallbackBase.process_event_with_payload:1
+msgid "Override to receive copied EventData and Payload values on the dispatch thread."
+msgstr "重写此方法，在分发线程上接收复制的 EventData 和 Payload 值。"
+
+#: mecheye.area_scan_3d_camera.EventCallbackBase.process_event_with_payload:3
+msgid ""
+"When overridden, this method takes precedence over process_event(). Values remain "
+"readable while a capture is running; synchronize your own shared state."
+msgstr "重写此方法后，它优先于 process_event()。采集期间仍可读取这些值；请同步应用自己的共享状态。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.EventData.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.EventData"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.EventData"
+
+#: mecheye.area_scan_3d_camera.EventData.event_id:1
+#: mecheye.area_scan_3d_camera.EventInfo.event_id:1
+msgid "SDK event identifier."
+msgstr "SDK 事件标识。"
+
+#: mecheye.area_scan_3d_camera.EventData.event_name:1
+#: mecheye.area_scan_3d_camera.EventInfo.event_name:1
+msgid "SDK event name."
+msgstr "SDK 事件名称。"
+
+#: mecheye.area_scan_3d_camera.EventData.frame_id:1
+msgid "Capture frame identifier associated with this event."
+msgstr "与该事件关联的采集帧标识。"
+
+#: mecheye.area_scan_3d_camera.EventData.timestamp:1
+msgid "SDK event occurrence timestamp."
+msgstr "SDK 事件发生时间戳。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.EventInfo.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.EventInfo"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.EventInfo"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.EventInfos.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.EventInfos"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.EventInfos"
+
+#: mecheye.area_scan_3d_camera.EventInfos:3 mecheye.area_scan_3d_camera.Payload:3
+#: mecheye.area_scan_3d_camera.VectorCameraInfo:3
+#: mecheye.shared.MechEyeVectorParameterPointer:3 mecheye.shared.MechEyeVectorROI:3
+#: mecheye.shared.MechEyeVectorString:3
+msgid ""
+"Construct from a sequence, or a size and optional initial value. Value objects are "
+"copied on insertion; parameter handles retain their camera ownership."
+msgstr "从序列构造，或指定大小与可选初始值。插入时复制值对象；参数句柄保留相机所有权。"
+
+#: mecheye._containers.Vector.append:1
+msgid "Append a copied value; camera-owned parameter handles retain shared ownership."
+msgstr "追加值的副本；相机所属的参数句柄保留共享所有权。"
+
+#: mecheye._containers.Vector.assign:1
+msgid "Replace the contents with n independent copies of value."
+msgstr "将内容替换为 n 个独立的 value 副本。"
+
+#: mecheye._containers.Vector.back:1
+msgid "Return the last element; an empty vector raises IndexError."
+msgstr "返回最后一个元素；空向量抛出 IndexError。"
+
+#: mecheye._containers.Vector.begin:1
+msgid "Return an iterator positioned at the first element."
+msgstr "返回指向第一个元素的迭代器。"
+
+#: mecheye._containers.Vector.capacity:1
+msgid "Return the adapter's logical reserved capacity, at least the current size."
+msgstr "返回适配器记录的逻辑预留容量，该值至少等于当前大小。"
+
+#: mecheye._containers.Vector.clear:1
+msgid "Remove all elements."
+msgstr "移除所有元素。"
+
+#: mecheye._containers.Vector.empty:1
+msgid "Return whether the vector contains no elements."
+msgstr "返回向量是否不包含元素。"
+
+#: mecheye._containers.Vector.end:1
+msgid "Return the one-past-end iterator; dereferencing it raises StopIteration."
+msgstr "返回末尾后迭代器；解引用会抛出 StopIteration。"
+
+#: mecheye._containers.Vector.erase:1
+msgid "Erase one iterator element, or the half-open range first to last."
+msgstr "删除一个迭代器元素，或删除 first 到 last 的左闭右开区间。"
+
+#: mecheye._containers.Vector.erase:3
+msgid "An iterator positioned at the first element following the erased range."
+msgstr "指向被删除区间之后第一个元素的迭代器。"
+
+#: mecheye._containers.Vector.front:1
+msgid "Return the first element; an empty vector raises IndexError."
+msgstr "返回第一个元素；空向量抛出 IndexError。"
+
+#: mecheye._containers.Vector.get_allocator:1
+msgid "Return the Python element type used to create default values."
+msgstr "返回用于构造默认值的 Python 元素类型。"
+
+#: mecheye._containers.Vector.insert:1
+msgid "Insert at an index or iterator position."
+msgstr "在索引或迭代器位置插入。"
+
+#: mecheye._containers.Vector.insert:3
+msgid ""
+"Use ``insert(position, value)`` to return an iterator to the inserted value. "
+"``insert(position, count, value)`` inserts count copies and returns None."
+msgstr ""
+"``insert(position, value)`` 返回指向已插入值的迭代器。``insert(position, count, value)`` 插入 count "
+"个副本并返回 None。"
+
+#: mecheye._containers.Vector.iterator:1
+msgid "Return an iterator starting at the first element."
+msgstr "返回从第一个元素开始的迭代器。"
+
+#: mecheye._containers.Vector.pop:1
+msgid "Remove and return the indexed element; default to the last element."
+msgstr "移除并返回指定索引的元素；默认操作最后一个元素。"
+
+#: mecheye._containers.Vector.pop_back:1
+msgid "Remove the last element."
+msgstr "移除最后一个元素。"
+
+#: mecheye._containers.Vector.rbegin:1
+msgid "Return a reverse iterator positioned at the last element."
+msgstr "返回指向最后一个元素的反向迭代器。"
+
+#: mecheye._containers.MechEyeMapStringInt.rend:1 mecheye._containers.Vector.rend:1
+msgid "Return the one-past-end reverse iterator."
+msgstr "返回反向遍历的末尾后迭代器。"
+
+#: mecheye._containers.Vector.reserve:1
+msgid "Record a minimum logical capacity without allocating SDK storage."
+msgstr "记录最小逻辑容量，不分配 SDK 存储空间。"
+
+#: mecheye._containers.Vector.resize:1
+msgid "Resize to n elements, copying value or default-constructed elements when growing."
+msgstr "将大小调整为 n；增大时复制 value 或使用默认构造的元素。"
+
+#: mecheye._containers.Vector.resize:3
+msgid "n is negative."
+msgstr "n 为负数。"
+
+#: mecheye._containers.Vector.size:1
+msgid "Return the number of stored elements."
+msgstr "返回已存储元素的数量。"
+
+#: mecheye._containers.Vector.swap:1
+msgid "Exchange the contents of this vector and other."
+msgstr "交换此向量与 other 的内容。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Frame2D.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Frame2D"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Frame2D"
+
+#: mecheye.area_scan_3d_camera.Frame2D.image_size:1
+#: mecheye.area_scan_3d_camera.Frame3D.image_size:1
+msgid "Return the frame's image Size in pixels."
+msgstr "返回帧的图像 Size，单位为像素。"
+
+#: mecheye.area_scan_3d_camera.Frame2D.is_empty:1
+#: mecheye.area_scan_3d_camera.Frame3D.is_empty:1
+msgid "Return whether the SDK reports that the frame has no data."
+msgstr "返回 SDK 是否报告该帧没有数据。"
+
+#: mecheye.area_scan_3d_camera.Frame2D.color_type:1
+msgid "Return the ColorTypeOf2DCamera value for the captured image."
+msgstr "返回已采集图像的 ColorTypeOf2DCamera 值。"
+
+#: mecheye.area_scan_3d_camera.Frame2D.frame_id:1
+#: mecheye.area_scan_3d_camera.Frame3D.frame_id:1
+msgid "Return the SDK capture frame identifier."
+msgstr "返回 SDK 采集帧标识。"
+
+#: mecheye.area_scan_3d_camera.Frame2D.clear:1
+#: mecheye.area_scan_3d_camera.Frame2DAnd3D.clear:1
+#: mecheye.area_scan_3d_camera.Frame3D.clear:1
+msgid "Release the data held by this frame."
+msgstr "释放该帧持有的数据。"
+
+#: mecheye.area_scan_3d_camera.Frame2D.get_gray_scale_image:1
+msgid "Return the frame's GrayScale2DImage container; data() copies pixels to NumPy."
+msgstr "返回帧的 GrayScale2DImage 容器；data() 将像素复制为 NumPy 数组。"
+
+#: mecheye.area_scan_3d_camera.Frame2D.get_color_image:1
+msgid "Return the frame's Color2DImage container; data() copies BGR pixels to NumPy."
+msgstr "返回帧的 Color2DImage 容器；data() 将 BGR 像素复制为 NumPy 数组。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Frame2DAnd3D.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Frame2DAnd3D"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Frame2DAnd3D"
+
+#: mecheye.area_scan_3d_camera.Frame2DAnd3D.frame_2d:1
+msgid "Return the combined frame's Frame2D component."
+msgstr "返回组合帧的 Frame2D 部分。"
+
+#: mecheye.area_scan_3d_camera.Frame2DAnd3D.frame_3d:1
+msgid "Return the combined frame's Frame3D component."
+msgstr "返回组合帧的 Frame3D 部分。"
+
+#: mecheye.area_scan_3d_camera.Frame2DAnd3D.get_textured_point_cloud:1
+msgid "Return the organized TexturedPointCloud container with XYZ and BGR data."
+msgstr "返回保留图像网格结构的 TexturedPointCloud 容器，包含 XYZ 和 BGR 数据。"
+
+#: mecheye.area_scan_3d_camera.Frame2DAnd3D.get_textured_point_cloud_with_normals:1
+msgid "Return the organized TexturedPointCloudWithNormals container."
+msgstr "返回保留图像网格结构的 TexturedPointCloudWithNormals 容器。"
+
+#: mecheye.area_scan_3d_camera.Frame2DAnd3D.save_textured_point_cloud:1
+#: mecheye.area_scan_3d_camera.Frame2DAnd3D.save_textured_point_cloud_with_normals:1
+#: mecheye.area_scan_3d_camera.Frame3D.save_untextured_point_cloud:1
+#: mecheye.area_scan_3d_camera.Frame3D.save_untextured_point_cloud_with_normals:1
+msgid "Export this frame's point cloud with the SDK."
+msgstr "使用 SDK 导出该帧的点云。"
+
+#: mecheye.area_scan_3d_camera.Frame2DAnd3D.save_textured_point_cloud:3
+#: mecheye.area_scan_3d_camera.Frame2DAnd3D.save_textured_point_cloud_with_normals:3
+#: mecheye.area_scan_3d_camera.Frame3D.save_untextured_point_cloud:3
+#: mecheye.area_scan_3d_camera.Frame3D.save_untextured_point_cloud_with_normals:3
+msgid "A FileFormat_PLY, FileFormat_PCD, or FileFormat_CSV value."
+msgstr "FileFormat_PLY、FileFormat_PCD 或 FileFormat_CSV 值。"
+
+#: mecheye.area_scan_3d_camera.Frame2DAnd3D.save_textured_point_cloud:4
+#: mecheye.area_scan_3d_camera.Frame2DAnd3D.save_textured_point_cloud_with_normals:4
+#: mecheye.area_scan_3d_camera.Frame3D.save_untextured_point_cloud:4
+#: mecheye.area_scan_3d_camera.Frame3D.save_untextured_point_cloud_with_normals:4
+msgid "Destination filename."
+msgstr "目标文件名。"
+
+#: mecheye.area_scan_3d_camera.Frame2DAnd3D.save_textured_point_cloud:5
+#: mecheye.area_scan_3d_camera.Frame2DAnd3D.save_textured_point_cloud_with_normals:5
+#: mecheye.area_scan_3d_camera.Frame3D.save_untextured_point_cloud:5
+#: mecheye.area_scan_3d_camera.Frame3D.save_untextured_point_cloud_with_normals:5
+msgid "Preserve the image grid when the format supports it."
+msgstr "格式支持时保留图像网格结构。"
+
+#: mecheye.area_scan_3d_camera.Frame2DAnd3D.save_textured_point_cloud:6
+#: mecheye.area_scan_3d_camera.Frame2DAnd3D.save_textured_point_cloud_with_normals:6
+#: mecheye.area_scan_3d_camera.Frame3D.save_untextured_point_cloud:6
+#: mecheye.area_scan_3d_camera.Frame3D.save_untextured_point_cloud_with_normals:6
+msgid "ErrorStatus; file errors are returned rather than printed."
+msgstr "ErrorStatus；文件错误通过返回值反馈，不会打印。"
+
+#: mecheye.area_scan_3d_camera.Frame2DAnd3D.save_point_cloud:1
+#: mecheye.area_scan_3d_camera.Frame2DAnd3D.save_point_cloud_with_normals:1
+#: mecheye.area_scan_3d_camera.Frame3D.save_point_cloud:1
+#: mecheye.area_scan_3d_camera.Frame3D.save_point_cloud_with_normals:1
+msgid "Export an explicit point-cloud container without capturing a frame."
+msgstr "导出指定的点云容器，不采集帧。"
+
+#: mecheye.area_scan_3d_camera.Frame2DAnd3D.save_point_cloud:3
+#: mecheye.area_scan_3d_camera.Frame2DAnd3D.save_point_cloud_with_normals:3
+#: mecheye.area_scan_3d_camera.Frame3D.save_point_cloud:3
+#: mecheye.area_scan_3d_camera.Frame3D.save_point_cloud_with_normals:3
+msgid ""
+"Arguments are ``(pointCloud, fileFormat, fileName, isOrganized=False, "
+"pointCloudUnit=CoordinateUnit_Millimeter)``. Pass the matching cloud type, including "
+"normals when using save_point_cloud_with_normals(). :return: ErrorStatus from the SDK"
+" file writer."
+msgstr ""
+"参数为 ``(pointCloud, fileFormat, fileName, isOrganized=False, "
+"pointCloudUnit=CoordinateUnit_Millimeter)``。传入匹配的点云类型；使用 "
+"save_point_cloud_with_normals() 时必须包含法向量。:return: SDK 文件写入器返回的 ErrorStatus。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Frame3D.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Frame3D"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Frame3D"
+
+#: mecheye.area_scan_3d_camera.Frame3D.get_untextured_point_cloud:1
+msgid "Return the frame's organized UntexturedPointCloud in the selected SDK unit."
+msgstr "返回帧中保留图像网格结构的 UntexturedPointCloud，使用当前选择的 SDK 单位。"
+
+#: mecheye.area_scan_3d_camera.Frame3D.get_untextured_point_cloud_with_normals:1
+msgid "Return the organized UntexturedPointCloudWithNormals container."
+msgstr "返回保留图像网格结构的 UntexturedPointCloudWithNormals 容器。"
+
+#: mecheye.area_scan_3d_camera.Frame3D.get_depth_map:1
+msgid "Return the frame's DepthMap container with per-pixel Z coordinates."
+msgstr "返回帧的 DepthMap 容器，包含逐像素 Z 坐标。"
+
+#: mecheye.area_scan_3d_camera.Frame3D.get_orthogonal_depth_map:1
+msgid "Return ``[depth_map, x_scale, y_scale, x_offset, y_offset]``."
+msgstr "返回 ``[depth_map, x_scale, y_scale, x_offset, y_offset]``。"
+
+#: mecheye.area_scan_3d_camera.Frame3D.get_orthogonal_depth_map:3
+msgid "The SDK supplies an orthogonal depth grid and its scale and offset values."
+msgstr "SDK 提供正交深度网格及其缩放和偏移值。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.FrameTransformation.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.FrameTransformation"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.FrameTransformation"
+
+#: mecheye.area_scan_3d_camera.FrameTransformation:1 mecheye.shared.FrameTransformation:1
+msgid ""
+"Rigid transformation with a 3-by-3 rotation and three-element translation. "
+"Translation uses the same unit as the transformed coordinates; rotation helpers "
+"accept degrees."
+msgstr "刚体变换，由 3×3 旋转矩阵和三元素平移向量组成。平移使用与被变换坐标相同的单位；旋转辅助方法使用角度制。"
+
+#: mecheye.area_scan_3d_camera._is_valid:1 mecheye.shared._is_valid:1
+msgid "Return whether the transform differs from identity according to the SDK."
+msgstr "返回 SDK 是否判定该变换与单位变换不同。"
+
+#: mecheye.area_scan_3d_camera._is_valid:3 mecheye.shared._is_valid:3
+msgid "This checks for a custom reference frame, not rotation orthonormality."
+msgstr "此方法检查是否设置了自定义参考坐标系，不检查旋转矩阵的正交性。"
+
+#: mecheye.area_scan_3d_camera._rotate:1
+msgid "Compose a rotation by theta degrees around an SDK FrameTransformation axis."
+msgstr "围绕 SDK FrameTransformation 的指定轴合成 theta 度的旋转。"
+
+#: mecheye.area_scan_3d_camera._translate:1
+msgid "Set the translation in the same coordinate unit as the point cloud."
+msgstr "设置平移，使用与点云相同的坐标单位。"
+
+#: mecheye.area_scan_3d_camera.FrameTransformation.rotation:1
+#: mecheye.area_scan_3d_camera.Transformation.rotation:1
+#: mecheye.shared.FrameTransformation.rotation:1
+msgid "Mutable 3-by-3 rotation matrix accessed with row and column indices."
+msgstr "通过行列索引访问的可修改 3×3 旋转矩阵。"
+
+#: mecheye.area_scan_3d_camera.FrameTransformation.translation:1
+#: mecheye.area_scan_3d_camera.Transformation.translation:1
+#: mecheye.shared.FrameTransformation.translation:1
+msgid "Mutable three-element translation vector."
+msgstr "可修改的三元素平移向量。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.GapFilling.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.GapFilling"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.GapFilling"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.GapSize.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.GapSize"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.GapSize"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Gray.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Gray"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Gray"
+
+#: mecheye.area_scan_3d_camera.Gray.gray:1
+msgid "Unsigned 8-bit grayscale intensity."
+msgstr "无符号 8 位灰度强度。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.GrayScale2DImage.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.GrayScale2DImage"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.GrayScale2DImage"
+
+#: mecheye._compat.array_type.<locals>.<lambda>:1
+msgid "Return an owned uint8 array with shape (height, width)."
+msgstr "返回独立的 uint8 数组，形状为 (height, width)。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.HandEyeCalibration.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.HandEyeCalibration"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.HandEyeCalibration"
+
+#: mecheye.area_scan_3d_camera.HandEyeCalibration.initialize_calibration:1
+msgid "Initialize calibration for a connected camera, mounting mode, and board model."
+msgstr "为已连接相机、安装方式和标定板型号初始化标定。"
+
+#: mecheye.area_scan_3d_camera.HandEyeCalibration.initialize_calibration:3
+msgid ""
+"Use the CameraMountingMode_* and CalibrationBoardModel_* class constants. :return: "
+"ErrorStatus."
+msgstr "使用 CameraMountingMode_* 和 CalibrationBoardModel_* 类常量。:return: ErrorStatus。"
+
+#: mecheye.area_scan_3d_camera.HandEyeCalibration.add_pose_and_detect:1
+msgid "Record a robot pose, capture an image, and detect the calibration board."
+msgstr "记录机器人位姿，采集图像并检测标定板。"
+
+#: mecheye.area_scan_3d_camera.HandEyeCalibration.add_pose_and_detect:3
+msgid ""
+"``poseData`` is a HandEyeTransformation with translation in millimeters; "
+"``color2DImage`` is an output Color2DImage. ``timeoutMs`` is measured in "
+"milliseconds. :return: ErrorStatus."
+msgstr ""
+"``poseData`` 是 HandEyeTransformation，其平移单位为毫米；``color2DImage`` 是输出 "
+"Color2DImage。``timeoutMs`` 的单位为毫秒。:return: ErrorStatus。"
+
+#: mecheye.area_scan_3d_camera.HandEyeCalibration.calculate_extrinsics:1
+msgid "Fill cameraToBase with the calibrated HandEyeTransformation."
+msgstr "将标定得到的 HandEyeTransformation 写入 cameraToBase。"
+
+#: mecheye.area_scan_3d_camera.HandEyeCalibration.calculate_extrinsics:3
+msgid ""
+"The output depends on the mounting mode chosen at initialization. Its translation "
+"values use meters. :return: ErrorStatus."
+msgstr "输出取决于初始化时选择的安装方式，平移值的单位为米。:return: ErrorStatus。"
+
+#: mecheye.area_scan_3d_camera.HandEyeCalibration.test_recognition:1
+msgid "Capture and annotate board recognition in the output Color2DImage."
+msgstr "采集图像，并在输出的 Color2DImage 中标注标定板识别结果。"
+
+#: mecheye.area_scan_3d_camera.HandEyeCalibration.extract_current_image_first_corner:3
+#: mecheye.area_scan_3d_camera.HandEyeCalibration.test_recognition:3
+msgid "``timeoutMs`` is measured in milliseconds. :return: ErrorStatus."
+msgstr "``timeoutMs`` 的单位为毫秒。:return: ErrorStatus。"
+
+#: mecheye.area_scan_3d_camera.HandEyeCalibration.extract_current_image_first_corner:1
+msgid "Fill corner with the first detected board corner as a PointXYZ."
+msgstr "将检测到的第一个标定板角点以 PointXYZ 写入 corner。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.HandEyeTransformation.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.HandEyeTransformation"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.HandEyeTransformation"
+
+#: mecheye.area_scan_3d_camera.HandEyeTransformation:1
+msgid ""
+"Translation and quaternion in x, y, z, q_w, q_x, q_y, q_z order. Robot-pose "
+"translations use millimeters; calibrated extrinsic translations use meters."
+msgstr "平移和四元数，按 x、y、z、q_w、q_x、q_y、q_z 排列。机器人位姿的平移单位为毫米；标定外参的平移单位为米。"
+
+#: mecheye.area_scan_3d_camera.HandEyeTransformation.q_w:1
+msgid "Quaternion scalar component."
+msgstr "四元数标量分量。"
+
+#: mecheye.area_scan_3d_camera.HandEyeTransformation.q_x:1
+msgid "Quaternion X component."
+msgstr "四元数 X 分量。"
+
+#: mecheye.area_scan_3d_camera.HandEyeTransformation.q_y:1
+msgid "Quaternion Y component."
+msgstr "四元数 Y 分量。"
+
+#: mecheye.area_scan_3d_camera.HandEyeTransformation.q_z:1
+msgid "Quaternion Z component."
+msgstr "四元数 Z 分量。"
+
+#: mecheye.area_scan_3d_camera._pose_to_string:1
+msgid "Return comma-separated x, y, z, q_w, q_x, q_y, q_z values."
+msgstr "返回以逗号分隔的 x、y、z、q_w、q_x、q_y、q_z 值。"
+
+#: mecheye.area_scan_3d_camera.HandEyeTransformation.x:1
+#: mecheye.area_scan_3d_camera.NormalVector.x:1 mecheye.area_scan_3d_camera.PointXYZBGR.x:1
+#: mecheye.shared.PointXYZ.x:1
+msgid "X coordinate or translation in this value type's unit."
+msgstr "X 坐标或平移，单位由此值类型决定。"
+
+#: mecheye.area_scan_3d_camera.HandEyeTransformation.y:1
+#: mecheye.area_scan_3d_camera.NormalVector.y:1 mecheye.area_scan_3d_camera.PointXYZBGR.y:1
+#: mecheye.shared.PointXYZ.y:1
+msgid "Y coordinate or translation in this value type's unit."
+msgstr "Y 坐标或平移，单位由此值类型决定。"
+
+#: mecheye.area_scan_3d_camera.HandEyeTransformation.z:1
+#: mecheye.area_scan_3d_camera.NormalVector.z:1 mecheye.area_scan_3d_camera.PointXYZBGR.z:1
+#: mecheye.area_scan_3d_camera.PointZ.z:1 mecheye.shared.PointXYZ.z:1
+msgid "Z coordinate or depth in this value type's unit."
+msgstr "Z 坐标或深度，单位由此值类型决定。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Intrinsics2DCamera.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Intrinsics2DCamera"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Intrinsics2DCamera"
+
+#: mecheye.area_scan_3d_camera.Intrinsics2DCamera.camera_distortion:1
+msgid "CameraDistortion coefficients."
+msgstr "CameraDistortion 畸变系数。"
+
+#: mecheye.area_scan_3d_camera.Intrinsics2DCamera.camera_matrix:1
+msgid "CameraMatrix intrinsic parameters."
+msgstr "CameraMatrix 内参。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.LaserFramePartitionCount.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.LaserFramePartitionCount"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.LaserFramePartitionCount"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.LaserFrameRange.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.LaserFrameRange"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.LaserFrameRange"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.LaserFringeCodingMode.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.LaserFringeCodingMode"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.LaserFringeCodingMode"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.LaserPowerLevel.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.LaserPowerLevel"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.LaserPowerLevel"
+
+#: mecheye.area_scan_3d_camera.<lambda>:1
+msgid "Return the nominal increment."
+msgstr "返回标称增量。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.MemberValue.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.MemberValue"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.MemberValue"
+
+#: mecheye.area_scan_3d_camera.MemberValue:1
+msgid ""
+"Event payload union. Read only the numeric, boolean, or string field selected by "
+"PayloadMember.type."
+msgstr "事件载荷联合体。只读取 PayloadMember.type 指定的数值、布尔或字符串字段。"
+
+#: mecheye.area_scan_3d_camera.MemberValue.bool_value:1
+msgid "Boolean payload value; use when type is Type__Bool."
+msgstr "布尔载荷值；类型为 Type__Bool 时使用。"
+
+#: mecheye.area_scan_3d_camera.MemberValue.double_value:1
+msgid "Double-precision payload value; use when type is Type__Double."
+msgstr "双精度载荷值；类型为 Type__Double 时使用。"
+
+#: mecheye.area_scan_3d_camera.MemberValue.float_value:1
+msgid "Single-precision payload value; use when type is Type__Float."
+msgstr "单精度载荷值；类型为 Type__Float 时使用。"
+
+#: mecheye.area_scan_3d_camera.MemberValue.int_32value:1
+msgid "Signed 32-bit payload value; use when type is Type__Int32."
+msgstr "有符号 32 位载荷值；类型为 Type__Int32 时使用。"
+
+#: mecheye.area_scan_3d_camera.MemberValue.int_64value:1
+msgid "Signed 64-bit payload value; use when type is Type__Int64."
+msgstr "有符号 64 位载荷值；类型为 Type__Int64 时使用。"
+
+#: mecheye.area_scan_3d_camera.MemberValue.string_value:1
+msgid "String payload value; use when type is Type__String."
+msgstr "字符串载荷值；类型为 Type__String 时使用。"
+
+#: mecheye.area_scan_3d_camera.MemberValue.uint_32value:1
+msgid "Unsigned 32-bit payload value; use when type is Type__UInt32."
+msgstr "无符号 32 位载荷值；类型为 Type__UInt32 时使用。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.NormalVector.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.NormalVector"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.NormalVector"
+
+#: mecheye.area_scan_3d_camera.NormalVector.curvature:1
+msgid "Curvature reported by the SDK normal estimator."
+msgstr "SDK 法向量估算器报告的曲率。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Payload.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Payload"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Payload"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.PayloadMember.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.PayloadMember"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.PayloadMember"
+
+#: mecheye.area_scan_3d_camera.PayloadMember:1
+msgid ""
+"Named event payload with a ``Type_*`` discriminator and a MemberValue. Read the union"
+" field matching type."
+msgstr "具名事件载荷，包含 ``Type_*`` 类型标识和 MemberValue。请读取与 type 匹配的联合体字段。"
+
+#: mecheye.area_scan_3d_camera.PayloadMember.name:1
+msgid "Payload member name."
+msgstr "载荷成员名称。"
+
+#: mecheye.area_scan_3d_camera.PayloadMember.type:1
+msgid "PayloadMember.``Type_*`` discriminator."
+msgstr "PayloadMember.``Type_*`` 类型标识。"
+
+#: mecheye.area_scan_3d_camera.PayloadMember.value:1
+msgid "MemberValue payload union."
+msgstr "MemberValue 载荷联合体。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.PointCloudDepthHoleFilling.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.PointCloudDepthHoleFilling"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.PointCloudDepthHoleFilling"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.PointCloudDepthSmooth.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.PointCloudDepthSmooth"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.PointCloudDepthSmooth"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.PointCloudDepthSurfaceNoiseRemoval.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.PointCloudDepthSurfaceNoiseRemoval"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.PointCloudDepthSurfaceNoiseRemoval"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.PointCloudEdgePreservation.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.PointCloudEdgePreservation"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.PointCloudEdgePreservation"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.PointCloudFringeContrastThreshold.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.PointCloudFringeContrastThreshold"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.PointCloudFringeContrastThreshold"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.PointCloudFringeMinThreshold.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.PointCloudFringeMinThreshold"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.PointCloudFringeMinThreshold"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.PointCloudLargeGradNoiseRemoval.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.PointCloudLargeGradNoiseRemoval"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.PointCloudLargeGradNoiseRemoval"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.PointCloudNoiseRemoval.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.PointCloudNoiseRemoval"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.PointCloudNoiseRemoval"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.PointCloudOutlierRemoval.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.PointCloudOutlierRemoval"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.PointCloudOutlierRemoval"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.PointCloudPhaseClusterOutlierRemoval.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.PointCloudPhaseClusterOutlierRemoval"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.PointCloudPhaseClusterOutlierRemoval"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.PointCloudSpuriousPhaseRemoval.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.PointCloudSpuriousPhaseRemoval"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.PointCloudSpuriousPhaseRemoval"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.PointCloudSurfaceSmoothing.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.PointCloudSurfaceSmoothing"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.PointCloudSurfaceSmoothing"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.PointXYZBGR.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.PointXYZBGR"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.PointXYZBGR"
+
+#: mecheye.area_scan_3d_camera.PointXYZBGR.a:1
+msgid "Unsigned 8-bit alpha channel."
+msgstr "无符号 8 位 alpha 通道。"
+
+#: mecheye.area_scan_3d_camera.PointXYZBGR.rgb:1
+msgid "Packed SDK color representation."
+msgstr "SDK 打包颜色表示。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.PointXYZBGRWithNormals.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.PointXYZBGRWithNormals"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.PointXYZBGRWithNormals"
+
+#: mecheye.area_scan_3d_camera.PointXYZBGRWithNormals.color_point:1
+msgid "Nested PointXYZBGR coordinate and color."
+msgstr "嵌套的 PointXYZBGR 坐标和颜色。"
+
+#: mecheye.area_scan_3d_camera.PointXYZBGRWithNormals.normal:1
+#: mecheye.area_scan_3d_camera.PointXYZWithNormals.normal:1
+msgid "Nested NormalVector."
+msgstr "嵌套的 NormalVector。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.PointXYZWithNormals.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.PointXYZWithNormals"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.PointXYZWithNormals"
+
+#: mecheye.area_scan_3d_camera.PointXYZWithNormals.point:1
+msgid "Nested PointXYZ coordinate."
+msgstr "嵌套的 PointXYZ 坐标。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.PointZ.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.PointZ"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.PointZ"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.ProcessingMode.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.ProcessingMode"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.ProcessingMode"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.ProjectorFringeCodingMode.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.ProjectorFringeCodingMode"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.ProjectorFringeCodingMode"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.ProjectorInterferenceSuppression.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.ProjectorInterferenceSuppression"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.ProjectorInterferenceSuppression"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.ProjectorPowerLevel.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.ProjectorPowerLevel"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.ProjectorPowerLevel"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.ProjectorProcessingMode.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.ProjectorProcessingMode"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.ProjectorProcessingMode"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Scanning2DAutoExposureROI.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Scanning2DAutoExposureROI"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Scanning2DAutoExposureROI"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Scanning2DDepthSourceExposureMode.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Scanning2DDepthSourceExposureMode"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Scanning2DDepthSourceExposureMode"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Scanning2DDepthSourceExposureTime.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Scanning2DDepthSourceExposureTime"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Scanning2DDepthSourceExposureTime"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Scanning2DExpectedGrayValue.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Scanning2DExpectedGrayValue"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Scanning2DExpectedGrayValue"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Scanning2DExposureMode.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Scanning2DExposureMode"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Scanning2DExposureMode"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Scanning2DExposureTime.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Scanning2DExposureTime"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Scanning2DExposureTime"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Scanning2DFlashAcquisitionMode.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Scanning2DFlashAcquisitionMode"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Scanning2DFlashAcquisitionMode"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Scanning2DFlashExposureTime.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Scanning2DFlashExposureTime"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Scanning2DFlashExposureTime"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Scanning2DFlashGain.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Scanning2DFlashGain"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Scanning2DFlashGain"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Scanning2DFlashPowerLevel.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Scanning2DFlashPowerLevel"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Scanning2DFlashPowerLevel"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Scanning2DGain.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Scanning2DGain"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Scanning2DGain"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Scanning2DHDRExposureSequence.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Scanning2DHDRExposureSequence"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Scanning2DHDRExposureSequence"
+
+#: mecheye.area_scan_3d_camera.<lambda>:1
+msgid "Return the nominal maximum number of array elements."
+msgstr "返回数组元素数量的标称上限。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Scanning2DPatternRoleGain.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Scanning2DPatternRoleGain"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Scanning2DPatternRoleGain"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Scanning2DSharpenFactor.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Scanning2DSharpenFactor"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Scanning2DSharpenFactor"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Scanning2DToneMappingEnable.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Scanning2DToneMappingEnable"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Scanning2DToneMappingEnable"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Scanning3DDepthRange.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Scanning3DDepthRange"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Scanning3DDepthRange"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Scanning3DExposureCount.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Scanning3DExposureCount"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Scanning3DExposureCount"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Scanning3DExposureSequence.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Scanning3DExposureSequence"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Scanning3DExposureSequence"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Scanning3DGain.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Scanning3DGain"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Scanning3DGain"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Scanning3DGroupDlpPowerLevel.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Scanning3DGroupDlpPowerLevel"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Scanning3DGroupDlpPowerLevel"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Scanning3DGroupExposureSelector.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Scanning3DGroupExposureSelector"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Scanning3DGroupExposureSelector"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Scanning3DGroupExposureTime.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Scanning3DGroupExposureTime"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Scanning3DGroupExposureTime"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Scanning3DGroupGain.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Scanning3DGroupGain"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Scanning3DGroupGain"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Scanning3DROI.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Scanning3DROI"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Scanning3DROI"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.TexturedPointCloud.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.TexturedPointCloud"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.TexturedPointCloud"
+
+#: mecheye._compat.array_type.<locals>.<lambda>:1
+msgid "Return an owned float32 XYZ array with shape (height, width, 3)."
+msgstr "返回独立的 float32 XYZ 数组，形状为 (height, width, 3)。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.TexturedPointCloudWithNormals.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.TexturedPointCloudWithNormals"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.TexturedPointCloudWithNormals"
+
+#: mecheye._compat.array_type.<locals>.<lambda>:1
+msgid ""
+"Return an owned float32 array with shape (height, width, 4), containing normal X/Y/Z "
+"and curvature."
+msgstr "返回独立的 float32 数组，形状为 (height, width, 4)，包含法向量 X/Y/Z 和曲率。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.Transformation.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.Transformation"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.Transformation"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.UhpCaptureMode.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.UhpCaptureMode"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.UhpCaptureMode"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.UntexturedPointCloud.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.UntexturedPointCloud"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.UntexturedPointCloud"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.UntexturedPointCloudWithNormals.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.UntexturedPointCloudWithNormals"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.UntexturedPointCloudWithNormals"
+
+#: mecheye._compat.array_type.<locals>.<lambda>:1
+msgid ""
+"Return an owned float32 array with shape (height, width, 7), in x, y, z, normal-x, "
+"normal-y, normal-z, curvature order."
+msgstr "返回独立的 float32 数组，形状为 (height, width, 7)，按 x、y、z、法向量 x、法向量 y、法向量 z、曲率排列。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.VectorCameraInfo.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.VectorCameraInfo"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.VectorCameraInfo"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.camera_intrinsics_to_wrapped.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.camera\\_intrinsics\\_to\\_wrapped"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.camera\\_intrinsics\\_to\\_wrapped"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.doubleArray3.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.doubleArray3"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.doubleArray3"
+
+#: mecheye.area_scan_3d_camera.doubleArray3.data:1
+#: mecheye.area_scan_3d_camera.doubleMatrix3.data:1
+msgid "Return the mutable three-element view; assign exactly three elements or rows."
+msgstr "返回可修改的三元素视图；赋值必须恰好包含三个元素或三行。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.doubleMatrix3.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.doubleMatrix3"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.doubleMatrix3"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.frame_transformation_towrapped.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.frame\\_transformation\\_towrapped"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.frame\\_transformation\\_towrapped"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.get_point_cloud_after_mapping.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.get\\_point\\_cloud\\_after\\_mapping"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.get\\_point\\_cloud\\_after\\_mapping"
+
+#: mecheye.area_scan_3d_camera.get_point_cloud_after_mapping:3
+msgid ""
+"Accepted arguments are ``(depth, mask, intrinsics, cloud)`` for an "
+"UntexturedPointCloud, or ``(depth, mask, color, intrinsics, cloud)`` for a "
+"TexturedPointCloud. Nonzero grayscale mask pixels select depth samples. :return: "
+"ErrorStatus; the cloud is an output argument."
+msgstr ""
+"无纹理点云 UntexturedPointCloud 接受 ``(depth, mask, intrinsics, cloud)``；带纹理点云 "
+"TexturedPointCloud 接受 ``(depth, mask, color, intrinsics, "
+"cloud)``。灰度掩码中非零像素用于选择深度样本。:return: ErrorStatus；cloud 为输出参数。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.get_transformation_params.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.get\\_transformation\\_params"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.get\\_transformation\\_params"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.transform_point_cloud.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.transform\\_point\\_cloud"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.transform\\_point\\_cloud"
+
+#: mecheye.area_scan_3d_camera.transform_point_cloud:3
+#: mecheye.area_scan_3d_camera.transform_point_cloud_with_normals:3
+#: mecheye.area_scan_3d_camera.transform_textured_point_cloud:3
+#: mecheye.area_scan_3d_camera.transform_textured_point_cloud_with_normals:3
+msgid ""
+"``coordinateTransformation`` is a FrameTransformation. Translation uses the same "
+"coordinate unit as the cloud. Pass the matching cloud type, including color or "
+"normals when required by this function."
+msgstr ""
+"``coordinateTransformation`` 为 "
+"FrameTransformation。平移使用与点云相同的坐标单位。请传入匹配的点云类型，并按此函数要求包含颜色或法向量。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.transform_point_cloud_with_normals.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.transform\\_point\\_cloud\\_with\\_normals"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.transform\\_point\\_cloud\\_with\\_normals"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.transform_textured_point_cloud.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.transform\\_textured\\_point\\_cloud"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.transform\\_textured\\_point\\_cloud"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.transform_textured_point_cloud_with_normals.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.transform\\_textured\\_point\\_cloud\\_with\\_normals"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.transform\\_textured\\_point\\_cloud\\_with\\_normals"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.wrapped_to_camera_intrinsics.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.wrapped\\_to\\_camera\\_intrinsics"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.wrapped\\_to\\_camera\\_intrinsics"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera.wrapped_to_frame_transformation.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera.wrapped\\_to\\_frame\\_transformation"
+msgstr "mecheye.area\\_scan\\_3d\\_camera.wrapped\\_to\\_frame\\_transformation"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera_utils.confirm_capture_3d.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera\\_utils.confirm\\_capture\\_3d"
+msgstr "mecheye.area\\_scan\\_3d\\_camera\\_utils.confirm\\_capture\\_3d"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera_utils.find_and_connect.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera\\_utils.find\\_and\\_connect"
+msgstr "mecheye.area\\_scan\\_3d\\_camera\\_utils.find\\_and\\_connect"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera_utils.find_and_connect_multi_camera.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera\\_utils.find\\_and\\_connect\\_multi\\_camera"
+msgstr "mecheye.area\\_scan\\_3d\\_camera\\_utils.find\\_and\\_connect\\_multi\\_camera"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera_utils.image_to_gray.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera\\_utils.image\\_to\\_gray"
+msgstr "mecheye.area\\_scan\\_3d\\_camera\\_utils.image\\_to\\_gray"
+
+#: mecheye.area_scan_3d_camera_utils.image_to_gray:3
+msgid ""
+"uint8 and uint16 use 15-bit integer BT.601 coefficients; float32 uses floating-point "
+"coefficients. The caller owns the input and must prevent concurrent writes or "
+"resizing during this call."
+msgstr "uint8 和 uint16 使用 15 位整数 BT.601 系数；float32 使用浮点系数。输入数据由调用者持有，调用期间必须避免并发写入或调整尺寸。"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera_utils.print_camera_dist_coeffs.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera\\_utils.print\\_camera\\_dist\\_coeffs"
+msgstr "mecheye.area\\_scan\\_3d\\_camera\\_utils.print\\_camera\\_dist\\_coeffs"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera_utils.print_camera_info.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera\\_utils.print\\_camera\\_info"
+msgstr "mecheye.area\\_scan\\_3d\\_camera\\_utils.print\\_camera\\_info"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera_utils.print_camera_intrinsics.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera\\_utils.print\\_camera\\_intrinsics"
+msgstr "mecheye.area\\_scan\\_3d\\_camera\\_utils.print\\_camera\\_intrinsics"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera_utils.print_camera_matrix.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera\\_utils.print\\_camera\\_matrix"
+msgstr "mecheye.area\\_scan\\_3d\\_camera\\_utils.print\\_camera\\_matrix"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera_utils.print_camera_resolution.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera\\_utils.print\\_camera\\_resolution"
+msgstr "mecheye.area\\_scan\\_3d\\_camera\\_utils.print\\_camera\\_resolution"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera_utils.print_camera_status.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera\\_utils.print\\_camera\\_status"
+msgstr "mecheye.area\\_scan\\_3d\\_camera\\_utils.print\\_camera\\_status"
+
+#: docs/api/_generated/objects/mecheye.area_scan_3d_camera_utils.print_transform.rst:2
+msgid "mecheye.area\\_scan\\_3d\\_camera\\_utils.print\\_transform"
+msgstr "mecheye.area\\_scan\\_3d\\_camera\\_utils.print\\_transform"
+
+#: docs/api/_generated/objects/mecheye.shared.BoolParameter.rst:2
+msgid "mecheye.shared.BoolParameter"
+msgstr "mecheye.shared.BoolParameter"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1 mecheye.shared.BoolParameter:1
+msgid "Typed bool device parameter."
+msgstr "布尔值类型的设备参数。"
+
+#: mecheye.shared.BoolParameter.get_value:1 mecheye.shared.EnumParameter.get_value:1
+#: mecheye.shared.FloatParameter.get_value:1 mecheye.shared.IntParameter.get_value:1
+msgid "Return ``[status, value]`` for this typed parameter."
+msgstr "返回该类型参数的 ``[status, value]``。"
+
+#: mecheye.shared.BoolParameter.get_value:3 mecheye.shared.EnumParameter.get_value:3
+#: mecheye.shared.FloatArrayParameter.get_value:3 mecheye.shared.FloatParameter.get_value:3
+#: mecheye.shared.IntParameter.get_value:3 mecheye.shared.ProfileRoiParameter.get_value:3
+#: mecheye.shared.RangeParameter.get_value:3 mecheye.shared.RoiArrayParameter.get_value:3
+#: mecheye.shared.RoiParameter.get_value:3
+msgid "Check the status before reading the value."
+msgstr "读取值前应检查状态。"
+
+#: mecheye.shared.BoolParameter.set_value:1 mecheye.shared.EnumParameter.set_value:1
+#: mecheye.shared.FloatArrayParameter.set_value:1 mecheye.shared.FloatParameter.set_value:1
+#: mecheye.shared.IntParameter.set_value:1 mecheye.shared.ProfileRoiParameter.set_value:1
+#: mecheye.shared.RangeParameter.set_value:1 mecheye.shared.RoiParameter.set_value:1
+msgid "Write a value through this typed parameter; return ErrorStatus."
+msgstr "通过该类型参数写入值；返回 ErrorStatus。"
+
+#: mecheye.shared.Parameter.convert_from_parameter:1
+msgid "Return a typed view when param has this subclass's parameter kind."
+msgstr "当 param 的参数类型与此子类匹配时，返回对应的类型视图。"
+
+#: mecheye.shared.Parameter.convert_from_parameter:3
+msgid "A Parameter handle or None."
+msgstr "Parameter 句柄或 None。"
+
+#: mecheye.shared.Parameter.convert_from_parameter:4
+msgid "A typed handle, or None if the handle is absent or its kind differs."
+msgstr "对应类型的句柄；句柄不存在或类型不匹配时返回 None。"
+
+#: mecheye.shared.Parameter.convert_from_parameter:5
+msgid "A non-Parameter value is supplied."
+msgstr "传入了非 Parameter 值。"
+
+#: mecheye.shared.Parameter.description:1
+msgid "Return the SDK-provided description for this parameter."
+msgstr "返回 SDK 提供的参数描述。"
+
+#: mecheye.shared.Parameter.is_readable:1
+msgid "Return whether the parameter is currently readable."
+msgstr "返回该参数当前是否可读。"
+
+#: mecheye.shared.Parameter.is_writable:1
+msgid "Return whether the parameter is currently writable."
+msgstr "返回该参数当前是否可写。"
+
+#: mecheye.shared.Parameter.name:1
+msgid "Return the device parameter's SDK identifier."
+msgstr "返回设备参数的 SDK 标识。"
+
+#: mecheye.shared.Parameter.type:1
+msgid "Return the Parameter._* type identifier."
+msgstr "返回 Parameter._* 类型标识。"
+
+#: docs/api/_generated/objects/mecheye.shared.EnumParameter.rst:2
+msgid "mecheye.shared.EnumParameter"
+msgstr "mecheye.shared.EnumParameter"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1 mecheye.shared.EnumParameter:1
+msgid "Typed enum device parameter."
+msgstr "枚举类型的设备参数。"
+
+#: mecheye.shared.EnumParameter.get_value_string:1
+msgid "Return ``[status, name]`` for the selected enum entry."
+msgstr "返回当前选择的枚举项的 ``[status, name]``。"
+
+#: mecheye.shared.EnumParameter.get_values:1
+msgid "Return the supported enum-entry map from names to integer values."
+msgstr "返回受支持枚举项的名称到整数值映射。"
+
+#: docs/api/_generated/objects/mecheye.shared.ErrorStatus.rst:2
+msgid "mecheye.shared.ErrorStatus"
+msgstr "mecheye.shared.ErrorStatus"
+
+#: mecheye.shared.ErrorStatus:1
+msgid ""
+"Result of an SDK operation. Zero error_code means success; nonzero codes carry an "
+"error_description. Use is_ok() before reading output arguments."
+msgstr "SDK 操作结果。error_code 为零表示成功；非零错误码对应 error_description。读取输出参数前应使用 is_ok() 检查。"
+
+#: mecheye.shared.ErrorStatus.error_code:1
+msgid "SDK integer error code; zero indicates success."
+msgstr "SDK 整数错误码；零表示成功。"
+
+#: mecheye.shared.ErrorStatus.error_description:1
+msgid "SDK explanation of the operation result."
+msgstr "SDK 对操作结果的说明。"
+
+#: mecheye.shared._status_is_ok:1
+msgid "Return True exactly when error_code is the SDK success code zero."
+msgstr "仅当 error_code 为 SDK 成功码零时返回 True。"
+
+#: docs/api/_generated/objects/mecheye.shared.FloatArrayParameter.rst:2
+msgid "mecheye.shared.FloatArrayParameter"
+msgstr "mecheye.shared.FloatArrayParameter"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1 mecheye.shared.FloatArrayParameter:1
+msgid "Typed float array device parameter."
+msgstr "浮点数组类型的设备参数。"
+
+#: mecheye.shared.FloatArrayParameter.get_value:1
+#: mecheye.shared.ProfileRoiParameter.get_value:1 mecheye.shared.RangeParameter.get_value:1
+#: mecheye.shared.RoiArrayParameter.get_value:1 mecheye.shared.RoiParameter.get_value:1
+msgid "Return ``(status, value)`` for this typed parameter."
+msgstr "返回该类型参数的 ``(status, value)``。"
+
+#: mecheye.shared.FloatArrayParameter.get_min:1 mecheye.shared.FloatParameter.get_min:1
+#: mecheye.shared.IntParameter.get_min:1 mecheye.shared.RangeParameter.get_min:1
+msgid "Return ``[status, minimum]`` for this parameter's supported range."
+msgstr "返回该参数支持范围的 ``[status, minimum]``。"
+
+#: mecheye.shared.FloatArrayParameter.get_max:1 mecheye.shared.FloatParameter.get_max:1
+#: mecheye.shared.IntParameter.get_max:1 mecheye.shared.RangeParameter.get_max:1
+msgid "Return ``[status, maximum]`` for this parameter's supported range."
+msgstr "返回该参数支持范围的 ``[status, maximum]``。"
+
+#: mecheye.shared.FloatArrayParameter.get_step:1 mecheye.shared.FloatParameter.get_step:1
+#: mecheye.shared.IntParameter.get_step:1 mecheye.shared.RangeParameter.get_step:1
+msgid "Return ``[status, step]`` for this parameter's increment."
+msgstr "返回该参数增量的 ``[status, step]``。"
+
+#: mecheye.shared.FloatArrayParameter.get_unit:1 mecheye.shared.FloatParameter.get_unit:1
+#: mecheye.shared.IntParameter.get_unit:1 mecheye.shared.RangeParameter.get_unit:1
+msgid "Return ``[status, unit]`` with the SDK's unit string."
+msgstr "返回 ``[status, unit]``，其中 unit 为 SDK 单位字符串。"
+
+#: mecheye.shared.FloatArrayParameter.get_max_array_size:1
+msgid "Return ``[status, maximum_size]`` for the float array."
+msgstr "返回浮点数组的 ``[status, maximum_size]``。"
+
+#: docs/api/_generated/objects/mecheye.shared.FloatParameter.rst:2
+msgid "mecheye.shared.FloatParameter"
+msgstr "mecheye.shared.FloatParameter"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1 mecheye.shared.FloatParameter:1
+msgid "Typed float device parameter."
+msgstr "浮点数类型的设备参数。"
+
+#: docs/api/_generated/objects/mecheye.shared.FrameTransformation.rst:2
+msgid "mecheye.shared.FrameTransformation"
+msgstr "mecheye.shared.FrameTransformation"
+
+#: mecheye.shared._rotate:1
+msgid "Compose a rotation by theta degrees around FrameTransformation.Axis_X/Y/Z."
+msgstr "围绕 FrameTransformation.Axis_X/Y/Z 合成 theta 度的旋转。"
+
+#: mecheye.shared._translate:1
+msgid "Set translation to x, y, z in the same unit as the point coordinates."
+msgstr "将平移设置为 x、y、z，使用与点坐标相同的单位。"
+
+#: docs/api/_generated/objects/mecheye.shared.IntParameter.rst:2
+msgid "mecheye.shared.IntParameter"
+msgstr "mecheye.shared.IntParameter"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1 mecheye.shared.IntParameter:1
+msgid "Typed int device parameter."
+msgstr "整数类型的设备参数。"
+
+#: docs/api/_generated/objects/mecheye.shared.MechEyeCaptureError.rst:2
+msgid "mecheye.shared.MechEyeCaptureError"
+msgstr "mecheye.shared.MechEyeCaptureError"
+
+#: docs/api/_generated/shared.rst:56:<autosummary>:1 mecheye.shared.MechEyeCaptureError:1
+msgid "Capture failed or frame data is invalid."
+msgstr "采集失败或帧数据无效。"
+
+#: docs/api/_generated/objects/mecheye.shared.MechEyeConfigurationError.rst:2
+msgid "mecheye.shared.MechEyeConfigurationError"
+msgstr "mecheye.shared.MechEyeConfigurationError"
+
+#: docs/api/_generated/shared.rst:56:<autosummary>:1
+#: mecheye.shared.MechEyeConfigurationError:1
+msgid "Parameter configuration or readback failed."
+msgstr "参数配置或读回验证失败。"
+
+#: docs/api/_generated/objects/mecheye.shared.MechEyeConnectionError.rst:2
+msgid "mecheye.shared.MechEyeConnectionError"
+msgstr "mecheye.shared.MechEyeConnectionError"
+
+#: docs/api/_generated/shared.rst:56:<autosummary>:1
+#: mecheye.shared.MechEyeConnectionError:1
+msgid "Connection, device information retrieval, or resource release failed."
+msgstr "连接、设备信息读取或资源释放失败。"
+
+#: docs/api/_generated/objects/mecheye.shared.MechEyeError.rst:2
+msgid "mecheye.shared.MechEyeError"
+msgstr "mecheye.shared.MechEyeError"
+
+#: docs/api/_generated/shared.rst:56:<autosummary>:1 mecheye.shared.MechEyeError:1
+msgid "Base class for all camera errors."
+msgstr "所有相机错误的基类。"
+
+#: docs/api/_generated/objects/mecheye.shared.MechEyeMapStringInt.rst:2
+msgid "mecheye.shared.MechEyeMapStringInt"
+msgstr "mecheye.shared.MechEyeMapStringInt"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+#: mecheye._containers.MechEyeMapStringInt:1
+msgid "String-to-integer map with SDK-compatible access helpers."
+msgstr "字符串到整数的映射，提供与 SDK 兼容的访问方法。"
+
+#: mecheye._containers.MechEyeMapStringInt.keys:1
+msgid "Return a new list of keys in lexicographic order."
+msgstr "返回按字典序排列的键的新列表。"
+
+#: mecheye._containers.MechEyeMapStringInt.values:1
+msgid "Return a new list of values in lexicographic key order."
+msgstr "返回按键的字典序排列的值的新列表。"
+
+#: mecheye._containers.MechEyeMapStringInt.items:1
+msgid "Return a new list of key-value tuples in lexicographic key order."
+msgstr "返回按键的字典序排列的键值元组的新列表。"
+
+#: mecheye._containers.MechEyeMapStringInt.asdict:1
+msgid "Return a plain dictionary copy."
+msgstr "返回普通字典副本。"
+
+#: mecheye._containers.MechEyeMapStringInt.empty:1
+msgid "Return whether the map has no entries."
+msgstr "返回映射是否不包含条目。"
+
+#: mecheye._containers.MechEyeMapStringInt.size:1
+msgid "Return the number of entries."
+msgstr "返回条目数量。"
+
+#: mecheye._containers.MechEyeMapStringInt.has_key:1
+msgid "Return whether key exists."
+msgstr "返回 key 是否存在。"
+
+#: mecheye._containers.MechEyeMapStringInt.key_iterator:1
+msgid "Return an iterator over a sorted snapshot of keys."
+msgstr "返回已排序键快照的迭代器。"
+
+#: mecheye._containers.MechEyeMapStringInt.value_iterator:1
+msgid "Return an iterator over a snapshot of values in key order."
+msgstr "返回按键排序的值快照的迭代器。"
+
+#: mecheye._containers.MechEyeMapStringInt.iterator:1
+msgid "Return an iterator over a sorted snapshot of key-value tuples."
+msgstr "返回已排序键值元组快照的迭代器。"
+
+#: mecheye._containers.MechEyeMapStringInt.end:1
+msgid "Return a one-past-end iterator over key-value tuples."
+msgstr "返回键值元组的末尾后迭代器。"
+
+#: mecheye._containers.MechEyeMapStringInt.rbegin:1
+msgid "Return a reverse iterator over a sorted snapshot of key-value tuples."
+msgstr "返回已排序键值元组快照的反向迭代器。"
+
+#: mecheye._containers.MechEyeMapStringInt.count:1
+msgid "Return 1 when key exists and 0 otherwise."
+msgstr "key 存在时返回 1，否则返回 0。"
+
+#: mecheye._containers.MechEyeMapStringInt.find:1
+msgid "Return a sorted-key iterator for key, or a one-past-end iterator if absent."
+msgstr "返回指向 key 的已排序键迭代器；不存在时返回末尾后迭代器。"
+
+#: mecheye._containers.MechEyeMapStringInt.lower_bound:1
+msgid "Return an iterator to the first key greater than or equal to key."
+msgstr "返回指向第一个大于或等于 key 的键的迭代器。"
+
+#: mecheye._containers.MechEyeMapStringInt.upper_bound:1
+msgid "Return an iterator to the first key strictly greater than key."
+msgstr "返回指向第一个严格大于 key 的键的迭代器。"
+
+#: mecheye._containers.MechEyeMapStringInt.erase:1
+msgid "Erase a key or iterator range."
+msgstr "删除一个键或迭代器区间。"
+
+#: mecheye._containers.MechEyeMapStringInt.erase:3
+msgid ""
+"A key argument returns 1 if removed, otherwise 0. An iterator or a half-open iterator"
+" range erases the corresponding entries and returns None."
+msgstr "传入键时，删除成功返回 1，否则返回 0。传入迭代器或左闭右开迭代器区间时，删除对应条目并返回 None。"
+
+#: mecheye._containers.MechEyeMapStringInt.swap:1
+msgid "Exchange this map's contents with other."
+msgstr "交换此映射与 other 的内容。"
+
+#: mecheye._containers.MechEyeMapStringInt.get_allocator:1
+msgid "Return tuple, the adapter's key-value item type."
+msgstr "返回 tuple，即适配器的键值条目类型。"
+
+#: docs/api/_generated/objects/mecheye.shared.MechEyePointCloudError.rst:2
+msgid "mecheye.shared.MechEyePointCloudError"
+msgstr "mecheye.shared.MechEyePointCloudError"
+
+#: docs/api/_generated/shared.rst:56:<autosummary>:1
+#: mecheye.shared.MechEyePointCloudError:1
+msgid "Point cloud mapping failed."
+msgstr "点云映射失败。"
+
+#: docs/api/_generated/objects/mecheye.shared.MechEyeVectorParameterPointer.rst:2
+msgid "mecheye.shared.MechEyeVectorParameterPointer"
+msgstr "mecheye.shared.MechEyeVectorParameterPointer"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+#: mecheye.shared.MechEyeVectorParameterPointer:1
+msgid "Mutable vector of Parameter values."
+msgstr "Parameter 值的可修改向量。"
+
+#: docs/api/_generated/objects/mecheye.shared.MechEyeVectorROI.rst:2
+msgid "mecheye.shared.MechEyeVectorROI"
+msgstr "mecheye.shared.MechEyeVectorROI"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1 mecheye.shared.MechEyeVectorROI:1
+msgid "Mutable vector of ROI values."
+msgstr "ROI 值的可修改向量。"
+
+#: docs/api/_generated/objects/mecheye.shared.MechEyeVectorString.rst:2
+msgid "mecheye.shared.MechEyeVectorString"
+msgstr "mecheye.shared.MechEyeVectorString"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1 mecheye.shared.MechEyeVectorString:1
+msgid "Mutable vector of str values."
+msgstr "str 值的可修改向量。"
+
+#: docs/api/_generated/objects/mecheye.shared.Parameter.rst:2
+msgid "mecheye.shared.Parameter"
+msgstr "mecheye.shared.Parameter"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1 mecheye.shared.Parameter:1
+msgid "A device parameter handle obtained from UserSet.get_parameter()."
+msgstr "通过 UserSet.get_parameter() 获取的设备参数句柄。"
+
+#: mecheye.shared.Parameter:3
+msgid ""
+"Direct construction is unavailable. Convert a generic handle with the desired typed "
+"subclass's convert_from_parameter() method before reading or writing it."
+msgstr "不支持直接构造。读写前应使用所需类型子类的 convert_from_parameter() 方法转换通用句柄。"
+
+#: docs/api/_generated/objects/mecheye.shared.PointXYZ.rst:2
+msgid "mecheye.shared.PointXYZ"
+msgstr "mecheye.shared.PointXYZ"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1 mecheye.shared.PointXYZ:1
+msgid "Three floating-point coordinates in the point cloud's selected SDK unit."
+msgstr "三个浮点坐标，使用点云当前选择的 SDK 单位。"
+
+#: docs/api/_generated/objects/mecheye.shared.ProfileROI.rst:2
+msgid "mecheye.shared.ProfileROI"
+msgstr "mecheye.shared.ProfileROI"
+
+#: mecheye.shared.ProfileROI:1
+msgid ""
+"Shared floating-point region description with an X-axis center, width, and height. "
+"This value type does not provide profiler capture operations."
+msgstr "共享的浮点区域描述，包含 X 轴中心、宽度和高度。此值类型不提供激光轮廓仪采集操作。"
+
+#: mecheye.shared.ProfileROI.height:1 mecheye.shared.ROI.height:1
+#: mecheye.shared.Size.height:1 mecheye.shared.SizeF.height:1
+msgid "Height in the unit described by this value type."
+msgstr "高度，单位由此值类型决定。"
+
+#: mecheye.shared.ProfileROI.width:1 mecheye.shared.ROI.width:1 mecheye.shared.Size.width:1
+#: mecheye.shared.SizeF.width:1
+msgid "Width in the unit described by this value type."
+msgstr "宽度，单位由此值类型决定。"
+
+#: mecheye.shared.ProfileROI.x_axis_center:1
+msgid "Region center along the SDK X axis."
+msgstr "区域沿 SDK X 轴的中心。"
+
+#: docs/api/_generated/objects/mecheye.shared.ProfileRoiParameter.rst:2
+msgid "mecheye.shared.ProfileRoiParameter"
+msgstr "mecheye.shared.ProfileRoiParameter"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1 mecheye.shared.ProfileRoiParameter:1
+msgid "Typed profile roi device parameter."
+msgstr "轮廓 ROI类型的设备参数。"
+
+#: mecheye.shared.ProfileRoiParameter.get_max_roi_size:1
+#: mecheye.shared.RoiParameter.get_max_roi_size:1
+msgid "Fill maxSize with the maximum ROI dimensions; return ErrorStatus."
+msgstr "将最大 ROI 尺寸写入 maxSize；返回 ErrorStatus。"
+
+#: mecheye.shared.ProfileRoiParameter.get_min_roi_size:1
+msgid "Fill minSize with the minimum ROI dimensions; return ErrorStatus."
+msgstr "将最小 ROI 尺寸写入 minSize；返回 ErrorStatus。"
+
+#: docs/api/_generated/objects/mecheye.shared.ROI.rst:2
+msgid "mecheye.shared.ROI"
+msgstr "mecheye.shared.ROI"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1 mecheye.shared.ROI:1
+msgid "Rectangular image region in pixels: upper-left X/Y coordinates, width, and height."
+msgstr "矩形图像区域，以像素表示左上角 X/Y 坐标、宽度和高度。"
+
+#: mecheye.shared.ROI.upper_left_x:1
+msgid "Horizontal pixel coordinate of the region's upper-left corner."
+msgstr "区域左上角的水平像素坐标。"
+
+#: mecheye.shared.ROI.upper_left_y:1
+msgid "Vertical pixel coordinate of the region's upper-left corner."
+msgstr "区域左上角的垂直像素坐标。"
+
+#: docs/api/_generated/objects/mecheye.shared.RangeDouble.rst:2
+msgid "mecheye.shared.RangeDouble"
+msgstr "mecheye.shared.RangeDouble"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1 mecheye.shared.RangeDouble:1
+msgid "Mutable double-precision minimum and maximum bounds."
+msgstr "可修改的双精度最小与最大边界。"
+
+#: mecheye.shared.RangeDouble.max:1 mecheye.shared.RangeFloat.max:1
+#: mecheye.shared.RangeInt.max:1
+msgid "Upper bound of the range."
+msgstr "范围上界。"
+
+#: mecheye.shared.RangeDouble.min:1 mecheye.shared.RangeFloat.min:1
+#: mecheye.shared.RangeInt.min:1
+msgid "Lower bound of the range."
+msgstr "范围下界。"
+
+#: docs/api/_generated/objects/mecheye.shared.RangeFloat.rst:2
+msgid "mecheye.shared.RangeFloat"
+msgstr "mecheye.shared.RangeFloat"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1 mecheye.shared.RangeFloat:1
+msgid "Mutable floating-point minimum and maximum bounds."
+msgstr "可修改的浮点最小与最大边界。"
+
+#: docs/api/_generated/objects/mecheye.shared.RangeInt.rst:2
+msgid "mecheye.shared.RangeInt"
+msgstr "mecheye.shared.RangeInt"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1 mecheye.shared.RangeInt:1
+msgid "Mutable integer minimum and maximum bounds."
+msgstr "可修改的整数最小与最大边界。"
+
+#: docs/api/_generated/objects/mecheye.shared.RangeParameter.rst:2
+msgid "mecheye.shared.RangeParameter"
+msgstr "mecheye.shared.RangeParameter"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1 mecheye.shared.RangeParameter:1
+msgid "Typed range device parameter."
+msgstr "范围类型的设备参数。"
+
+#: docs/api/_generated/objects/mecheye.shared.RoiArrayParameter.rst:2
+msgid "mecheye.shared.RoiArrayParameter"
+msgstr "mecheye.shared.RoiArrayParameter"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1 mecheye.shared.RoiArrayParameter:1
+msgid "Typed roi array device parameter."
+msgstr "ROI 数组类型的设备参数。"
+
+#: docs/api/_generated/objects/mecheye.shared.RoiParameter.rst:2
+msgid "mecheye.shared.RoiParameter"
+msgstr "mecheye.shared.RoiParameter"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1 mecheye.shared.RoiParameter:1
+msgid "Typed roi device parameter."
+msgstr "ROI类型的设备参数。"
+
+#: docs/api/_generated/objects/mecheye.shared.Size.rst:2
+msgid "mecheye.shared.Size"
+msgstr "mecheye.shared.Size"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1 mecheye.shared.Size:1
+msgid "Integer width and height of an image or region, in pixels."
+msgstr "图像或区域的整数宽度和高度，单位为像素。"
+
+#: docs/api/_generated/objects/mecheye.shared.SizeF.rst:2
+msgid "mecheye.shared.SizeF"
+msgstr "mecheye.shared.SizeF"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1 mecheye.shared.SizeF:1
+msgid "Floating-point width and height reported by the SDK."
+msgstr "SDK 报告的浮点宽度和高度。"
+
+#: docs/api/_generated/objects/mecheye.shared.SwigPyIterator.rst:2
+msgid "mecheye.shared.SwigPyIterator"
+msgstr "mecheye.shared.SwigPyIterator"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1 mecheye._containers.SwigPyIterator:1
+msgid "Provide index-based iterator operations without exposing native pointers."
+msgstr "提供基于索引的迭代器操作，不暴露原生指针。"
+
+#: mecheye._containers.SwigPyIterator.value:1
+msgid "Return the current element; raise StopIteration outside the container."
+msgstr "返回当前元素；超出容器时抛出 StopIteration。"
+
+#: mecheye._containers.SwigPyIterator.incr:1
+msgid "Advance n elements in this iterator's traversal direction and return self."
+msgstr "沿迭代器遍历方向前进 n 个元素，并返回 self。"
+
+#: mecheye._containers.SwigPyIterator.decr:1
+msgid "Move n elements against this iterator's traversal direction and return self."
+msgstr "沿迭代器遍历的相反方向移动 n 个元素，并返回 self。"
+
+#: mecheye._containers.SwigPyIterator.advance:1
+msgid "Advance by signed n elements and return self."
+msgstr "按有符号 n 移动相应数量的元素，并返回 self。"
+
+#: mecheye._containers.SwigPyIterator.distance:1
+msgid "Return the distance to other in the traversal direction."
+msgstr "返回沿遍历方向到 other 的距离。"
+
+#: mecheye._containers.SwigPyIterator.distance:3
+msgid "The iterators refer to different containers."
+msgstr "迭代器指向不同的容器。"
+
+#: mecheye._containers.SwigPyIterator.equal:1
+msgid "Return whether both iterators refer to the same container and index."
+msgstr "返回两个迭代器是否指向同一容器和索引。"
+
+#: mecheye._containers.SwigPyIterator.copy:1
+msgid "Return an independent iterator at the same position and direction."
+msgstr "返回具有相同位置和方向的独立迭代器。"
+
+#: mecheye._containers.SwigPyIterator.next:1
+msgid "Return the current element, then advance in the traversal direction."
+msgstr "返回当前元素，然后沿遍历方向前进。"
+
+#: mecheye._containers.SwigPyIterator.previous:1
+msgid "Move against the traversal direction, then return the element."
+msgstr "沿遍历的相反方向移动，然后返回元素。"
+
+#: docs/api/_generated/objects/mecheye.shared.UserSet.rst:2
+msgid "mecheye.shared.UserSet"
+msgstr "mecheye.shared.UserSet"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1 mecheye.shared.UserSet:1
+msgid "Read and write the current device user set through a camera-owned handle."
+msgstr "通过相机所属的句柄读写当前设备用户集。"
+
+#: mecheye.shared.UserSet:3
+msgid ""
+"Obtain this object with Camera.current_user_set() or "
+"UserSetManager.current_user_set(); direct construction is unavailable. Scalar reads "
+"return [status, value], structured reads return (status, value), and writes return an"
+" SDK ErrorStatus."
+msgstr ""
+"使用 Camera.current_user_set() 或 UserSetManager.current_user_set() 获取此对象，不支持直接构造。标量读取返回"
+" [status, value]，结构化读取返回 (status, value)，写入返回 SDK ErrorStatus。"
+
+#: mecheye.shared.UserSet.get_name:1
+msgid "Return ``[status, name]`` for this device user set."
+msgstr "返回该设备用户集的 ``[status, name]``。"
+
+#: mecheye.shared.UserSet.rename:1
+msgid "Rename this user set to newName; return ErrorStatus."
+msgstr "将用户集重命名为 newName；返回 ErrorStatus。"
+
+#: mecheye.shared.UserSet.get_available_parameter_names:1
+msgid "Return the SDK list of available parameter names."
+msgstr "返回 SDK 提供的可用参数名称列表。"
+
+#: mecheye.shared.UserSet.reset_all_parameters_to_default_values:1
+msgid "Reset current parameters to SDK defaults; return ErrorStatus."
+msgstr "将当前参数恢复为 SDK 默认值；返回 ErrorStatus。"
+
+#: mecheye.shared.UserSet.save_all_parameters_to_device:1
+msgid "Persist current parameter values to the device; return ErrorStatus."
+msgstr "将当前参数值持久化到设备；返回 ErrorStatus。"
+
+#: mecheye.shared.UserSet.get_available_parameters:1
+msgid "Return available Parameter handles owned by this connection."
+msgstr "返回此连接持有的可用 Parameter 句柄。"
+
+#: mecheye.shared.UserSet.get_parameter:1
+msgid "Return the named Parameter handle, or None when it is unavailable."
+msgstr "返回指定名称的 Parameter 句柄；不可用时返回 None。"
+
+#: mecheye.shared.UserSet.get_bool_value:1 mecheye.shared.UserSet.get_enum_value:1
+#: mecheye.shared.UserSet.get_enum_value_string:1 mecheye.shared.UserSet.get_float_value:1
+#: mecheye.shared.UserSet.get_int_value:1
+msgid "Read the named parameter and return ``[status, value]``."
+msgstr "读取指定名称的参数，返回 ``[status, value]``。"
+
+#: mecheye.shared.UserSet.get_int_value:3
+msgid "Check the status before using the returned int value."
+msgstr "使用返回的整数值前应检查状态。"
+
+#: mecheye.shared.UserSet.set_int_value:1
+msgid "Write the named int parameter; return ErrorStatus."
+msgstr "写入指定名称的整数参数；返回 ErrorStatus。"
+
+#: mecheye.shared.UserSet.get_float_value:3
+msgid "Check the status before using the returned float value."
+msgstr "使用返回的浮点数值前应检查状态。"
+
+#: mecheye.shared.UserSet.set_float_value:1
+msgid "Write the named float parameter; return ErrorStatus."
+msgstr "写入指定名称的浮点数参数；返回 ErrorStatus。"
+
+#: mecheye.shared.UserSet.get_bool_value:3
+msgid "Check the status before using the returned bool value."
+msgstr "使用返回的布尔值值前应检查状态。"
+
+#: mecheye.shared.UserSet.set_bool_value:1
+msgid "Write the named bool parameter; return ErrorStatus."
+msgstr "写入指定名称的布尔值参数；返回 ErrorStatus。"
+
+#: mecheye.shared.UserSet.get_enum_value:3
+msgid "Check the status before using the returned enum value."
+msgstr "使用返回的枚举值前应检查状态。"
+
+#: mecheye.shared.UserSet.get_enum_value_string:3
+msgid "Check the status before using the returned enum value string value."
+msgstr "使用返回的枚举值字符串值前应检查状态。"
+
+#: mecheye.shared.UserSet.set_enum_value:1
+msgid "Write the named enum parameter; return ErrorStatus."
+msgstr "写入指定名称的枚举参数；返回 ErrorStatus。"
+
+#: mecheye.shared.UserSet.get_float_array_value:1
+#: mecheye.shared.UserSet.get_profile_roi_value:1 mecheye.shared.UserSet.get_range_value:1
+#: mecheye.shared.UserSet.get_roi_array_value:1 mecheye.shared.UserSet.get_roi_value:1
+msgid "Read the named parameter and return ``(status, value)``."
+msgstr "读取指定名称的参数，返回 ``(status, value)``。"
+
+#: mecheye.shared.UserSet.get_roi_value:3
+msgid "Check the status before using the returned roi value."
+msgstr "使用返回的ROI值前应检查状态。"
+
+#: mecheye.shared.UserSet.set_roi_value:1
+msgid "Write the named roi parameter; return ErrorStatus."
+msgstr "写入指定名称的ROI参数；返回 ErrorStatus。"
+
+#: mecheye.shared.UserSet.get_profile_roi_value:3
+msgid "Check the status before using the returned profile roi value."
+msgstr "使用返回的轮廓 ROI值前应检查状态。"
+
+#: mecheye.shared.UserSet.set_profile_roi_value:1
+msgid "Write the named profile roi parameter; return ErrorStatus."
+msgstr "写入指定名称的轮廓 ROI参数；返回 ErrorStatus。"
+
+#: mecheye.shared.UserSet.get_roi_array_value:3
+msgid "Check the status before using the returned roi array value."
+msgstr "使用返回的ROI 数组值前应检查状态。"
+
+#: mecheye.shared.UserSet.get_range_value:3
+msgid "Check the status before using the returned range value."
+msgstr "使用返回的范围值前应检查状态。"
+
+#: mecheye.shared.UserSet.set_range_value:1
+msgid "Write the named range parameter; return ErrorStatus."
+msgstr "写入指定名称的范围参数；返回 ErrorStatus。"
+
+#: mecheye.shared.UserSet.get_float_array_value:3
+msgid "Check the status before using the returned float array value."
+msgstr "使用返回的浮点数组值前应检查状态。"
+
+#: mecheye.shared.UserSet.set_float_array_value:1
+msgid "Write the named float array parameter; return ErrorStatus."
+msgstr "写入指定名称的浮点数组参数；返回 ErrorStatus。"
+
+#: docs/api/_generated/objects/mecheye.shared.UserSetManager.rst:2
+msgid "mecheye.shared.UserSetManager"
+msgstr "mecheye.shared.UserSetManager"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1 mecheye.shared.UserSetManager:1
+msgid "Select, persist, import, and export device user sets."
+msgstr "选择、保存、导入和导出设备用户集。"
+
+#: mecheye.shared.UserSetManager:3
+msgid "Obtain this handle with Camera.user_set_manager(); direct construction is unavailable."
+msgstr "通过 Camera.user_set_manager() 获取此句柄，不支持直接构造。"
+
+#: mecheye.shared.UserSetManager.current_user_set:1
+msgid "Return the selected UserSet handle for this camera connection."
+msgstr "返回该相机连接当前选择的 UserSet 句柄。"
+
+#: mecheye.shared.UserSetManager.get_all_user_set_names:1
+msgid "Return ``(status, names)`` for the device's available user sets."
+msgstr "返回设备可用用户集的 ``(status, names)``。"
+
+#: mecheye.shared.UserSetManager.select_user_set:1
+msgid "Select the named device user set; return ErrorStatus."
+msgstr "选择指定名称的设备用户集；返回 ErrorStatus。"
+
+#: mecheye.shared.UserSetManager.add_user_set:1
+msgid "Create a named device user set; return ErrorStatus."
+msgstr "创建指定名称的设备用户集；返回 ErrorStatus。"
+
+#: mecheye.shared.UserSetManager.delete_user_set:1
+msgid "Delete a named device user set; return ErrorStatus."
+msgstr "删除指定名称的设备用户集；返回 ErrorStatus。"
+
+#: mecheye.shared.UserSetManager.save_to_file:1
+msgid "Export user-set settings to fileName; return ErrorStatus."
+msgstr "将用户集配置导出到 fileName；返回 ErrorStatus。"
+
+#: mecheye.shared.UserSetManager.load_from_file:1
+msgid "Import user-set settings from fileName; return ErrorStatus."
+msgstr "从 fileName 导入用户集配置；返回 ErrorStatus。"
+
+#: docs/api/_generated/objects/mecheye.shared.Version.rst:2
+msgid "mecheye.shared.Version"
+msgstr "mecheye.shared.Version"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1 mecheye.shared.Version:1
+msgid "Represent an SDK version and compare version components."
+msgstr "表示 SDK 版本，并比较版本组成部分。"
+
+#: mecheye.shared.Version:3
+msgid ""
+"Construct with no arguments, a dotted string, or three integers ``(major, minor, "
+"patch)``."
+msgstr "可以不传参数、传入点分版本字符串，或传入三个整数 ``(major, minor, patch)``。"
+
+#: mecheye.shared.Version.to_string:1
+msgid "Return the version as a dotted string."
+msgstr "返回点分版本字符串。"
+
+#: mecheye.shared.Version.from_string:1
+msgid "Update this version from the SDK's dotted string syntax."
+msgstr "使用 SDK 的点分字符串语法更新此版本。"
+
+#: mecheye.shared.Version.is_empty:1
+msgid "Return whether the SDK version contains no version information."
+msgstr "返回 SDK 版本是否不包含版本信息。"
+
+#: docs/api/_generated/objects/mecheye.shared.VirtualUserSet.rst:2
+msgid "mecheye.shared.VirtualUserSet"
+msgstr "mecheye.shared.VirtualUserSet"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1 mecheye.shared.VirtualUserSet:1
+msgid "Shared read-only interface; no profiler implementation is included."
+msgstr "共享的只读接口；不包含激光轮廓仪实现。"
+
+#: docs/api/_generated/objects/mecheye.shared.WrappedDoubleList.rst:2
+msgid "mecheye.shared.WrappedDoubleList"
+msgstr "mecheye.shared.WrappedDoubleList"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1 mecheye.shared.WrappedDoubleList:1
+msgid "Double sequence accepted by the SDK float-array adapters."
+msgstr "SDK 浮点数组适配器接受的 double 序列。"
+
+#: mecheye.shared.WrappedDoubleList.values:1
+msgid "Return this sequence; assigning values replaces it with float-converted elements."
+msgstr "返回此序列；赋值时将各元素转换为 float 并替换原内容。"
+
+#: mecheye.shared.WrappedDoubleList.push_back:1
+msgid "Append value after converting it to float."
+msgstr "将 value 转换为 float 后追加。"
+
+#: docs/api/_generated/objects/mecheye.shared.export_logs.rst:2
+msgid "mecheye.shared.export\\_logs"
+msgstr "mecheye.shared.export\\_logs"
+
+#: docs/api/_generated/shared.rst:68:<autosummary>:1 mecheye.shared.export_logs:1
+msgid "Explicitly export SDK diagnostic files to dstPath; return ErrorStatus."
+msgstr "显式将 SDK 诊断文件导出到 dstPath；返回 ErrorStatus。"
+
+#: mecheye.shared.export_logs:3
+msgid ""
+"``coverIfExist`` controls whether existing destination files can be replaced. This "
+"utility does not enable automatic Python logging."
+msgstr "``coverIfExist`` 控制是否可以覆盖目标位置的已有文件。此工具不会启用自动 Python 日志。"
+
+#: docs/api/_generated/objects/mecheye.shared.get_api_version_info.rst:2
+msgid "mecheye.shared.get\\_api\\_version\\_info"
+msgstr "mecheye.shared.get\\_api\\_version\\_info"
+
+#: docs/api/_generated/shared.rst:68:<autosummary>:1 mecheye.shared.get_api_version_info:1
+msgid "Return the loaded C++ SDK's version and copyright string."
+msgstr "返回已加载 C++ SDK 的版本和版权字符串。"
+
+#: docs/api/_generated/objects/mecheye.shared.ip_assignment_method_to_string.rst:2
+msgid "mecheye.shared.ip\\_assignment\\_method\\_to\\_string"
+msgstr "mecheye.shared.ip\\_assignment\\_method\\_to\\_string"
+
+#: docs/api/_generated/shared.rst:68:<autosummary>:1
+#: mecheye.shared.ip_assignment_method_to_string:1
+msgid "Return the SDK IP-assignment label, or an empty string for an unrecognized value."
+msgstr "返回 SDK 的 IP 地址分配方式名称；无法识别的值返回空字符串。"
+
+#: docs/api/_generated/objects/mecheye.shared.show_error.rst:2
+msgid "mecheye.shared.show\\_error"
+msgstr "mecheye.shared.show\\_error"
+
+#: docs/api/_generated/shared.rst:68:<autosummary>:1 mecheye.shared.show_error:1
+msgid "Explicitly display a status, as requested by the caller."
+msgstr "按调用者请求显式显示状态。"
+
+#: docs/api/_generated/shared.rst:2
+msgid "mecheye.shared"
+msgstr "mecheye.shared"
+
+#: mecheye.shared:1
+msgid "Shared SDK types, status values, parameters, and user-set interfaces."
+msgstr "共享 SDK 类型、状态值、参数和用户集接口。"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ""
+":py:obj:`SwigPyIterator <mecheye.shared.SwigPyIterator>`\\ \\(sequence\\[\\, index\\,"
+" reverse\\]\\)"
+msgstr ""
+":py:obj:`SwigPyIterator <mecheye.shared.SwigPyIterator>`\\ \\(sequence\\[\\, index\\,"
+" reverse\\]\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ":py:obj:`MechEyeMapStringInt <mecheye.shared.MechEyeMapStringInt>`\\"
+msgstr ":py:obj:`MechEyeMapStringInt <mecheye.shared.MechEyeMapStringInt>`\\"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ":py:obj:`ErrorStatus <mecheye.shared.ErrorStatus>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`ErrorStatus <mecheye.shared.ErrorStatus>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid "Result of an SDK operation."
+msgstr "SDK 操作结果。"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ":py:obj:`Size <mecheye.shared.Size>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`Size <mecheye.shared.Size>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ":py:obj:`SizeF <mecheye.shared.SizeF>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`SizeF <mecheye.shared.SizeF>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ":py:obj:`ROI <mecheye.shared.ROI>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`ROI <mecheye.shared.ROI>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ":py:obj:`ProfileROI <mecheye.shared.ProfileROI>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`ProfileROI <mecheye.shared.ProfileROI>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid "Shared floating-point region description with an X-axis center, width, and height."
+msgstr "共享的浮点区域描述，包含 X 轴中心、宽度和高度。"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ":py:obj:`PointXYZ <mecheye.shared.PointXYZ>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`PointXYZ <mecheye.shared.PointXYZ>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ":py:obj:`RangeFloat <mecheye.shared.RangeFloat>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`RangeFloat <mecheye.shared.RangeFloat>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ":py:obj:`RangeInt <mecheye.shared.RangeInt>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`RangeInt <mecheye.shared.RangeInt>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ":py:obj:`RangeDouble <mecheye.shared.RangeDouble>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`RangeDouble <mecheye.shared.RangeDouble>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ":py:obj:`FrameTransformation <mecheye.shared.FrameTransformation>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`FrameTransformation <mecheye.shared.FrameTransformation>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ":py:obj:`Version <mecheye.shared.Version>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`Version <mecheye.shared.Version>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ":py:obj:`Parameter <mecheye.shared.Parameter>`\\ \\(\\*args\\, \\*\\*kwargs\\)"
+msgstr ":py:obj:`Parameter <mecheye.shared.Parameter>`\\ \\(\\*args\\, \\*\\*kwargs\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ":py:obj:`IntParameter <mecheye.shared.IntParameter>`\\ \\(\\*args\\, \\*\\*kwargs\\)"
+msgstr ":py:obj:`IntParameter <mecheye.shared.IntParameter>`\\ \\(\\*args\\, \\*\\*kwargs\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ""
+":py:obj:`FloatParameter <mecheye.shared.FloatParameter>`\\ \\(\\*args\\, "
+"\\*\\*kwargs\\)"
+msgstr ""
+":py:obj:`FloatParameter <mecheye.shared.FloatParameter>`\\ \\(\\*args\\, "
+"\\*\\*kwargs\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ":py:obj:`BoolParameter <mecheye.shared.BoolParameter>`\\ \\(\\*args\\, \\*\\*kwargs\\)"
+msgstr ":py:obj:`BoolParameter <mecheye.shared.BoolParameter>`\\ \\(\\*args\\, \\*\\*kwargs\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ":py:obj:`EnumParameter <mecheye.shared.EnumParameter>`\\ \\(\\*args\\, \\*\\*kwargs\\)"
+msgstr ":py:obj:`EnumParameter <mecheye.shared.EnumParameter>`\\ \\(\\*args\\, \\*\\*kwargs\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ":py:obj:`RoiParameter <mecheye.shared.RoiParameter>`\\ \\(\\*args\\, \\*\\*kwargs\\)"
+msgstr ":py:obj:`RoiParameter <mecheye.shared.RoiParameter>`\\ \\(\\*args\\, \\*\\*kwargs\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ""
+":py:obj:`RangeParameter <mecheye.shared.RangeParameter>`\\ \\(\\*args\\, "
+"\\*\\*kwargs\\)"
+msgstr ""
+":py:obj:`RangeParameter <mecheye.shared.RangeParameter>`\\ \\(\\*args\\, "
+"\\*\\*kwargs\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ""
+":py:obj:`FloatArrayParameter <mecheye.shared.FloatArrayParameter>`\\ \\(\\*args\\, "
+"\\*\\*kwargs\\)"
+msgstr ""
+":py:obj:`FloatArrayParameter <mecheye.shared.FloatArrayParameter>`\\ \\(\\*args\\, "
+"\\*\\*kwargs\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ""
+":py:obj:`RoiArrayParameter <mecheye.shared.RoiArrayParameter>`\\ \\(\\*args\\, "
+"\\*\\*kwargs\\)"
+msgstr ""
+":py:obj:`RoiArrayParameter <mecheye.shared.RoiArrayParameter>`\\ \\(\\*args\\, "
+"\\*\\*kwargs\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ""
+":py:obj:`ProfileRoiParameter <mecheye.shared.ProfileRoiParameter>`\\ \\(\\*args\\, "
+"\\*\\*kwargs\\)"
+msgstr ""
+":py:obj:`ProfileRoiParameter <mecheye.shared.ProfileRoiParameter>`\\ \\(\\*args\\, "
+"\\*\\*kwargs\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ":py:obj:`UserSet <mecheye.shared.UserSet>`\\ \\(\\*args\\, \\*\\*kwargs\\)"
+msgstr ":py:obj:`UserSet <mecheye.shared.UserSet>`\\ \\(\\*args\\, \\*\\*kwargs\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ""
+":py:obj:`UserSetManager <mecheye.shared.UserSetManager>`\\ \\(\\*args\\, "
+"\\*\\*kwargs\\)"
+msgstr ""
+":py:obj:`UserSetManager <mecheye.shared.UserSetManager>`\\ \\(\\*args\\, "
+"\\*\\*kwargs\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ""
+":py:obj:`VirtualUserSet <mecheye.shared.VirtualUserSet>`\\ \\(\\*args\\, "
+"\\*\\*kwargs\\)"
+msgstr ""
+":py:obj:`VirtualUserSet <mecheye.shared.VirtualUserSet>`\\ \\(\\*args\\, "
+"\\*\\*kwargs\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ":py:obj:`MechEyeVectorROI <mecheye.shared.MechEyeVectorROI>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`MechEyeVectorROI <mecheye.shared.MechEyeVectorROI>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ":py:obj:`MechEyeVectorString <mecheye.shared.MechEyeVectorString>`\\ \\(\\*args\\)"
+msgstr ":py:obj:`MechEyeVectorString <mecheye.shared.MechEyeVectorString>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ""
+":py:obj:`MechEyeVectorParameterPointer "
+"<mecheye.shared.MechEyeVectorParameterPointer>`\\ \\(\\*args\\)"
+msgstr ""
+":py:obj:`MechEyeVectorParameterPointer "
+"<mecheye.shared.MechEyeVectorParameterPointer>`\\ \\(\\*args\\)"
+
+#: docs/api/_generated/shared.rst:43:<autosummary>:1
+msgid ":py:obj:`WrappedDoubleList <mecheye.shared.WrappedDoubleList>`\\ \\(\\[iterable\\]\\)"
+msgstr ":py:obj:`WrappedDoubleList <mecheye.shared.WrappedDoubleList>`\\ \\(\\[iterable\\]\\)"
+
+#: docs/api/_generated/shared.rst:45
+msgid "Exceptions"
+msgstr "异常"
+
+#: docs/api/_generated/shared.rst:56:<autosummary>:1
+msgid ":py:obj:`MechEyeError <mecheye.shared.MechEyeError>`\\"
+msgstr ":py:obj:`MechEyeError <mecheye.shared.MechEyeError>`\\"
+
+#: docs/api/_generated/shared.rst:56:<autosummary>:1
+msgid ":py:obj:`MechEyeConnectionError <mecheye.shared.MechEyeConnectionError>`\\"
+msgstr ":py:obj:`MechEyeConnectionError <mecheye.shared.MechEyeConnectionError>`\\"
+
+#: docs/api/_generated/shared.rst:56:<autosummary>:1
+msgid ":py:obj:`MechEyeCaptureError <mecheye.shared.MechEyeCaptureError>`\\"
+msgstr ":py:obj:`MechEyeCaptureError <mecheye.shared.MechEyeCaptureError>`\\"
+
+#: docs/api/_generated/shared.rst:56:<autosummary>:1
+msgid ":py:obj:`MechEyePointCloudError <mecheye.shared.MechEyePointCloudError>`\\"
+msgstr ":py:obj:`MechEyePointCloudError <mecheye.shared.MechEyePointCloudError>`\\"
+
+#: docs/api/_generated/shared.rst:56:<autosummary>:1
+msgid ":py:obj:`MechEyeConfigurationError <mecheye.shared.MechEyeConfigurationError>`\\"
+msgstr ":py:obj:`MechEyeConfigurationError <mecheye.shared.MechEyeConfigurationError>`\\"
+
+#: docs/api/_generated/shared.rst:68:<autosummary>:1
+msgid ""
+":py:obj:`ip_assignment_method_to_string "
+"<mecheye.shared.ip_assignment_method_to_string>`\\ \\(type\\)"
+msgstr ""
+":py:obj:`ip_assignment_method_to_string "
+"<mecheye.shared.ip_assignment_method_to_string>`\\ \\(type\\)"
+
+#: docs/api/_generated/shared.rst:68:<autosummary>:1
+msgid ":py:obj:`get_api_version_info <mecheye.shared.get_api_version_info>`\\ \\(\\)"
+msgstr ":py:obj:`get_api_version_info <mecheye.shared.get_api_version_info>`\\ \\(\\)"
+
+#: docs/api/_generated/shared.rst:68:<autosummary>:1
+msgid ":py:obj:`export_logs <mecheye.shared.export_logs>`\\ \\(dstPath\\, coverIfExist\\)"
+msgstr ":py:obj:`export_logs <mecheye.shared.export_logs>`\\ \\(dstPath\\, coverIfExist\\)"
+
+#: docs/api/_generated/shared.rst:68:<autosummary>:1
+msgid ""
+":py:obj:`show_error <mecheye.shared.show_error>`\\ \\(status\\[\\, "
+"successMessage\\]\\)"
+msgstr ""
+":py:obj:`show_error <mecheye.shared.show_error>`\\ \\(status\\[\\, "
+"successMessage\\]\\)"
+
+#: docs/api/index.rst:2
+msgid "API reference"
+msgstr "API 参考"
+
+#: docs/api/index.rst:4
+msgid ""
+"These pages are generated from the installed public modules and their docstrings. "
+"Each build validates that public wrapper functions, methods, properties, and "
+"generated SDK types have documentation."
+msgstr "这些页面从已安装的公开模块及其文档字符串自动生成。每次构建都检查公开封装函数、方法、属性及生成的 SDK 类型是否具有文档。"
+

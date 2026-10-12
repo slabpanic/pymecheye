@@ -1,0 +1,54 @@
+# Simplified Chinese translations for pymecheye.
+# Copyright (C) 2026 pymecheye contributors
+# Distributed under the MIT license; see LICENSE.
+# pymecheye contributors, 2026.
+msgid ""
+msgstr ""
+"Project-Id-Version: pymecheye 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/slabpanic/pymecheye/issues\n"
+"POT-Creation-Date: 2026-10-12 21:21+0800\n"
+"PO-Revision-Date: 2026-10-12 21:27+0800\n"
+"Last-Translator: pymecheye contributors\n"
+"Language: zh_CN\n"
+"Language-Team: Simplified Chinese\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: docs/index.rst:2
+msgid "pymecheye"
+msgstr "pymecheye"
+
+#: docs/index.rst:4
+msgid ""
+"Python bindings for Mech-Eye area-scan 3D cameras, built with nanobind and the Mech-"
+"Eye C++ SDK. Installation compiles the native extension for the current CPython "
+"version and threading ABI. NumPy is the only Python runtime dependency."
+msgstr ""
+"基于 nanobind 和 Mech-Eye C++ SDK 的 Mech-Eye 面阵 3D 相机 Python 绑定。安装时会针对当前 CPython 版本及线程 "
+"ABI 编译原生扩展。NumPy 是唯一的 Python 运行时依赖。"
+
+#: docs/index.rst:8
+msgid ""
+"Install the distribution as ``pymecheye`` and import ``mecheye``. SDK capture and "
+"parameter operations sit alongside camera lifecycle helpers, aligned NumPy capture, "
+"and metadata dictionaries. The API reference is generated from the installed binding "
+"and the Python docstrings."
+msgstr ""
+"安装分发包 ``pymecheye``，通过 ``mecheye`` 导入。SDK 采集与参数接口和相机生命周期管理、对齐的 NumPy "
+"采集、元数据字典等便捷功能共同提供。API 参考从已安装的绑定及 Python 文档字符串自动生成。"
+
+#: docs/index.rst:21
+msgid ":ref:`genindex`"
+msgstr ":ref:`genindex`"
+
+#: docs/index.rst:22
+msgid ":ref:`modindex`"
+msgstr ":ref:`modindex`"
+
+#: docs/index.rst:23
+msgid ":ref:`search`"
+msgstr ":ref:`search`"
+

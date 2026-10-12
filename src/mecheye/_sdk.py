@@ -123,7 +123,7 @@ def file_sha256(path: Path) -> str:
         raise ImportError(f"Unable to hash MechEye SDK file: {path}") from exc
 
 
-def write_build_record(output: Path, python_soabi: str, target_platform: str) -> None:
+def write_build_record(output: Path, target_platform: str) -> None:
     """Validate build inputs and record SDK identity without redistributing it."""
     validate_platform()
     if target_platform != sys.platform:
@@ -148,7 +148,8 @@ def write_build_record(output: Path, python_soabi: str, target_platform: str) ->
         "schema_version": 2,
         "platform": sys.platform,
         "architecture": "x86_64",
-        "python_soabi": python_soabi,
+        # Windows CPython 3.10 has no SOABI; record the same value used by the loader.
+        "python_soabi": sysconfig.get_config_var("SOABI"),
         "runtime": (
             "MechEyeApi.dll" if sys.platform == "win32" else "libMechEyeApi.so"
         ),
@@ -161,7 +162,6 @@ def write_build_record(output: Path, python_soabi: str, target_platform: str) ->
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manifest", required=True, type=Path)
-    parser.add_argument("--soabi", required=True)
     parser.add_argument("--platform", required=True)
     args = parser.parse_args()
-    write_build_record(args.manifest, args.soabi, args.platform)
+    write_build_record(args.manifest, args.platform)

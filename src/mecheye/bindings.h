@@ -19,8 +19,12 @@ template <typename T> struct NativeFrame {
     void initialize(const T *other) {
         auto construct = [other] {
             std::lock_guard<std::recursive_mutex> lock(sdk_mutex);
-            return std::shared_ptr<T>(other ? new T(*other) : new T(),
-                                      [](T *frame) { sdk_dispose([frame] { delete frame; }); });
+            auto frame = std::unique_ptr<T>(other ? new T(*other) : new T());
+            auto &executor = SdkExecutor::instance();
+            executor.track_resource(frame.get(), [pointer = frame.get()] { delete pointer; });
+            return std::shared_ptr<T>(frame.release(), [](T *pointer) {
+                sdk_dispose([pointer] { SdkExecutor::instance().release_resource(pointer); });
+            });
         };
         value = SdkExecutor::instance().on_worker() ? call_sdk(construct) : sdk_call(construct);
     }

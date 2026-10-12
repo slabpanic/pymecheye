@@ -61,3 +61,6 @@ htmlcov/
 docs/_build/
 docs/api/_generated/
 _readthedocs/
+
+# Compiled translation catalogs
+docs/locale/**/*.mo

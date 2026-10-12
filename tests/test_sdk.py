@@ -164,13 +164,26 @@ class SdkValidationTests(unittest.TestCase):
             file.write_bytes(relative.encode())
         output = self.root / "runtime.json"
         with patch.dict(os.environ, {"MECHEYE_SDK_ROOT": str(self.root)}):
-            sdk.write_build_record(output, "test-soabi", sys.platform)
+            sdk.write_build_record(output, sys.platform)
             with self.assertRaisesRegex(ImportError, "cross-compiling"):
-                sdk.write_build_record(output, "test-soabi", "darwin")
+                sdk.write_build_record(output, "darwin")
         record = json.loads(output.read_text())
         self.assertEqual(record["schema_version"], 2)
-        self.assertEqual(record["python_soabi"], "test-soabi")
+        self.assertEqual(record["python_soabi"], sdk.sysconfig.get_config_var("SOABI"))
         self.assertEqual(record["sha256"], sdk.file_sha256(runtime))
         self.assertIn("include/Extra.h", record["build_inputs"])
         self.assertNotIn("include/profiler/Excluded.h", record["build_inputs"])
         self.assertNotIn(str(self.root), output.read_text())
+        get_config_var = sdk.sysconfig.get_config_var
+        with (
+            patch.dict(os.environ, {"MECHEYE_SDK_ROOT": str(self.root)}),
+            patch.object(
+                sdk.sysconfig,
+                "get_config_var",
+                side_effect=lambda name: (
+                    None if name == "SOABI" else get_config_var(name)
+                ),
+            ),
+        ):
+            sdk.write_build_record(output, sys.platform)
+        self.assertIsNone(json.loads(output.read_text())["python_soabi"])

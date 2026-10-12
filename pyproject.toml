@@ -52,28 +52,30 @@ minimum-version = "build-system.requires"
 wheel.packages = ["src/mecheye"]
 wheel.exclude = ["**/__pycache__/**", "mecheye/*.cpp", "mecheye/*.h"]
 sdist.include = [
-    "CMakeLists.txt",
-    "cmake/**",
-    "src/mecheye/*.py",
-    "src/mecheye/*.pyi",
-    "src/mecheye/*.cpp",
-    "src/mecheye/*.h",
-    "src/mecheye/licenses/*/*",
-    "README.md",
-    "README.zh-CN.md",
-    "LICENSE",
-    "THIRD_PARTY_NOTICES.md",
-    "examples/*.py",
-    "tests/*.py",
-    "tests/*.json",
-    ".gitattributes",
-    "docs/*.rst",
-    "docs/conf.py",
-    "docs/api/index.rst",
-    "docs/_ext/*.py",
-    "docs/_templates/autosummary/*.rst",
+    "/CMakeLists.txt",
+    "/cmake/**",
+    "/src/mecheye/*.py",
+    "/src/mecheye/*.pyi",
+    "/src/mecheye/*.cpp",
+    "/src/mecheye/*.h",
+    "/src/mecheye/licenses/*/*",
+    "/README.md",
+    "/README.zh-CN.md",
+    "/LICENSE",
+    "/THIRD_PARTY_NOTICES.md",
+    "/examples/*.py",
+    "/tests/*.py",
+    "/tests/*.json",
+    "/.gitattributes",
+    "/docs/*.rst",
+    "/docs/conf.py",
+    "/docs/api/index.rst",
+    "/docs/_ext/*.py",
+    "/docs/_templates/autosummary/*.rst",
+    "/docs/_templates/*.html",
+    "/docs/locale/*/LC_MESSAGES/*.po",
 ]
-sdist.exclude = ["src/sdk/**", "**/__pycache__/**", "**/*.pyc", "docs/_build/**", "docs/api/_generated/**"]
+sdist.exclude = ["src/sdk/**", "**/__pycache__/**", "**/*.pyc", "docs/_build/**", "docs/api/_generated/**", "docs/locale/**/*.mo"]
 install.strip = false
 
 [tool.uv]

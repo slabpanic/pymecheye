@@ -1,0 +1,179 @@
+# Simplified Chinese translations for pymecheye.
+# Copyright (C) 2026 pymecheye contributors
+# Distributed under the MIT license; see LICENSE.
+# pymecheye contributors, 2026.
+msgid ""
+msgstr ""
+"Project-Id-Version: pymecheye 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/slabpanic/pymecheye/issues\n"
+"POT-Creation-Date: 2026-10-12 21:21+0800\n"
+"PO-Revision-Date: 2026-10-12 21:27+0800\n"
+"Last-Translator: pymecheye contributors\n"
+"Language: zh_CN\n"
+"Language-Team: Simplified Chinese\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: docs/development.rst:2
+msgid "Documentation and development"
+msgstr "文档与开发"
+
+#: docs/development.rst:5
+msgid "Build the documentation"
+msgstr "构建文档"
+
+#: docs/development.rst:7
+msgid ""
+"Install the C++ SDK and select ``MECHEYE_SDK_ROOT`` as described in "
+":doc:`installation`. The documentation uses real imports, including dynamically "
+"generated descriptors and containers. It does not construct or connect a camera."
+msgstr ""
+"按 :doc:`installation` 安装 C++ SDK 并设置 "
+"``MECHEYE_SDK_ROOT``。文档构建真实导入包，包括动态生成的描述符和容器，但不会构造相机或连接设备。"
+
+#: docs/development.rst:17
+msgid ""
+"Open ``docs/_build/en/index.html`` or ``docs/_build/zh_CN/index.html``. Sphinx "
+"generates API indexes and autosummary pages under ``docs/api/_generated/``; these are"
+" build products and are not committed. Update docstrings in ``src/mecheye/`` to "
+"change the API reference. Dynamic value, array, and descriptor documentation is "
+"attached by their factories."
+msgstr ""
+"打开 ``docs/_build/en/index.html`` 或 ``docs/_build/zh_CN/index.html``。Sphinx 在 "
+"``docs/api/_generated/`` 下生成 API 索引和 autosummary 页面；这些构建产物不提交到版本库。修改 ``src/mecheye/``"
+" 中的文档字符串可更新 API 参考；动态值、数组和描述符的文档由对应工厂函数附加。"
+
+#: docs/development.rst:22
+msgid ""
+"The build treats warnings and unresolved references as errors and rejects missing "
+"public docstrings. GitHub Actions runs the same build and saves the HTML as a "
+"workflow artifact for review. English and Simplified Chinese use the same source "
+"pages and public docstrings; API identifiers, signatures, and code examples remain "
+"unchanged between languages."
+msgstr ""
+"构建将警告和无法解析的引用视为错误，并拒绝缺少公开文档字符串的接口。GitHub Actions 执行相同构建，保存 HTML "
+"作为可供审查的工作流产物。英文和简体中文共用源页面及公开文档字符串；API 标识、签名和代码示例在两种语言中保持一致。"
+
+#: docs/development.rst:29
+msgid "Maintain translations"
+msgstr "维护翻译"
+
+#: docs/development.rst:31
+msgid ""
+"Chinese gettext catalogs live in ``docs/locale/zh_CN/LC_MESSAGES/``. After editing "
+"the English guides or docstrings, extract messages and update the catalogs:"
+msgstr "中文 gettext 翻译目录位于 ``docs/locale/zh_CN/LC_MESSAGES/``。修改英文指南或文档字符串后，请提取消息并更新翻译目录："
+
+#: docs/development.rst:39
+msgid ""
+"Fill in new ``msgstr`` entries in the ``.po`` files, preserving reStructuredText "
+"roles and links. Then run the check and rebuild both languages:"
+msgstr "填写 ``.po`` 文件中新条目的 ``msgstr``，保留 reStructuredText 角色和链接。然后执行检查并重新构建两种语言："
+
+#: docs/development.rst:46
+msgid ""
+"CI rejects missing, empty, fuzzy, or obsolete translations. Sphinx compiles ``.po`` "
+"files automatically; generated ``.pot`` and ``.mo`` files are build artifacts. See "
+"the `Sphinx translation guide <https://www.sphinx-"
+"doc.org/en/master/usage/advanced/intl.html>`_ for the gettext workflow."
+msgstr ""
+"CI 会拒绝缺失、空白、模糊匹配或过期的翻译。Sphinx 自动编译 ``.po`` 文件；生成的 ``.pot`` 和 ``.mo`` 文件属于构建产物。gettext"
+" 工作流程见 `Sphinx translation guide <https://www.sphinx-"
+"doc.org/en/master/usage/advanced/intl.html>`_。"
+
+#: docs/development.rst:53
+msgid "Read the Docs"
+msgstr "Read the Docs"
+
+#: docs/development.rst:55
+msgid ""
+"The repository's ``.readthedocs.yaml`` uses Ubuntu and Python 3.12. It downloads and "
+"verifies SDK 2.6.0 outside the checkout, builds the extension with the locked "
+"``docs`` dependencies, and runs the strict Sphinx build. SDK files are not added to "
+"the source distribution or HTML artifacts."
+msgstr ""
+"仓库的 ``.readthedocs.yaml`` 使用 Ubuntu 和 Python 3.12，在检出目录之外下载并校验 SDK 2.6.0，使用锁定的 "
+"``docs`` 依赖编译扩展，并执行严格的 Sphinx 构建。SDK 文件不会加入源码分发包或 HTML 产物。"
+
+#: docs/development.rst:60
+msgid "To activate hosted publishing once:"
+msgstr "首次启用托管发布："
+
+#: docs/development.rst:62
+msgid "Sign in to `Read the Docs <https://app.readthedocs.org/>`_ using GitHub."
+msgstr "使用 GitHub 登录 `Read the Docs <https://app.readthedocs.org/>`_。"
+
+#: docs/development.rst:63
+msgid "Install/authorize the Read the Docs GitHub App for ``slabpanic/pymecheye``."
+msgstr "为 ``slabpanic/pymecheye`` 安装／授权 Read the Docs GitHub App。"
+
+#: docs/development.rst:64
+msgid "Import that repository and set the project slug to ``pymecheye``."
+msgstr "导入该仓库，将项目标识设置为 ``pymecheye``。"
+
+#: docs/development.rst:65
+msgid ""
+"Set the default branch to ``main`` and activate any release-tag versions you want to "
+"publish as stable documentation."
+msgstr "将默认分支设置为 ``main``，并激活需要作为稳定文档发布的 release tag 版本。"
+
+#: docs/development.rst:67
+msgid ""
+"Import the same repository again as ``pymecheye-zh-cn``, choose Simplified Chinese as"
+" its language, and activate the same branch and release versions."
+msgstr "再次导入同一仓库，项目标识为 ``pymecheye-zh-cn``，语言选择简体中文，并激活相同的分支与 release 版本。"
+
+#: docs/development.rst:69
+msgid "Add ``pymecheye-zh-cn`` under the parent project's **Translations** settings."
+msgstr "在父项目的 **Translations** 设置中添加 ``pymecheye-zh-cn``。"
+
+#: docs/development.rst:70
+msgid "Enable pull request builds on both projects if previews are desired."
+msgstr "如需预览，在两个项目中启用 pull request 构建。"
+
+#: docs/development.rst:72
+msgid ""
+"The GitHub integration triggers builds after pushes. The ``latest`` version tracks "
+"the default branch; activated release versions can also be published. The intended "
+"URLs are ``https://pymecheye.readthedocs.io/en/latest/`` and "
+"``https://pymecheye.readthedocs.io/zh-cn/latest/``. The shared configuration selects "
+"Sphinx's language from ``READTHEDOCS_LANGUAGE`` in each project. If the slug is "
+"already taken, update the documentation links and ``html_baseurl`` to the allocated "
+"project slug. No Read the Docs API token is required in GitHub Actions."
+msgstr ""
+"GitHub 集成会在推送后触发构建。``latest`` 跟踪默认分支；激活的 release 版本也可以发布。预期地址为 "
+"``https://pymecheye.readthedocs.io/en/latest/`` 和 ``https://pymecheye.readthedocs.io"
+"/zh-cn/latest/``。共享配置从各项目的 ``READTHEDOCS_LANGUAGE`` 选择 Sphinx 语言。如果项目标识已被占用，请将文档链接和 "
+"``html_baseurl`` 更新为实际分配的标识。GitHub Actions 不需要 Read the Docs API token。"
+
+#: docs/development.rst:80
+msgid ""
+"This setup uses the Read the Docs webhook integration for publication; the GitHub "
+"Actions documentation job validates HTML and does not upload to a separate hosting "
+"service. See the `Read the Docs integration guide "
+"<https://docs.readthedocs.com/platform/stable/reference/git-integration.html>`_ for "
+"account and repository integration details."
+msgstr ""
+"此配置通过 Read the Docs webhook 集成发布；GitHub Actions 文档任务校验 HTML，不会上传到其他托管服务。账号与仓库集成细节见 "
+"`Read the Docs integration guide "
+"<https://docs.readthedocs.com/platform/stable/reference/git-integration.html>`_。"
+
+#: docs/development.rst:87
+msgid "Tests and coverage"
+msgstr "测试与覆盖率"
+
+#: docs/development.rst:96
+msgid ""
+"Tests cover SDK status and data operations with native containers and simulated "
+"device responses. They do not require a camera. CI tests regular and free-threaded "
+"Python, verifies source-distribution installation, and generates Python and C++ "
+"coverage reports. Native coverage requires GCC on Linux and the "
+"``MECHEYE_ENABLE_COVERAGE`` CMake option. Codecov uploads use OIDC."
+msgstr ""
+"测试使用原生容器和模拟设备响应，覆盖 SDK 状态与数据操作，无需相机。CI 测试普通与 free-threaded Python，验证源码分发包安装，并生成 "
+"Python 与 C++ 覆盖率报告。原生覆盖率要求 Linux 下的 GCC，以及 CMake 选项 "
+"``MECHEYE_ENABLE_COVERAGE``。Codecov 上传使用 OIDC。"
+

@@ -28,7 +28,7 @@ get_filename_component(MECHEYE_SDK_ROOT "${MECHEYE_SDK_ROOT}" REALPATH)
 execute_process(
   COMMAND "${Python_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/src/mecheye/_sdk.py"
     --manifest "${CMAKE_CURRENT_BINARY_DIR}/runtime.json"
-    --soabi "${Python_SOABI}" --platform "${MECHEYE_PLATFORM}"
+    --platform "${MECHEYE_PLATFORM}"
   RESULT_VARIABLE MECHEYE_SDK_CHECK
   ERROR_VARIABLE MECHEYE_SDK_ERROR)
 if(NOT MECHEYE_SDK_CHECK EQUAL 0)

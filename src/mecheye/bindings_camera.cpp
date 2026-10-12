@@ -2,16 +2,18 @@
 #include "bindings.h"
 
 CameraState::CameraState() {
-    camera = sdk_call([] { return std::make_unique<eye::Camera>(); });
+    camera = sdk_call([] {
+        auto camera = std::make_unique<eye::Camera>();
+        SdkExecutor::instance().track_resource(camera.get(), [pointer = camera.get()] {
+            std::unique_ptr<eye::Camera> camera(pointer);
+            camera->disconnect();
+        });
+        return camera;
+    });
 }
 CameraState::~CameraState() {
     auto *owned = camera.release();
-    const bool was_connected = connected;
-    sdk_dispose([owned, was_connected] {
-        std::unique_ptr<eye::Camera> camera(owned);
-        if (was_connected)
-            camera->disconnect();
-    });
+    sdk_dispose([owned] { SdkExecutor::instance().release_resource(owned); });
 }
 NativeCamera::NativeCamera() : state(std::make_shared<CameraState>()) {}
 NativeCamera::NativeCamera(const NativeCamera &other) : state(other.state) {}

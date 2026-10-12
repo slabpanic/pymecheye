@@ -1,0 +1,242 @@
+# Simplified Chinese translations for pymecheye.
+# Copyright (C) 2026 pymecheye contributors
+# Distributed under the MIT license; see LICENSE.
+# pymecheye contributors, 2026.
+msgid ""
+msgstr ""
+"Project-Id-Version: pymecheye 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/slabpanic/pymecheye/issues\n"
+"POT-Creation-Date: 2026-10-12 21:21+0800\n"
+"PO-Revision-Date: 2026-10-12 21:27+0800\n"
+"Last-Translator: pymecheye contributors\n"
+"Language: zh_CN\n"
+"Language-Team: Simplified Chinese\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: docs/usage.rst:2
+msgid "Camera workflows"
+msgstr "相机使用流程"
+
+#: docs/usage.rst:5
+msgid "SDK capture"
+msgstr "SDK 采集"
+
+#: docs/usage.rst:7
+msgid ""
+"Camera methods that perform SDK operations return an "
+":class:`~mecheye.shared.ErrorStatus`. Check it before reading a frame. Capture "
+"timeouts and heartbeat intervals are expressed in milliseconds."
+msgstr "执行 SDK 操作的相机方法返回 :class:`~mecheye.shared.ErrorStatus`。读取帧前应检查状态。采集超时和心跳间隔的单位均为毫秒。"
+
+#: docs/usage.rst:28
+msgid ""
+"SDK calls do not connect lazily or retry failures. ``disconnect()`` returns ``None``."
+" Camera copies share the same native connection and event context, so disconnecting "
+"one copy affects the others."
+msgstr "SDK 调用不会延迟连接或重试失败。``disconnect()`` 返回 ``None``。相机副本共享原生连接和事件上下文，因此断开一个副本也会影响其他副本。"
+
+#: docs/usage.rst:33
+msgid "Aligned NumPy capture"
+msgstr "对齐的 NumPy 采集"
+
+#: docs/usage.rst:35
+msgid ""
+":meth:`~mecheye.area_scan_3d_camera.Camera.capture_points` combines depth-source 2D "
+"and 3D capture with mapping and grayscale conversion. This workflow requires a camera"
+" model that supports depth-source 2D capture."
+msgstr ""
+":meth:`~mecheye.area_scan_3d_camera.Camera.capture_points` 将深度源 2D 与 3D "
+"采集、映射及灰度转换组合起来。此流程要求相机型号支持深度源 2D 采集。"
+
+#: docs/usage.rst:49
+msgid ""
+"``image`` is an owned ``uint8`` array with shape ``(height, width)``. ``points_mm`` "
+"is an owned ``float64`` array with shape ``(height, width, 3)``. SDK all-zero points "
+"become NaN triplets, and non-finite coordinate components become NaN. The previous "
+"SDK cloud unit is restored after success or failure; a restoration failure raises "
+":class:`~mecheye.shared.MechEyeConfigurationError`."
+msgstr ""
+"``image`` 是具有独立存储的 ``uint8`` 数组，形状为 ``(height, width)``。``points_mm`` 是具有独立存储的 "
+"``float64`` 数组，形状为 ``(height, width, 3)``。SDK 全零点转换为三个 NaN，非有限坐标分量转换为 "
+"NaN。无论成功与否，都会恢复先前的 SDK 点云单位；恢复失败时抛出 "
+":class:`~mecheye.shared.MechEyeConfigurationError`。"
+
+#: docs/usage.rst:55
+msgid ""
+"An optional constructor IP connects only on context entry or first convenience "
+"capture/configuration. Convenience failures raise subclasses of "
+":class:`~mecheye.shared.MechEyeError` and do not retry automatically."
+msgstr ""
+"构造时可选的 IP 仅在进入上下文或首次使用便捷采集／配置功能时连接。便捷功能失败时抛出 :class:`~mecheye.shared.MechEyeError` "
+"的子类异常，不会自动重试。"
+
+#: docs/usage.rst:60
+msgid "Array layout and ownership"
+msgstr "数组布局与所有权"
+
+#: docs/usage.rst:62
+msgid "NumPy accessors for nonempty grids"
+msgstr "非空网格的 NumPy 访问方法"
+
+#: docs/usage.rst:65
+msgid "Container/accessor"
+msgstr "容器／访问方法"
+
+#: docs/usage.rst:66
+msgid "dtype"
+msgstr "dtype"
+
+#: docs/usage.rst:67
+msgid "Shape and fields"
+msgstr "形状与字段"
+
+#: docs/usage.rst:68
+msgid "GrayScale2DImage.data()"
+msgstr "GrayScale2DImage.data()"
+
+#: docs/usage.rst:69 docs/usage.rst:72
+msgid "uint8"
+msgstr "uint8"
+
+#: docs/usage.rst:70
+msgid "(height, width)"
+msgstr "(height, width)"
+
+#: docs/usage.rst:71
+msgid "Color2DImage.data()"
+msgstr "Color2DImage.data()"
+
+#: docs/usage.rst:73
+msgid "(height, width, 3), BGR"
+msgstr "(height, width, 3)，BGR"
+
+#: docs/usage.rst:74
+msgid "DepthMap.data()"
+msgstr "DepthMap.data()"
+
+#: docs/usage.rst:75 docs/usage.rst:78 docs/usage.rst:81 docs/usage.rst:87
+msgid "float32"
+msgstr "float32"
+
+#: docs/usage.rst:76
+msgid "(height, width), Z"
+msgstr "(height, width)，Z"
+
+#: docs/usage.rst:77
+msgid "UntexturedPointCloud.data()"
+msgstr "UntexturedPointCloud.data()"
+
+#: docs/usage.rst:79
+msgid "(height, width, 3), XYZ"
+msgstr "(height, width, 3)，XYZ"
+
+#: docs/usage.rst:80
+msgid "UntexturedPointCloudWithNormals.data()"
+msgstr "UntexturedPointCloudWithNormals.data()"
+
+#: docs/usage.rst:82
+msgid "(height, width, 7), XYZ, normal XYZ, curvature"
+msgstr "(height, width, 7)，XYZ、法向量 XYZ、曲率"
+
+#: docs/usage.rst:83
+msgid "TexturedPointCloud.vertices() / colors()"
+msgstr "TexturedPointCloud.vertices() / colors()"
+
+#: docs/usage.rst:84
+msgid "float32 / uint8"
+msgstr "float32 / uint8"
+
+#: docs/usage.rst:85
+msgid "(height, width, 3), XYZ / BGR"
+msgstr "(height, width, 3)，XYZ / BGR"
+
+#: docs/usage.rst:86
+msgid "TexturedPointCloudWithNormals.normals()"
+msgstr "TexturedPointCloudWithNormals.normals()"
+
+#: docs/usage.rst:88
+msgid "(height, width, 4), normal XYZ and curvature"
+msgstr "(height, width, 4)，法向量 XYZ 和曲率"
+
+#: docs/usage.rst:90
+msgid ""
+"Every accessor returns an independent NumPy copy. Empty accessors return a "
+"``float64`` zero array of shape ``(1,)``. Pixel references from ``at(row, col)`` or "
+"indexing allow field writes; a size-changing resize or release expires them and "
+"subsequent access raises ``ReferenceError``. Raw frame clouds retain the selected SDK"
+" coordinate unit; only ``capture_points()`` guarantees millimeters."
+msgstr ""
+"每个访问方法都返回独立的 NumPy 副本。空数据返回形状为 ``(1,)`` 的 ``float64`` 零数组。``at(row, col)`` "
+"或索引返回的像素引用允许修改字段；调整网格尺寸或释放数据后，这些引用会失效，后续访问抛出 ``ReferenceError``。原始帧点云保留选定的 SDK 坐标单位；仅"
+" ``capture_points()`` 保证使用毫米。"
+
+#: docs/usage.rst:96
+msgid ""
+"Hand-eye pose translations use millimeters when supplied as robot poses, while "
+"calibrated :class:`~mecheye.area_scan_3d_camera.HandEyeTransformation` extrinsic "
+"translations use meters. These units are separate from capture cloud units."
+msgstr ""
+"手眼标定中的机器人位姿平移使用毫米；标定得到的 :class:`~mecheye.area_scan_3d_camera.HandEyeTransformation` "
+"外参平移使用米。这些单位与采集点云单位相互独立。"
+
+#: docs/usage.rst:101
+msgid "Parameters and user sets"
+msgstr "参数与用户集"
+
+#: docs/usage.rst:103
+msgid ""
+"Use a descriptor's ``name`` with a :class:`~mecheye.shared.UserSet`. Reads return "
+"``[status, value]`` for scalar values and ``(status, value)`` for structured values. "
+"Writes return an SDK status."
+msgstr ""
+"将描述符的 ``name`` 用于 :class:`~mecheye.shared.UserSet`。标量读取返回 ``[status, value]``，结构化读取返回"
+" ``(status, value)``。写入返回 SDK 状态。"
+
+#: docs/usage.rst:118
+msgid ""
+"Descriptor limits are nominal SDK metadata. Check parameter availability and device-"
+"specific constraints on the connected camera before writing values. Obtain fresh "
+"handles after reconnecting or selecting another user set."
+msgstr "描述符的限制值属于 SDK 标称元数据。写入前应检查已连接相机上的参数可用性及设备实际约束。重新连接或选择其他用户集后，应获取新的句柄。"
+
+#: docs/usage.rst:123
+msgid "Threads, events, and output"
+msgstr "线程、事件与输出"
+
+#: docs/usage.rst:125
+msgid ""
+"SDK operations are serialized across camera instances and release Python thread state"
+" while blocked. Explicit locks protect SDK objects in regular and free-threaded "
+"CPython. Caller-owned NumPy writes and application callback state still require "
+"caller synchronization."
+msgstr ""
+"不同相机实例的 SDK 操作会串行执行，并在阻塞期间释放 Python 线程状态。显式锁在普通和 free-threaded CPython 下保护 SDK "
+"对象。调用者仍需同步对 NumPy 数组及应用回调共享状态的写入。"
+
+#: docs/usage.rst:130
+msgid ""
+"Subclass :class:`~mecheye.area_scan_3d_camera.EventCallbackBase` and register it "
+"through :class:`~mecheye.area_scan_3d_camera.CameraEvent`. Event values and payloads "
+"are copied before Python dispatch and can be read while a capture is running. An SDK "
+"call made from a callback waits for the current SDK operation. Retrieve callback "
+"failures with :meth:`~mecheye.area_scan_3d_camera.Camera.pop_callback_errors`."
+msgstr ""
+"继承 :class:`~mecheye.area_scan_3d_camera.EventCallbackBase`，并通过 "
+":class:`~mecheye.area_scan_3d_camera.CameraEvent` 注册。事件值和载荷在 Python "
+"分发前复制，因此采集期间仍可读取。回调中的 SDK 调用会等待当前 SDK 操作完成。使用 "
+":meth:`~mecheye.area_scan_3d_camera.Camera.pop_callback_errors` 获取回调异常。"
+
+#: docs/usage.rst:136
+msgid ""
+"The wrapper adds no automatic logging. On Linux the SDK worker silences its standard "
+"output/error streams without redirecting application output. The SDK may still create"
+" diagnostic files. ``show_error()`` and ``print_*()`` print only when called "
+"explicitly; interactive selection helpers prompt only when called."
+msgstr ""
+"封装不添加自动日志。Linux 下，SDK 工作线程会静默其标准输出和标准错误，而不重定向应用输出。SDK 仍可能生成诊断文件。``show_error()`` 和 "
+"``print_*()`` 仅在显式调用时打印；交互选择工具也仅在调用时提示输入。"
+
