@@ -1,0 +1,40 @@
+codecov:
+  require_ci_to_pass: true
+  notify:
+    after_n_builds: 2
+
+coverage:
+  precision: 2
+  range: "60...90"
+  status:
+    project:
+      python:
+        flags: [python]
+        target: auto
+        threshold: 1%
+      native:
+        flags: [native]
+        target: auto
+        threshold: 1%
+    patch:
+      default:
+        target: 75%
+        informational: true
+
+flags:
+  python:
+    paths: [src/mecheye/]
+    carryforward: false
+  native:
+    paths: [src/mecheye/]
+    carryforward: false
+
+ignore:
+  - tests/**
+  - .github/**
+  - src/mecheye/licenses/**
+
+comment:
+  layout: "reach,diff,flags,files"
+  behavior: default
+  require_changes: true

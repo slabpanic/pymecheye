@@ -1,0 +1,153 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  CMAKE_BUILD_PARALLEL_LEVEL: "2"
+  PYTHONFAULTHANDLER: "1"
+
+jobs:
+  test:
+    name: Test (${{ matrix.os }}, Python ${{ matrix.python }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04]
+        python: ["3.10", "3.11", "3.12", "3.13", "3.14", "3.13t", "3.14t"]
+        include:
+          - os: windows-2022
+            python: "3.10"
+          - os: windows-2022
+            python: "3.14"
+          - os: windows-2022
+            python: "3.14t"
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@d0d8abe699bfb85fec6de9f7adb5ae17292296ff # v6
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Set up MSVC
+        if: runner.os == 'Windows'
+        uses: ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756 # v1
+        with:
+          arch: x64
+      - name: Set up external SDK
+        shell: bash
+        run: uv run --no-project python .github/scripts/setup_sdk.py --destination "$RUNNER_TEMP/mech-eye-sdk"
+      - name: Build and install
+        run: uv sync --locked --no-editable
+      - name: Check dependencies
+        run: uv pip check
+      - name: Check formatting
+        run: uv run --no-sync black --check --workers 1 src/mecheye examples tests .github/scripts docs
+      - name: Verify installation from the source distribution
+        if: runner.os == 'Linux' && matrix.python == '3.10'
+        shell: bash
+        run: |
+          uv build --sdist
+          uv pip install --force-reinstall --no-deps dist/*.tar.gz
+      - name: Run unit tests
+        run: uv run --no-sync python -B -m unittest discover -s tests -v
+
+  coverage:
+    name: Python and C++ coverage
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@d0d8abe699bfb85fec6de9f7adb5ae17292296ff # v6
+        with:
+          python-version: "3.14"
+      - name: Set up external SDK
+        run: uv run --no-project python .github/scripts/setup_sdk.py --destination "$RUNNER_TEMP/mech-eye-sdk"
+      - name: Build with native coverage
+        run: >-
+          uv sync --locked --no-editable --group test --group native-coverage
+          --no-build-isolation-package pymecheye
+          -Ccmake.define.MECHEYE_ENABLE_COVERAGE=ON -Cbuild-dir=build/coverage
+      - name: Run tests with Python branch coverage
+        run: uv run --no-sync coverage run -m unittest discover -s tests -v
+      - name: Write Python coverage
+        if: always()
+        run: |
+          uv run --no-sync coverage xml
+          uv run --no-sync coverage report --fail-under=75
+      - name: Write native coverage
+        if: always()
+        run: >-
+          uv run --no-sync gcovr --root . --filter 'src/mecheye/' --merge-lines
+          --xml-pretty --output coverage-native.xml --print-summary --fail-under-line=65 build/coverage
+      - name: Save coverage reports
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: coverage-reports
+          path: coverage-*.xml
+          if-no-files-found: error
+      - name: Upload Python coverage to Codecov
+        if: >-
+          success() && (github.event_name != 'pull_request' ||
+          github.event.pull_request.head.repo.full_name == github.repository)
+        uses: codecov/codecov-action@04b047e8bb82a0c002c8312c1c880fbc6a999d45 # v5
+        with:
+          use_oidc: true
+          files: coverage-python.xml
+          flags: python
+          disable_search: true
+          fail_ci_if_error: true
+      - name: Upload native coverage to Codecov
+        if: >-
+          success() && (github.event_name != 'pull_request' ||
+          github.event.pull_request.head.repo.full_name == github.repository)
+        uses: codecov/codecov-action@04b047e8bb82a0c002c8312c1c880fbc6a999d45 # v5
+        with:
+          use_oidc: true
+          files: coverage-native.xml
+          flags: native
+          disable_search: true
+          fail_ci_if_error: true
+
+  docs:
+    name: Sphinx documentation
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@d0d8abe699bfb85fec6de9f7adb5ae17292296ff # v6
+        with:
+          python-version: "3.12"
+      - name: Set up external SDK
+        run: uv run --no-project python .github/scripts/setup_sdk.py --destination "$RUNNER_TEMP/mech-eye-sdk"
+      - name: Install binding and documentation dependencies
+        run: uv sync --locked --no-editable --no-default-groups --group docs
+      - name: Build documentation with warnings as errors
+        run: uv run --no-sync sphinx-build -n -W --keep-going -b html docs docs/_build/html
+      - name: Save documentation preview
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: sphinx-html
+          path: docs/_build/html
+          if-no-files-found: warn

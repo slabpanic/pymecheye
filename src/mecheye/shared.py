@@ -40,7 +40,31 @@ RangeDouble = value_type("RangeDouble", ["min", "max"], __name__)
 FrameTransformation = value_type(
     "FrameTransformation", ["rotation", "translation"], __name__
 )
-ErrorStatus.is_ok = lambda self: call(self, "is_ok")
+
+
+def _status_is_ok(self):
+    """Return True exactly when error_code is the SDK success code zero."""
+    return call(self, "is_ok")
+
+
+def _rotate(self, theta, rotationAxis):
+    """Compose a rotation by theta degrees around FrameTransformation.Axis_X/Y/Z."""
+    return call(self, "rotate", theta, rotationAxis)
+
+
+def _translate(self, x, y, z):
+    """Set translation to x, y, z in the same unit as the point coordinates."""
+    return call(self, "translate", x, y, z)
+
+
+def _is_valid(self):
+    """Return whether the transform differs from identity according to the SDK.
+
+    This checks for a custom reference frame, not rotation orthonormality."""
+    return call(self, "is_valid")
+
+
+ErrorStatus.is_ok = _status_is_ok
 ErrorStatus.MMIND_STATUS_SUCCESS = 0
 ErrorStatus.MMIND_STATUS_INVALID_DEVICE = -1
 ErrorStatus.MMIND_STATUS_DEVICE_OFFLINE = -2
@@ -65,25 +89,30 @@ ErrorStatus.MMIND_STATUS_BUFFER_FULL = -20
 FrameTransformation.Axis_X = 0
 FrameTransformation.Axis_Y = 1
 FrameTransformation.Axis_Z = 2
-FrameTransformation.rotate = lambda self, theta, rotationAxis: call(
-    self, "rotate", theta, rotationAxis
-)
-FrameTransformation.translate = lambda self, x, y, z: call(self, "translate", x, y, z)
-FrameTransformation.is_valid = lambda self: call(self, "is_valid")
+FrameTransformation.rotate = _rotate
+FrameTransformation.translate = _translate
+FrameTransformation.is_valid = _is_valid
 
 
 class Version(Proxy):
-    """Represent the SDK's version string and comparisons."""
+    """Represent an SDK version and compare version components.
+
+    Construct with no arguments, a dotted string, or three integers
+    ``(major, minor, patch)``.
+    """
 
     _native_name = "Version"
 
     def to_string(self):
+        """Return the version as a dotted string."""
         return call(self, "to_string")
 
     def from_string(self, version):
+        """Update this version from the SDK's dotted string syntax."""
         return call(self, "from_string", version)
 
     def is_empty(self):
+        """Return whether the SDK version contains no version information."""
         return call(self, "is_empty")
 
     def __eq__(self, other):
@@ -126,16 +155,23 @@ register(Version)
 
 
 def ip_assignment_method_to_string(type):
+    """Return the SDK IP-assignment label, or an empty string for an unrecognized value."""
     return {0: "Unknown", 4: "DHCP", 5: "Static", 6: "LLA"}.get(type, "")
 
 
 def get_api_version_info():
+    """Return the loaded C++ SDK's version and copyright string."""
     from . import _native
 
     return _native.sdk_version()
 
 
 def export_logs(dstPath, coverIfExist):
+    """Explicitly export SDK diagnostic files to dstPath; return ErrorStatus.
+
+    ``coverIfExist`` controls whether existing destination files can be replaced.
+    This utility does not enable automatic Python logging.
+    """
     return function("export_logs", dstPath, coverIfExist)
 
 
@@ -151,7 +187,11 @@ def show_error(status, successMessage=""):
 
 
 class Parameter(Proxy):
-    """A parameter handle owned by the camera's current user set."""
+    """A device parameter handle obtained from UserSet.get_parameter().
+
+    Direct construction is unavailable. Convert a generic handle with the desired
+    typed subclass's convert_from_parameter() method before reading or writing it.
+    """
 
     _native_name = "Parameter"
     _kind = None
@@ -160,22 +200,33 @@ class Parameter(Proxy):
         raise AttributeError("No constructor defined")
 
     def name(self):
+        """Return the device parameter's SDK identifier."""
         return call(self, "name")
 
     def type(self):
+        """Return the Parameter._* type identifier."""
         return call(self, "type")
 
     def description(self):
+        """Return the SDK-provided description for this parameter."""
         return call(self, "description")
 
     def is_writable(self):
+        """Return whether the parameter is currently writable."""
         return call(self, "is_writable")
 
     def is_readable(self):
+        """Return whether the parameter is currently readable."""
         return call(self, "is_readable")
 
     @classmethod
     def convert_from_parameter(cls, param):
+        """Return a typed view when param has this subclass's parameter kind.
+
+        :param param: A Parameter handle or None.
+        :return: A typed handle, or None if the handle is absent or its kind differs.
+        :raises TypeError: A non-Parameter value is supplied.
+        """
         if param is None:
             return None
         if not isinstance(param, Parameter):
@@ -206,21 +257,30 @@ class IntParameter(Parameter):
     _kind = 0
 
     def get_value(self):
+        """Return ``[status, value]`` for this typed parameter.
+
+        Check the status before reading the value.
+        """
         return call(self, "get_int_value", sequence=list)
 
     def set_value(self, value):
+        """Write a value through this typed parameter; return ErrorStatus."""
         return call(self, "set_int_value", value)
 
     def get_min(self):
+        """Return ``[status, minimum]`` for this parameter's supported range."""
         return call(self, "int_get_min", sequence=list)
 
     def get_max(self):
+        """Return ``[status, maximum]`` for this parameter's supported range."""
         return call(self, "int_get_max", sequence=list)
 
     def get_step(self):
+        """Return ``[status, step]`` for this parameter's increment."""
         return call(self, "int_get_step", sequence=list)
 
     def get_unit(self):
+        """Return ``[status, unit]`` with the SDK's unit string."""
         return call(self, "int_get_unit", sequence=list)
 
 
@@ -230,21 +290,30 @@ class FloatParameter(Parameter):
     _kind = 1
 
     def get_value(self):
+        """Return ``[status, value]`` for this typed parameter.
+
+        Check the status before reading the value.
+        """
         return call(self, "get_float_value", sequence=list)
 
     def set_value(self, value):
+        """Write a value through this typed parameter; return ErrorStatus."""
         return call(self, "set_float_value", value)
 
     def get_min(self):
+        """Return ``[status, minimum]`` for this parameter's supported range."""
         return call(self, "float_get_min", sequence=list)
 
     def get_max(self):
+        """Return ``[status, maximum]`` for this parameter's supported range."""
         return call(self, "float_get_max", sequence=list)
 
     def get_step(self):
+        """Return ``[status, step]`` for this parameter's increment."""
         return call(self, "float_get_step", sequence=list)
 
     def get_unit(self):
+        """Return ``[status, unit]`` with the SDK's unit string."""
         return call(self, "float_get_unit", sequence=list)
 
 
@@ -254,9 +323,14 @@ class BoolParameter(Parameter):
     _kind = 2
 
     def get_value(self):
+        """Return ``[status, value]`` for this typed parameter.
+
+        Check the status before reading the value.
+        """
         return call(self, "get_bool_value", sequence=list)
 
     def set_value(self, value):
+        """Write a value through this typed parameter; return ErrorStatus."""
         return call(self, "set_bool_value", value)
 
 
@@ -266,15 +340,22 @@ class EnumParameter(Parameter):
     _kind = 3
 
     def get_value(self):
+        """Return ``[status, value]`` for this typed parameter.
+
+        Check the status before reading the value.
+        """
         return call(self, "get_enum_value", sequence=list)
 
     def set_value(self, value):
+        """Write a value through this typed parameter; return ErrorStatus."""
         return call(self, "set_enum_value", value)
 
     def get_value_string(self):
+        """Return ``[status, name]`` for the selected enum entry."""
         return call(self, "get_enum_value_string", sequence=list)
 
     def get_values(self):
+        """Return the supported enum-entry map from names to integer values."""
         return call(self, "get_enum_values")
 
 
@@ -284,12 +365,18 @@ class RoiParameter(Parameter):
     _kind = 4
 
     def get_value(self):
+        """Return ``(status, value)`` for this typed parameter.
+
+        Check the status before reading the value.
+        """
         return call(self, "get_roi_value", sequence=None)
 
     def set_value(self, value):
+        """Write a value through this typed parameter; return ErrorStatus."""
         return call(self, "set_roi_value", value)
 
     def get_max_roi_size(self, maxSize):
+        """Fill maxSize with the maximum ROI dimensions; return ErrorStatus."""
         return call(self, "get_max_roi_size", maxSize)
 
 
@@ -299,21 +386,30 @@ class RangeParameter(Parameter):
     _kind = 5
 
     def get_value(self):
+        """Return ``(status, value)`` for this typed parameter.
+
+        Check the status before reading the value.
+        """
         return call(self, "get_range_value", sequence=None)
 
     def set_value(self, value):
+        """Write a value through this typed parameter; return ErrorStatus."""
         return call(self, "set_range_value", value)
 
     def get_min(self):
+        """Return ``[status, minimum]`` for this parameter's supported range."""
         return call(self, "range_get_min", sequence=list)
 
     def get_max(self):
+        """Return ``[status, maximum]`` for this parameter's supported range."""
         return call(self, "range_get_max", sequence=list)
 
     def get_step(self):
+        """Return ``[status, step]`` for this parameter's increment."""
         return call(self, "range_get_step", sequence=list)
 
     def get_unit(self):
+        """Return ``[status, unit]`` with the SDK's unit string."""
         return call(self, "range_get_unit", sequence=list)
 
 
@@ -323,24 +419,34 @@ class FloatArrayParameter(Parameter):
     _kind = 6
 
     def get_value(self):
+        """Return ``(status, value)`` for this typed parameter.
+
+        Check the status before reading the value.
+        """
         return call(self, "get_float_array_value", sequence=None)
 
     def set_value(self, value):
+        """Write a value through this typed parameter; return ErrorStatus."""
         return call(self, "set_float_array_value", value)
 
     def get_min(self):
+        """Return ``[status, minimum]`` for this parameter's supported range."""
         return call(self, "float_array_get_min", sequence=list)
 
     def get_max(self):
+        """Return ``[status, maximum]`` for this parameter's supported range."""
         return call(self, "float_array_get_max", sequence=list)
 
     def get_step(self):
+        """Return ``[status, step]`` for this parameter's increment."""
         return call(self, "float_array_get_step", sequence=list)
 
     def get_unit(self):
+        """Return ``[status, unit]`` with the SDK's unit string."""
         return call(self, "float_array_get_unit", sequence=list)
 
     def get_max_array_size(self):
+        """Return ``[status, maximum_size]`` for the float array."""
         return call(self, "get_max_array_size", sequence=list)
 
 
@@ -350,6 +456,10 @@ class RoiArrayParameter(Parameter):
     _kind = 7
 
     def get_value(self):
+        """Return ``(status, value)`` for this typed parameter.
+
+        Check the status before reading the value.
+        """
         return call(self, "get_roi_array_value", sequence=None)
 
 
@@ -359,20 +469,32 @@ class ProfileRoiParameter(Parameter):
     _kind = 8
 
     def get_value(self):
+        """Return ``(status, value)`` for this typed parameter.
+
+        Check the status before reading the value.
+        """
         return call(self, "get_profile_roi_value", sequence=None)
 
     def set_value(self, value):
+        """Write a value through this typed parameter; return ErrorStatus."""
         return call(self, "set_profile_roi_value", value)
 
     def get_max_roi_size(self, maxSize):
+        """Fill maxSize with the maximum ROI dimensions; return ErrorStatus."""
         return call(self, "get_max_profile_roi_size", maxSize)
 
     def get_min_roi_size(self, minSize):
+        """Fill minSize with the minimum ROI dimensions; return ErrorStatus."""
         return call(self, "get_min_profile_roi_size", minSize)
 
 
 class UserSet(Proxy):
-    """Read and write the camera's current device user set."""
+    """Read and write the current device user set through a camera-owned handle.
+
+    Obtain this object with Camera.current_user_set() or UserSetManager.current_user_set();
+    direct construction is unavailable. Scalar reads return [status, value], structured
+    reads return (status, value), and writes return an SDK ErrorStatus.
+    """
 
     _native_name = "UserSet"
 
@@ -383,78 +505,133 @@ class UserSet(Proxy):
         return self.get_parameter(parameterName)
 
     def get_name(self):
+        """Return ``[status, name]`` for this device user set."""
         return call(self, "get_name", sequence=list)
 
     def rename(self, newName):
+        """Rename this user set to newName; return ErrorStatus."""
         return call(self, "rename", newName, sequence=None)
 
     def get_available_parameter_names(self):
+        """Return the SDK list of available parameter names."""
         return call(self, "get_available_parameter_names", sequence=None)
 
     def reset_all_parameters_to_default_values(self):
+        """Reset current parameters to SDK defaults; return ErrorStatus."""
         return call(self, "reset_all_parameters_to_default_values", sequence=None)
 
     def save_all_parameters_to_device(self):
+        """Persist current parameter values to the device; return ErrorStatus."""
         return call(self, "save_all_parameters_to_device", sequence=None)
 
     def get_available_parameters(self):
+        """Return available Parameter handles owned by this connection."""
         return call(self, "get_available_parameters", sequence=None)
 
     def get_parameter(self, parameterName):
+        """Return the named Parameter handle, or None when it is unavailable."""
         return call(self, "get_parameter", parameterName, sequence=None)
 
     def get_int_value(self, parameterName):
+        """Read the named parameter and return ``[status, value]``.
+
+        Check the status before using the returned int value.
+        """
         return call(self, "get_int_value", parameterName, sequence=list)
 
     def set_int_value(self, parameterName, value):
+        """Write the named int parameter; return ErrorStatus."""
         return call(self, "set_int_value", parameterName, value, sequence=None)
 
     def get_float_value(self, parameterName):
+        """Read the named parameter and return ``[status, value]``.
+
+        Check the status before using the returned float value.
+        """
         return call(self, "get_float_value", parameterName, sequence=list)
 
     def set_float_value(self, parameterName, value):
+        """Write the named float parameter; return ErrorStatus."""
         return call(self, "set_float_value", parameterName, value, sequence=None)
 
     def get_bool_value(self, parameterName):
+        """Read the named parameter and return ``[status, value]``.
+
+        Check the status before using the returned bool value.
+        """
         return call(self, "get_bool_value", parameterName, sequence=list)
 
     def set_bool_value(self, parameterName, value):
+        """Write the named bool parameter; return ErrorStatus."""
         return call(self, "set_bool_value", parameterName, value, sequence=None)
 
     def get_enum_value(self, parameterName):
+        """Read the named parameter and return ``[status, value]``.
+
+        Check the status before using the returned enum value.
+        """
         return call(self, "get_enum_value", parameterName, sequence=list)
 
     def get_enum_value_string(self, parameterName):
+        """Read the named parameter and return ``[status, value]``.
+
+        Check the status before using the returned enum value string value.
+        """
         return call(self, "get_enum_value_string", parameterName, sequence=list)
 
     def set_enum_value(self, parameterName, value):
+        """Write the named enum parameter; return ErrorStatus."""
         return call(self, "set_enum_value", parameterName, value, sequence=None)
 
     def get_roi_value(self, parameterName):
+        """Read the named parameter and return ``(status, value)``.
+
+        Check the status before using the returned roi value.
+        """
         return call(self, "get_roi_value", parameterName, sequence=None)
 
     def set_roi_value(self, parameterName, value):
+        """Write the named roi parameter; return ErrorStatus."""
         return call(self, "set_roi_value", parameterName, value, sequence=None)
 
     def get_profile_roi_value(self, parameterName):
+        """Read the named parameter and return ``(status, value)``.
+
+        Check the status before using the returned profile roi value.
+        """
         return call(self, "get_profile_roi_value", parameterName, sequence=None)
 
     def set_profile_roi_value(self, parameterName, value):
+        """Write the named profile roi parameter; return ErrorStatus."""
         return call(self, "set_profile_roi_value", parameterName, value, sequence=None)
 
     def get_roi_array_value(self, parameterName):
+        """Read the named parameter and return ``(status, value)``.
+
+        Check the status before using the returned roi array value.
+        """
         return call(self, "get_roi_array_value", parameterName, sequence=None)
 
     def get_range_value(self, parameterName):
+        """Read the named parameter and return ``(status, value)``.
+
+        Check the status before using the returned range value.
+        """
         return call(self, "get_range_value", parameterName, sequence=None)
 
     def set_range_value(self, parameterName, value):
+        """Write the named range parameter; return ErrorStatus."""
         return call(self, "set_range_value", parameterName, value, sequence=None)
 
     def get_float_array_value(self, parameterName):
+        """Read the named parameter and return ``(status, value)``.
+
+        Check the status before using the returned float array value.
+        """
         return call(self, "get_float_array_value", parameterName, sequence=None)
 
     def set_float_array_value(self, parameterName, value):
+        """Write the named float array parameter; return ErrorStatus."""
         return call(self, "set_float_array_value", parameterName, value, sequence=None)
 
 
@@ -462,7 +639,10 @@ register(UserSet)
 
 
 class UserSetManager(Proxy):
-    """Select, persist, import, and export device user sets."""
+    """Select, persist, import, and export device user sets.
+
+    Obtain this handle with Camera.user_set_manager(); direct construction is unavailable.
+    """
 
     _native_name = "UserSetManager"
 
@@ -470,24 +650,31 @@ class UserSetManager(Proxy):
         raise AttributeError("No constructor defined")
 
     def current_user_set(self):
+        """Return the selected UserSet handle for this camera connection."""
         return call(self, "current_user_set", sequence=None)
 
     def get_all_user_set_names(self):
+        """Return ``(status, names)`` for the device's available user sets."""
         return call(self, "get_all_user_set_names", sequence=None)
 
     def select_user_set(self, userSetName):
+        """Select the named device user set; return ErrorStatus."""
         return call(self, "select_user_set", userSetName, sequence=None)
 
     def add_user_set(self, userSetName):
+        """Create a named device user set; return ErrorStatus."""
         return call(self, "add_user_set", userSetName, sequence=None)
 
     def delete_user_set(self, userSetName):
+        """Delete a named device user set; return ErrorStatus."""
         return call(self, "delete_user_set", userSetName, sequence=None)
 
     def save_to_file(self, fileName):
+        """Export user-set settings to fileName; return ErrorStatus."""
         return call(self, "save_to_file", fileName, sequence=None)
 
     def load_from_file(self, fileName):
+        """Import user-set settings from fileName; return ErrorStatus."""
         return call(self, "load_from_file", fileName, sequence=None)
 
 
@@ -516,6 +703,7 @@ class WrappedDoubleList(list, Ownership):
 
     @property
     def values(self):
+        """Return this sequence; assigning values replaces it with float-converted elements."""
         return self
 
     @values.setter
@@ -523,6 +711,7 @@ class WrappedDoubleList(list, Ownership):
         self[:] = [float(value) for value in values]
 
     def push_back(self, value):
+        """Append value after converting it to float."""
         self.append(float(value))
 
 

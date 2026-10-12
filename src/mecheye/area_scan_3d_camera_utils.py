@@ -56,17 +56,20 @@ def print_camera_info(camera_info):
 
 
 def print_camera_status(camera_status):
+    """Explicitly print CPU and projector temperatures in degrees Celsius."""
     print(f"CPU: {camera_status.temperature.cpu_temperature:.1f} °C")
     print(f"Projector: {camera_status.temperature.projector_temperature:.1f} °C")
 
 
 def print_camera_resolution(camera_resolution):
+    """Explicitly print texture and depth image dimensions in pixels."""
     for name in ("texture", "depth"):
         size = getattr(camera_resolution, name)
         print(f"{name}: width={size.width}, height={size.height}")
 
 
 def print_camera_matrix(title, camera_matrix):
+    """Explicitly print title and the 3-by-3 intrinsic camera matrix."""
     print(f"{title}:")
     for row in (
         [camera_matrix.fx, 0, camera_matrix.cx],
@@ -77,6 +80,7 @@ def print_camera_matrix(title, camera_matrix):
 
 
 def print_camera_dist_coeffs(title, dist_coeffs):
+    """Explicitly print title and k1, k2, p1, p2, k3 distortion coefficients."""
     print(
         f"{title}: "
         + ", ".join(
@@ -87,6 +91,7 @@ def print_camera_dist_coeffs(title, dist_coeffs):
 
 
 def print_transform(title, transformation):
+    """Explicitly print title, rotation matrix, and translation in millimeters."""
     print(f"{title} rotation:")
     for row in transformation.rotation:
         print(f"    {list(row)}")
@@ -94,6 +99,7 @@ def print_transform(title, transformation):
 
 
 def print_camera_intrinsics(intrinsics):
+    """Explicitly print both camera calibrations and their depth-to-texture transform."""
     for name in ("texture", "depth"):
         camera = getattr(intrinsics, name)
         print_camera_matrix(f"{name} camera matrix", camera.camera_matrix)

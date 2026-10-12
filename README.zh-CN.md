@@ -229,6 +229,28 @@ uv run --no-editable python examples/capture.py 192.168.1.100
 
 该命令会连接相机，不打开 GUI。项目的 Python 依赖不包含 Pillow、OpenCV 或 Open3D。
 
+## 文档
+
+[在线文档](https://pymecheye.readthedocs.io/en/latest/) 包含安装说明、相机使用方式，
+以及从实际绑定的 docstring 自动生成的 API 参考。安装 C++ SDK 后可在本地构建：
+
+```bash
+uv sync --locked --no-editable --group docs
+uv run --no-sync sphinx-build -n -W --keep-going -b html docs docs/_build/html
+```
+
+打开 `docs/_build/html/index.html` 查看结果。构建会检查公开接口的 docstring，
+并将警告和失效交叉引用视为错误。自动生成的 API 页面与 HTML 已加入 Git 忽略规则。
+GitHub Actions 同样构建文档，并保存 HTML 预览产物。
+
+[Read the Docs 配置](.readthedocs.yaml) 会下载并校验外部 SDK、编译绑定，
+再使用锁定的文档依赖完成构建。首次启用需要在 Read the Docs 导入
+`slabpanic/pymecheye`，将项目标识设为 `pymecheye`，授权其 GitHub App，
+并使用 `main` 作为默认分支。之后推送会自动触发托管构建；激活 release tag 版本
+可发布 stable 文档。GitHub Actions 无需配置 Read the Docs Token。
+在线地址会在项目导入且首次构建成功后可用，完整步骤见
+[docs/development.rst](docs/development.rst)。
+
 ## 开发
 
 ```bash
@@ -243,7 +265,41 @@ uv build --sdist
 ```
 
 格式、编译、导入和依赖检查不会连接相机。
-Windows 编译和加载需要在实际 MSVC 环境验证。
+单元测试使用原生 SDK 数据操作和模拟设备响应，无需相机或网络发现。
+GitHub Actions 在 Linux 上测试 Python 3.10–3.14、3.13t、3.14t，在 Windows 上测试
+Python 3.10、3.14、3.14t。free-threaded 测试检查导入绑定后 GIL 仍然禁用。
+工作流从厂商下载 SDK 2.6.0，核对固定 SHA-256 后解包到仓库之外；Windows 使用
+Runner 提供的 WiX 工具与 MSI 管理映像。CI 不执行真实相机采集。
+
+本地运行 Python 分支覆盖率：
+
+```bash
+uv sync --locked --no-editable --group test
+uv run --no-sync coverage run -m unittest discover -s tests
+uv run --no-sync coverage report --fail-under=75
+uv run --no-sync coverage xml
+```
+
+在 Linux 与 GCC 环境同时测量 C++ 绑定覆盖率：
+
+```bash
+uv sync --locked --no-editable --group test --group native-coverage \
+  --no-build-isolation-package pymecheye --reinstall-package pymecheye \
+  -Ccmake.define.MECHEYE_ENABLE_COVERAGE=ON -Cbuild-dir=build/coverage
+uv run --no-sync coverage run -m unittest discover -s tests
+uv run --no-sync gcovr --root . --filter 'src/mecheye/' --merge-lines \
+  --xml-pretty --output coverage-native.xml --print-summary build/coverage
+```
+
+原生覆盖率仅统计本仓库的 C++ 代码，不包含厂商二进制或 nanobind 实现。
+完成测量后使用 `uv sync --locked --no-editable --reinstall-package pymecheye` 恢复普通构建。
+CI 要求 Python 覆盖率至少 75%、C++ 行覆盖率至少 65%，将两份 XML 报告保存为
+工作流产物，并以独立 flag 上传到 Codecov。
+
+在 [Codecov](https://app.codecov.io/gh/slabpanic/pymecheye) 中启用仓库并安装 GitHub App，
+即可提供 PR 检查和评论。上传使用 [OIDC](https://github.com/codecov/codecov-action#using-oidc)，
+无需配置 `CODECOV_TOKEN`。Fork PR 执行全部测试并生成报告，但不执行认证上传，
+报告可从工作流产物下载。main 分支推送、仓库内部 PR 和手动运行会上传覆盖率。
 
 ## 源码发布
 

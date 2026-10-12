@@ -15,4 +15,5 @@ class PointCloudError(NativeError): ...
 
 # Internal SDK classes are accessed through the typed public Python facade.
 from types import ModuleType
+
 sdk: ModuleType

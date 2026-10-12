@@ -1,5 +1,10 @@
 # pymecheye
 
+[![CI](https://github.com/slabpanic/pymecheye/actions/workflows/ci.yml/badge.svg)](https://github.com/slabpanic/pymecheye/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/slabpanic/pymecheye/branch/main/graph/badge.svg)](https://codecov.io/gh/slabpanic/pymecheye)
+
+[![Documentation](https://readthedocs.org/projects/pymecheye/badge/?version=latest)](https://pymecheye.readthedocs.io/en/latest/)
+
 [简体中文](https://github.com/slabpanic/pymecheye/blob/main/README.zh-CN.md)
 
 High-performance Python bindings for Mech-Eye area-scan 3D cameras, built with
@@ -260,6 +265,32 @@ uv run --no-editable python examples/capture.py 192.168.1.100
 It connects to a camera and opens no GUI. Pillow, OpenCV, and Open3D are not Python
 dependencies of this project.
 
+## Documentation
+
+[Read the documentation](https://pymecheye.readthedocs.io/en/latest/) for setup,
+camera workflows, and API reference pages generated from the installed binding's
+docstrings. To build the same documentation locally with an installed C++ SDK:
+
+```bash
+uv sync --locked --no-editable --group docs
+uv run --no-sync sphinx-build -n -W --keep-going -b html docs docs/_build/html
+```
+
+Open `docs/_build/html/index.html`. The build checks public docstrings and treats
+warnings and broken cross-references as errors. Generated API pages and HTML are
+ignored by Git. GitHub Actions also builds the documentation and saves an HTML
+preview artifact.
+
+The [Read the Docs configuration](.readthedocs.yaml) downloads and verifies the
+external SDK, compiles the binding, and builds with the locked documentation
+dependencies. To activate publishing, import `slabpanic/pymecheye` into Read the
+Docs with the project slug `pymecheye`, authorize its GitHub App, and use `main`
+as the default branch. Subsequent pushes trigger the hosted build automatically;
+activate release-tag versions to publish stable documentation. No Read the Docs
+token is needed in GitHub Actions. The hosted URL becomes available after the
+project is imported and its first build succeeds. See
+[docs/development.rst](docs/development.rst) for the complete setup.
+
 ## Development
 
 ```bash
@@ -274,7 +305,47 @@ uv build --sdist
 ```
 
 The format, compile, import, and dependency checks do not connect to a camera.
-Windows requires native MSVC build and runtime validation.
+The unit tests use native SDK data operations and simulated device responses;
+no camera or network discovery is required. GitHub Actions builds the extension
+on Linux with Python 3.10–3.14, 3.13t, and 3.14t, and on Windows with Python 3.10,
+3.14, and 3.14t. Free-threaded tests verify that importing the binding keeps the
+GIL disabled. The workflow downloads SDK 2.6.0 from the vendor, verifies pinned
+SHA-256 checksums, and unpacks it outside the repository. Windows uses the runner's
+WiX tools and an administrative MSI image; hardware captures are not part of CI.
+
+To run Python branch coverage locally:
+
+```bash
+uv sync --locked --no-editable --group test
+uv run --no-sync coverage run -m unittest discover -s tests
+uv run --no-sync coverage report --fail-under=75
+uv run --no-sync coverage xml
+```
+
+To also measure the C++ binding on Linux with GCC:
+
+```bash
+uv sync --locked --no-editable --group test --group native-coverage \
+  --no-build-isolation-package pymecheye --reinstall-package pymecheye \
+  -Ccmake.define.MECHEYE_ENABLE_COVERAGE=ON -Cbuild-dir=build/coverage
+uv run --no-sync coverage run -m unittest discover -s tests
+uv run --no-sync gcovr --root . --filter 'src/mecheye/' --merge-lines \
+  --xml-pretty --output coverage-native.xml --print-summary build/coverage
+```
+
+Native coverage measures this repository's C++ code, excluding vendor binaries
+and nanobind implementation code. Restore a regular build with
+`uv sync --locked --no-editable --reinstall-package pymecheye` after profiling.
+CI requires at least 75% Python coverage and 65% native line coverage, and retains
+both XML reports as workflow artifacts. Codecov tracks Python and native reports with separate flags.
+
+Enable this repository in [Codecov](https://app.codecov.io/gh/slabpanic/pymecheye)
+and install its GitHub App to enable pull request checks and comments. Uploads
+use [OIDC](https://github.com/codecov/codecov-action#using-oidc), so no
+`CODECOV_TOKEN` secret is needed. Fork pull requests run all tests and generate
+reports, but do not perform authenticated uploads; reports remain available in
+the workflow artifacts. Uploads run for main-branch pushes, internal pull
+requests, and manual workflow runs.
 
 ## Source releases
 

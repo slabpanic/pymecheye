@@ -104,16 +104,35 @@ MemberValue = value_type(
 HandEyeTransformation = value_type(
     "HandEyeTransformation", ["x", "y", "z", "q_w", "q_x", "q_y", "q_z"], __name__
 )
-FrameTransformation.__rotate__ = lambda self, theta, axis: call(
-    self, "rotate", theta, axis
-)
-FrameTransformation.__translate__ = (
-    lambda self, translateX, translateY, translateZ: call(
-        self, "translate", translateX, translateY, translateZ
-    )
-)
-FrameTransformation.__is__valid__ = lambda self: call(self, "is_valid")
-HandEyeTransformation.to_string = lambda self: call(self, "to_string")
+
+
+def _rotate(self, theta, axis):
+    """Compose a rotation by theta degrees around an SDK FrameTransformation axis."""
+    return call(self, "rotate", theta, axis)
+
+
+def _translate(self, translateX, translateY, translateZ):
+    """Set the translation in the same coordinate unit as the point cloud."""
+    return call(self, "translate", translateX, translateY, translateZ)
+
+
+def _is_valid(self):
+    """Return whether the transform differs from identity according to the SDK.
+
+    This checks for a custom reference frame, not rotation orthonormality."""
+    return call(self, "is_valid")
+
+
+def _pose_to_string(self):
+    """Return comma-separated x, y, z, q_w, q_x, q_y, q_z values."""
+    return call(self, "to_string")
+
+
+FrameTransformation.__rotate__ = _rotate
+FrameTransformation.__translate__ = _translate
+FrameTransformation.__is__valid__ = _is_valid
+HandEyeTransformation.to_string = _pose_to_string
+
 for _index, _name in enumerate(
     ["_UInt32", "_Int32", "_Int64", "_Float", "_Double", "_Bool", "_String"]
 ):
@@ -135,20 +154,24 @@ class doubleMatrix3(FixedArray):
 
 
 def camera_intrinsics_to_wrapped(wrappedIntrinsics, intrinsics):
+    """Copy intrinsics into the supplied wrappedIntrinsics output; return None."""
     return function("copy_intrinsics", wrappedIntrinsics, intrinsics)
 
 
 def wrapped_to_camera_intrinsics(intrinsics, wrappedIntrinsics):
+    """Copy wrappedIntrinsics into the supplied intrinsics output; return None."""
     return function("copy_intrinsics", intrinsics, wrappedIntrinsics)
 
 
 def wrapped_to_frame_transformation(frameTransformation, wrappedFrameTransformation):
+    """Copy wrappedFrameTransformation into frameTransformation; return None."""
     return function(
         "copy_frame_transformation", frameTransformation, wrappedFrameTransformation
     )
 
 
 def frame_transformation_towrapped(frameTransformation, wrappedFrameTransformation):
+    """Copy frameTransformation into wrappedFrameTransformation; return None."""
     return function(
         "copy_frame_transformation", wrappedFrameTransformation, frameTransformation
     )
@@ -173,24 +196,31 @@ class Frame2D(Proxy):
     _native_name = "Frame2D"
 
     def image_size(self):
+        """Return the frame's image Size in pixels."""
         return call(self, "image_size")
 
     def is_empty(self):
+        """Return whether the SDK reports that the frame has no data."""
         return call(self, "is_empty")
 
     def color_type(self):
+        """Return the ColorTypeOf2DCamera value for the captured image."""
         return call(self, "color_type")
 
     def frame_id(self):
+        """Return the SDK capture frame identifier."""
         return call(self, "frame_id")
 
     def clear(self):
+        """Release the data held by this frame."""
         return call(self, "clear")
 
     def get_gray_scale_image(self):
+        """Return the frame's GrayScale2DImage container; data() copies pixels to NumPy."""
         return call(self, "get_gray_scale_image")
 
     def get_color_image(self):
+        """Return the frame's Color2DImage container; data() copies BGR pixels to NumPy."""
         return call(self, "get_color_image")
 
 
@@ -203,30 +233,48 @@ class Frame3D(Proxy):
     _native_name = "Frame3D"
 
     def image_size(self):
+        """Return the frame's image Size in pixels."""
         return call(self, "image_size")
 
     def frame_id(self):
+        """Return the SDK capture frame identifier."""
         return call(self, "frame_id")
 
     def is_empty(self):
+        """Return whether the SDK reports that the frame has no data."""
         return call(self, "is_empty")
 
     def clear(self):
+        """Release the data held by this frame."""
         return call(self, "clear")
 
     def get_untextured_point_cloud(self):
+        """Return the frame's organized UntexturedPointCloud in the selected SDK unit."""
         return call(self, "get_untextured_point_cloud")
 
     def get_untextured_point_cloud_with_normals(self):
+        """Return the organized UntexturedPointCloudWithNormals container."""
         return call(self, "get_untextured_point_cloud_with_normals")
 
     def get_depth_map(self):
+        """Return the frame's DepthMap container with per-pixel Z coordinates."""
         return call(self, "get_depth_map")
 
     def get_orthogonal_depth_map(self):
+        """Return ``[depth_map, x_scale, y_scale, x_offset, y_offset]``.
+
+        The SDK supplies an orthogonal depth grid and its scale and offset values.
+        """
         return call(self, "get_orthogonal_depth_map", sequence=list)
 
     def save_untextured_point_cloud(self, fileFormat, fileName, isOrganized=False):
+        """Export this frame's point cloud with the SDK.
+
+        :param fileFormat: A FileFormat_PLY, FileFormat_PCD, or FileFormat_CSV value.
+        :param fileName: Destination filename.
+        :param isOrganized: Preserve the image grid when the format supports it.
+        :return: ErrorStatus; file errors are returned rather than printed.
+        """
         return call(
             self, "save_untextured_point_cloud", fileFormat, fileName, isOrganized
         )
@@ -234,6 +282,13 @@ class Frame3D(Proxy):
     def save_untextured_point_cloud_with_normals(
         self, fileFormat, fileName, isOrganized=False
     ):
+        """Export this frame's point cloud with the SDK.
+
+        :param fileFormat: A FileFormat_PLY, FileFormat_PCD, or FileFormat_CSV value.
+        :param fileName: Destination filename.
+        :param isOrganized: Preserve the image grid when the format supports it.
+        :return: ErrorStatus; file errors are returned rather than printed.
+        """
         return call(
             self,
             "save_untextured_point_cloud_with_normals",
@@ -244,6 +299,13 @@ class Frame3D(Proxy):
 
     @staticmethod
     def save_point_cloud(*args):
+        """Export an explicit point-cloud container without capturing a frame.
+
+        Arguments are ``(pointCloud, fileFormat, fileName, isOrganized=False,
+        pointCloudUnit=CoordinateUnit_Millimeter)``. Pass the matching cloud type,
+        including normals when using save_point_cloud_with_normals().
+        :return: ErrorStatus from the SDK file writer.
+        """
         with _api_lock:
             return _wrap(
                 _backend.Frame3D.save_point_cloud(*[_unwrap(value) for value in args])
@@ -251,6 +313,13 @@ class Frame3D(Proxy):
 
     @staticmethod
     def save_point_cloud_with_normals(*args):
+        """Export an explicit point-cloud container without capturing a frame.
+
+        Arguments are ``(pointCloud, fileFormat, fileName, isOrganized=False,
+        pointCloudUnit=CoordinateUnit_Millimeter)``. Pass the matching cloud type,
+        including normals when using save_point_cloud_with_normals().
+        :return: ErrorStatus from the SDK file writer.
+        """
         with _api_lock:
             return _wrap(
                 _backend.Frame3D.save_point_cloud_with_normals(
@@ -268,21 +337,33 @@ class Frame2DAnd3D(Proxy):
     _native_name = "Frame2DAnd3D"
 
     def frame_2d(self):
+        """Return the combined frame's Frame2D component."""
         return call(self, "frame_2d")
 
     def frame_3d(self):
+        """Return the combined frame's Frame3D component."""
         return call(self, "frame_3d")
 
     def clear(self):
+        """Release the data held by this frame."""
         return call(self, "clear")
 
     def get_textured_point_cloud(self):
+        """Return the organized TexturedPointCloud container with XYZ and BGR data."""
         return call(self, "get_textured_point_cloud")
 
     def get_textured_point_cloud_with_normals(self):
+        """Return the organized TexturedPointCloudWithNormals container."""
         return call(self, "get_textured_point_cloud_with_normals")
 
     def save_textured_point_cloud(self, fileFormat, fileName, isOrganized=False):
+        """Export this frame's point cloud with the SDK.
+
+        :param fileFormat: A FileFormat_PLY, FileFormat_PCD, or FileFormat_CSV value.
+        :param fileName: Destination filename.
+        :param isOrganized: Preserve the image grid when the format supports it.
+        :return: ErrorStatus; file errors are returned rather than printed.
+        """
         return call(
             self, "save_textured_point_cloud", fileFormat, fileName, isOrganized
         )
@@ -290,6 +371,13 @@ class Frame2DAnd3D(Proxy):
     def save_textured_point_cloud_with_normals(
         self, fileFormat, fileName, isOrganized=False
     ):
+        """Export this frame's point cloud with the SDK.
+
+        :param fileFormat: A FileFormat_PLY, FileFormat_PCD, or FileFormat_CSV value.
+        :param fileName: Destination filename.
+        :param isOrganized: Preserve the image grid when the format supports it.
+        :return: ErrorStatus; file errors are returned rather than printed.
+        """
         return call(
             self,
             "save_textured_point_cloud_with_normals",
@@ -300,6 +388,13 @@ class Frame2DAnd3D(Proxy):
 
     @staticmethod
     def save_point_cloud(*args):
+        """Export an explicit point-cloud container without capturing a frame.
+
+        Arguments are ``(pointCloud, fileFormat, fileName, isOrganized=False,
+        pointCloudUnit=CoordinateUnit_Millimeter)``. Pass the matching cloud type,
+        including normals when using save_point_cloud_with_normals().
+        :return: ErrorStatus from the SDK file writer.
+        """
         with _api_lock:
             return _wrap(
                 _backend.Frame2DAnd3D.save_point_cloud(
@@ -309,6 +404,13 @@ class Frame2DAnd3D(Proxy):
 
     @staticmethod
     def save_point_cloud_with_normals(*args):
+        """Export an explicit point-cloud container without capturing a frame.
+
+        Arguments are ``(pointCloud, fileFormat, fileName, isOrganized=False,
+        pointCloudUnit=CoordinateUnit_Millimeter)``. Pass the matching cloud type,
+        including normals when using save_point_cloud_with_normals().
+        :return: ErrorStatus from the SDK file writer.
+        """
         with _api_lock:
             return _wrap(
                 _backend.Frame2DAnd3D.save_point_cloud_with_normals(
@@ -326,20 +428,47 @@ class HandEyeCalibration(Proxy):
     _native_name = "HandEyeCalibration"
 
     def initialize_calibration(self, camera, mountingMode, boardModel):
+        """Initialize calibration for a connected camera, mounting mode, and board model.
+
+        Use the CameraMountingMode_* and CalibrationBoardModel_* class constants.
+        :return: ErrorStatus.
+        """
         return call(self, "initialize_calibration", camera, mountingMode, boardModel)
 
     def add_pose_and_detect(self, camera, poseData, color2DImage, timeoutMs=10000):
+        """Record a robot pose, capture an image, and detect the calibration board.
+
+        ``poseData`` is a HandEyeTransformation with translation in millimeters; ``color2DImage`` is an output
+        Color2DImage. ``timeoutMs`` is measured in milliseconds.
+        :return: ErrorStatus.
+        """
         return call(
             self, "add_pose_and_detect", camera, poseData, color2DImage, timeoutMs
         )
 
     def calculate_extrinsics(self, camera, cameraToBase):
+        """Fill cameraToBase with the calibrated HandEyeTransformation.
+
+        The output depends on the mounting mode chosen at initialization.
+        Its translation values use meters.
+        :return: ErrorStatus.
+        """
         return call(self, "calculate_extrinsics", camera, cameraToBase)
 
     def test_recognition(self, camera, testResult, timeoutMs=20000):
+        """Capture and annotate board recognition in the output Color2DImage.
+
+        ``timeoutMs`` is measured in milliseconds.
+        :return: ErrorStatus.
+        """
         return call(self, "test_recognition", camera, testResult, timeoutMs)
 
     def extract_current_image_first_corner(self, camera, corner, timeoutMs=20000):
+        """Fill corner with the first detected board corner as a PointXYZ.
+
+        ``timeoutMs`` is measured in milliseconds.
+        :return: ErrorStatus.
+        """
         return call(
             self, "extract_current_image_first_corner", camera, corner, timeoutMs
         )
@@ -364,16 +493,35 @@ Payload = vector_type("Payload", PayloadMember, __name__)
 
 
 def get_point_cloud_after_mapping(*args):
+    """Map a depth grid into the supplied output point cloud with SDK intrinsics.
+
+    Accepted arguments are ``(depth, mask, intrinsics, cloud)`` for an
+    UntexturedPointCloud, or ``(depth, mask, color, intrinsics, cloud)`` for a
+    TexturedPointCloud. Nonzero grayscale mask pixels select depth samples.
+    :return: ErrorStatus; the cloud is an output argument.
+    """
     return function("get_point_cloud_after_mapping", *args)
 
 
 def transform_point_cloud(coordinateTransformation, originalPointCloud):
+    """Return a transformed point-cloud container without changing the input.
+
+    ``coordinateTransformation`` is a FrameTransformation. Translation uses the
+    same coordinate unit as the cloud. Pass the matching cloud type, including
+    color or normals when required by this function.
+    """
     return function(
         "transform_point_cloud", coordinateTransformation, originalPointCloud
     )
 
 
 def transform_point_cloud_with_normals(coordinateTransformation, originalPointCloud):
+    """Return a transformed point-cloud container without changing the input.
+
+    ``coordinateTransformation`` is a FrameTransformation. Translation uses the
+    same coordinate unit as the cloud. Pass the matching cloud type, including
+    color or normals when required by this function.
+    """
     return function(
         "transform_point_cloud_with_normals",
         coordinateTransformation,
@@ -384,6 +532,12 @@ def transform_point_cloud_with_normals(coordinateTransformation, originalPointCl
 def transform_textured_point_cloud(
     coordinateTransformation, originalTexturedPointCloud
 ):
+    """Return a transformed point-cloud container without changing the input.
+
+    ``coordinateTransformation`` is a FrameTransformation. Translation uses the
+    same coordinate unit as the cloud. Pass the matching cloud type, including
+    color or normals when required by this function.
+    """
     return function(
         "transform_textured_point_cloud",
         coordinateTransformation,
@@ -394,6 +548,12 @@ def transform_textured_point_cloud(
 def transform_textured_point_cloud_with_normals(
     coordinateTransformation, originalTexturedPointCloud
 ):
+    """Return a transformed point-cloud container without changing the input.
+
+    ``coordinateTransformation`` is a FrameTransformation. Translation uses the
+    same coordinate unit as the cloud. Pass the matching cloud type, including
+    color or normals when required by this function.
+    """
     return function(
         "transform_textured_point_cloud_with_normals",
         coordinateTransformation,
@@ -402,6 +562,7 @@ def transform_textured_point_cloud_with_normals(
 
 
 def get_transformation_params(camera):
+    """Return the SDK Transformation for a connected camera."""
     return function("get_transformation_params", camera)
 
 
@@ -425,10 +586,18 @@ class _EventContext:
 
 
 class Camera(Proxy):
-    """Camera operations, extended with context management and NumPy capture.
+    """Camera connection, SDK operations, and NumPy capture conveniences.
 
-    SDK methods preserve ErrorStatus returns and never retry implicitly. An optional
-    IP enables connecting on context entry or first convenience capture/configuration.
+    ``Camera()`` requires explicit connect(). ``Camera(ip)`` remembers an IP and
+    connects on context entry or first convenience capture/configuration.
+    ``Camera(other_camera)`` shares the native connection and callback registry.
+    Construction does not connect. Use a context manager or disconnect() to
+    release a connection; close() is the same operation.
+
+    SDK methods return ErrorStatus and never retry implicitly. Convenience
+    methods raise the MechEyeError subclasses from mecheye.shared on failure.
+    SDK access is serialized across camera instances; user code must synchronize
+    writes to returned NumPy arrays and to its own callback state.
     """
 
     _native_name = "Camera"
@@ -450,9 +619,22 @@ class Camera(Proxy):
 
     @staticmethod
     def discover_cameras(timeoutMs=5000):
+        """Discover cameras on reachable interfaces without connecting.
+
+        :param timeoutMs: Discovery timeout in milliseconds.
+        :return: A VectorCameraInfo containing discovered device information.
+        """
         return VectorCameraInfo(function("Camera_discover_cameras", timeoutMs))
 
     def connect(self, *args):
+        """Connect using an IP address or CameraInfo and an optional timeout.
+
+        Accepted forms are ``connect(ip)`` and ``connect(info)``, with an optional
+        second positional ``timeoutMs`` argument (default 5000 milliseconds).
+        The IP is remembered after a successful connection. No retries are performed.
+
+        :return: ErrorStatus; inspect is_ok() before using the connection.
+        """
         with _api_lock:
             result = call(self, "connect", *args)
             if result.is_ok() and args:
@@ -462,6 +644,13 @@ class Camera(Proxy):
             return result
 
     def disconnect(self):
+        """Disconnect and stop this connection's callback registrations.
+
+        Camera copies share the connection, so disconnecting one also affects the others.
+        This method can be called repeatedly.
+
+        :return: None.
+        """
         with _api_lock:
             result = call(self, "disconnect")
             with self._callback_lock:
@@ -473,10 +662,12 @@ class Camera(Proxy):
 
     @property
     def connected(self):
+        """Whether the shared native camera connection is currently active."""
         return call(self, "connected")
 
     @property
     def ip(self):
+        """The optional or last successfully connected IP address, or None."""
         with _api_lock:
             return self._ip
 
@@ -501,6 +692,13 @@ class Camera(Proxy):
 
     @property
     def device_info(self):
+        """Read device metadata into a new Python dictionary.
+
+        Includes model, device name, serial number, SDK and firmware versions,
+        IP address, subnet mask, assignment method, port, and support information.
+
+        :raises mecheye.shared.MechEyeConnectionError: The SDK cannot read the device information.
+        """
         with _api_lock:
             info = CameraInfo()
             _require(
@@ -529,6 +727,14 @@ class Camera(Proxy):
 
     @property
     def camera_parameters(self):
+        """Read camera matrices, distortion coefficients, and depth-to-texture transform.
+
+        The returned dictionary contains ``depth`` and ``texture`` dictionaries with
+        flat 3-by-3 ``intrinsic_matrix`` values and five distortion coefficients.
+        ``T_texture_camera_depth_camera_matrix_mm`` is a 4-by-4 nested list.
+
+        :raises mecheye.shared.MechEyeConnectionError: The SDK cannot read the intrinsics.
+        """
         with _api_lock:
             intrinsics = CameraIntrinsics()
             _require(
@@ -557,6 +763,14 @@ class Camera(Proxy):
             }
 
     def configure_depth_source_2d_exposure(self, mode):
+        """Set and verify the depth-source 2D exposure mode.
+
+        :param mode: Either ``"timed"`` or ``"flash"``.
+        :return: The requested mode after successful device readback.
+        :raises ValueError: The mode is not supported.
+        :raises mecheye.shared.MechEyeConnectionError: The camera cannot be connected.
+        :raises mecheye.shared.MechEyeConfigurationError: Configuration or readback fails.
+        """
         if mode not in {"timed", "flash"}:
             raise ValueError("mode must be timed or flash")
         with _api_lock:
@@ -578,7 +792,25 @@ class Camera(Proxy):
             return mode
 
     def capture_points(self, timeoutMs=10000):
-        """Return owned uint8 grayscale and organized float64 XYZ in mm; invalid points are NaN."""
+        """Capture aligned grayscale and organized XYZ arrays in millimeters.
+
+        Uses depth-source 2D and 3D capture, camera intrinsics, and SDK mapping.
+        The camera model must support depth-source 2D capture. An optional constructor
+        IP enables lazy connection; SDK capture errors are not retried.
+
+        :param timeoutMs: Capture timeout in milliseconds.
+        :return: ``(image, points)`` with owned NumPy buffers. ``image`` has shape
+            ``(height, width)`` and dtype ``uint8``; ``points`` has shape
+            ``(height, width, 3)`` and dtype ``float64``. All-zero SDK points become
+            NaN triplets; non-finite coordinate components become NaN.
+        :raises mecheye.shared.MechEyeConnectionError: Connection is unavailable.
+        :raises mecheye.shared.MechEyeCaptureError: Capture, frame validation, or intrinsics fail.
+        :raises mecheye.shared.MechEyePointCloudError: Mapping fails or produces an invalid grid.
+        :raises mecheye.shared.MechEyeConfigurationError: Restoring the previous cloud unit fails.
+
+        The previous cloud unit is restored after capture or mapping succeeds or fails.
+        If restoration itself fails, that configuration error is raised.
+        """
         from .area_scan_3d_camera_utils import image_to_gray
 
         with _api_lock:
@@ -645,81 +877,159 @@ class Camera(Proxy):
                     )
 
     def pop_callback_errors(self):
-        """Return and clear exceptions raised by asynchronous event callbacks."""
+        """Return and clear pending callback exceptions in registration context order.
+
+        Camera copies share the error queue. Exceptions are retained without printing.
+        :return: A new list of exceptions.
+        """
         with self._callback_lock:
             errors = list(self._callback_errors)
             self._callback_errors.clear()
             return errors
 
     def set_heartbeat_interval(self, timeIntervalMs):
+        """Set the SDK heartbeat interval in milliseconds; return ErrorStatus."""
         return call(self, "set_heartbeat_interval", timeIntervalMs)
 
     def get_camera_info(self, info):
+        """Fill the supplied CameraInfo with device metadata; return ErrorStatus."""
         return call(self, "get_camera_info", info)
 
     def get_camera_status(self, status):
+        """Fill the supplied CameraStatus with temperatures; return ErrorStatus."""
         return call(self, "get_camera_status", status)
 
     def get_camera_resolutions(self, resolutions):
+        """Fill the supplied CameraResolutions with image sizes; return ErrorStatus."""
         return call(self, "get_camera_resolutions", resolutions)
 
     def current_user_set(self):
+        """Return a handle to the current device UserSet.
+
+        Read and write operations on the handle report SDK status values. Obtain a new
+        handle after reconnecting or changing the selected configuration.
+        """
         return call(self, "current_user_set")
 
     def user_set_manager(self):
+        """Return the connection's UserSetManager for selecting and persisting user sets."""
         return call(self, "user_set_manager")
 
     def capture_3d(self, frame3D, timeoutMs=5000):
+        """Capture a 3D frame into the supplied output container.
+
+        ``timeoutMs`` is measured in milliseconds. The camera must already be connected;
+        this SDK operation does not initiate a connection or retry a failure.
+        :return: ErrorStatus; only read output data after is_ok() succeeds.
+        """
         return call(self, "capture_3d", frame3D, timeoutMs)
 
     def capture_3d_with_normal(self, frame3D, timeoutMs=10000):
+        """Capture a 3D frame with normals into the supplied output container.
+
+        ``timeoutMs`` is measured in milliseconds. The camera must already be connected;
+        this SDK operation does not initiate a connection or retry a failure.
+        :return: ErrorStatus; only read output data after is_ok() succeeds.
+        """
         return call(self, "capture_3d_with_normal", frame3D, timeoutMs)
 
     def capture_2d(self, frame2D, timeoutMs=5000):
+        """Capture a 2D frame into the supplied output container.
+
+        ``timeoutMs`` is measured in milliseconds. The camera must already be connected;
+        this SDK operation does not initiate a connection or retry a failure.
+        :return: ErrorStatus; only read output data after is_ok() succeeds.
+        """
         return call(self, "capture_2d", frame2D, timeoutMs)
 
     def capture_depth_source_2d(self, frame2D, timeoutMs=5000):
+        """Capture the depth-source 2D frame into the supplied output container.
+
+        ``timeoutMs`` is measured in milliseconds. The camera must already be connected;
+        this SDK operation does not initiate a connection or retry a failure.
+        :return: ErrorStatus; only read output data after is_ok() succeeds.
+        """
         return call(self, "capture_depth_source_2d", frame2D, timeoutMs)
 
     def capture_2d_and_3d(self, frame2DAnd3D, timeoutMs=10000):
+        """Capture a combined texture 2D and 3D frame into the supplied output container.
+
+        ``timeoutMs`` is measured in milliseconds. The camera must already be connected;
+        this SDK operation does not initiate a connection or retry a failure.
+        :return: ErrorStatus; only read output data after is_ok() succeeds.
+        """
         return call(self, "capture_2d_and_3d", frame2DAnd3D, timeoutMs)
 
     def capture_depth_source_2d_and_3d(self, frame2DAnd3D, timeoutMs=10000):
+        """Capture a combined depth-source 2D and 3D frame into the supplied output container.
+
+        ``timeoutMs`` is measured in milliseconds. The camera must already be connected;
+        this SDK operation does not initiate a connection or retry a failure.
+        :return: ErrorStatus; only read output data after is_ok() succeeds.
+        """
         return call(self, "capture_depth_source_2d_and_3d", frame2DAnd3D, timeoutMs)
 
     def capture_2d_and_3d_with_normal(self, frame2DAnd3D, timeoutMs=15000):
+        """Capture a combined 2D and 3D frame with normals into the supplied output container.
+
+        ``timeoutMs`` is measured in milliseconds. The camera must already be connected;
+        this SDK operation does not initiate a connection or retry a failure.
+        :return: ErrorStatus; only read output data after is_ok() succeeds.
+        """
         return call(self, "capture_2d_and_3d_with_normal", frame2DAnd3D, timeoutMs)
 
     def capture_stereo_2d(self, left, right, isRectified=False, timeoutMs=5000):
+        """Capture left and right stereo 2D frames into the supplied output container.
+
+        ``timeoutMs`` is measured in milliseconds. The camera must already be connected;
+        this SDK operation does not initiate a connection or retry a failure.
+        :return: ErrorStatus; only read output data after is_ok() succeeds.
+        :param isRectified: Whether the SDK should rectify the stereo images.
+        """
         return call(self, "capture_stereo_2d", left, right, isRectified, timeoutMs)
 
     def set_point_cloud_unit(self, unit):
+        """Set CoordinateUnit_Millimeter or CoordinateUnit_Meter; return ErrorStatus."""
         return call(self, "set_point_cloud_unit", unit)
 
     def save_virtual_device_file(self, fileName):
+        """Save a virtual-device file at fileName through the SDK; return ErrorStatus."""
         return call(self, "save_virtual_device_file", fileName)
 
     def get_camera_intrinsics(self, wrappedIntrinsics):
+        """Fill the supplied CameraIntrinsics with calibration values; return ErrorStatus."""
         return call(self, "get_camera_intrinsics", wrappedIntrinsics)
 
     def get_point_cloud_unit(self):
+        """Return ``[status, unit]`` for the SDK's current CoordinateUnit selection."""
         return call(self, "get_point_cloud_unit", sequence=list)
 
 
 register(Camera)
 cvar = SimpleNamespace()
 for _name, _metadata in _backend.descriptors.items():
-    _namespace = {"__module__": __name__, "thisown": Ownership.thisown}
+    _namespace = {
+        "__module__": __name__,
+        "thisown": Ownership.thisown,
+        "__doc__": f"Descriptor for the {_metadata['name']} camera parameter.\n\nUse name with UserSet getters/setters. Constants describe the SDK type, enum\nentries, units, and nominal limits; check device-specific availability before use.",
+    }
     for _key, _value in _metadata.items():
         if _key == "range":
 
             def _range(value=_value):
+                """Return an independent copy of the descriptor's nominal range."""
                 with _api_lock:
                     return _wrap(_backend.clone_value(value))
 
             _namespace[_key] = staticmethod(_range)
         elif _key in {"step", "max_size"}:
-            _namespace[_key] = staticmethod(lambda value=_value: value)
+            _method = lambda value=_value: value
+            _method.__doc__ = (
+                "Return the nominal increment."
+                if _key == "step"
+                else "Return the nominal maximum number of array elements."
+            )
+            _namespace[_key] = staticmethod(_method)
         else:
             _namespace[_key] = _value
             setattr(cvar, f"{_name}_{_key}", _value)
@@ -730,12 +1040,19 @@ class EventCallbackBase(Ownership):
     """Override run(), process_event(), or process_event_with_payload() to receive events."""
 
     def run(self, event):
+        """Override to handle an event identifier from the four-argument registration form."""
         pass
 
     def process_event(self, eventData):
+        """Override to receive a copied EventData value on the dispatch thread."""
         pass
 
     def process_event_with_payload(self, eventData, extraPayload):
+        """Override to receive copied EventData and Payload values on the dispatch thread.
+
+        When overridden, this method takes precedence over process_event(). Values
+        remain readable while a capture is running; synchronize your own shared state.
+        """
         pass
 
     def __disown__(self):
@@ -808,12 +1125,26 @@ class CameraEvent(Ownership):
 
     @staticmethod
     def get_supported_events(camera, eventInfos):
+        """Fill eventInfos with supported EventInfo values; return ErrorStatus."""
         with _api_lock:
             status, infos = function("get_supported_events", camera)
             eventInfos[:] = infos
             return status
 
     def register_camera_event_callback(self, *args):
+        """Register a callback for a connected camera and event identifier.
+
+        Use ``(camera, event, callback)`` with EventCallbackBase.process_event() or
+        process_event_with_payload(). The four-argument form
+        ``(camera, callback, user, event)`` calls run(event_id); user is accepted
+        but is not forwarded. CAMERA_EVENT_ALL subscribes to all events.
+
+        Event values are copied before Python dispatch. Callback exceptions are
+        retained by Camera.pop_callback_errors(). SDK calls in callbacks wait for
+        other SDK calls to finish.
+        :return: ErrorStatus.
+        :raises TypeError: The argument count or camera type is invalid.
+        """
         if len(args) == 3:
             camera, event, callback = args
             legacy = False
@@ -849,6 +1180,7 @@ class CameraEvent(Ownership):
             return status
 
     def unregister_camera_event_callback(self, camera, event):
+        """Unregister an event, or all events with CAMERA_EVENT_ALL; return ErrorStatus."""
         with _api_lock:
             status = function("unregister_event", camera, event)
             if status.is_ok():

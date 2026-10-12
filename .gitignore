@@ -48,3 +48,16 @@ src/sdk/
 .agents/
 AGENTS.md
 PLAN.md
+
+# Test and coverage outputs
+.coverage
+.coverage.*
+coverage-*.xml
+htmlcov/
+*.gcda
+*.gcno
+
+# Sphinx and Read the Docs build outputs
+docs/_build/
+docs/api/_generated/
+_readthedocs/
