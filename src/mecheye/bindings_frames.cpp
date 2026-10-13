@@ -98,10 +98,10 @@ void bind_frames(nb::module_ &m) {
                               .def(nb::init<>())
                               .def(nb::init<const NativeFrame<eye::Frame2DAnd3D> &>());
     c_Frame2DAnd3D.def("frame_2d", [](NativeFrame<eye::Frame2DAnd3D> &s) {
-        return sdk_call([&] { return NativeFrame<eye::Frame2D>(s.value->frame2D()); });
+        return NativeFrame<eye::Frame2D>::from_sdk([&] { return s.value->frame2D(); });
     });
     c_Frame2DAnd3D.def("frame_3d", [](NativeFrame<eye::Frame2DAnd3D> &s) {
-        return sdk_call([&] { return NativeFrame<eye::Frame3D>(s.value->frame3D()); });
+        return NativeFrame<eye::Frame3D>::from_sdk([&] { return s.value->frame3D(); });
     });
     c_Frame2DAnd3D.def("clear", [](NativeFrame<eye::Frame2DAnd3D> &s) {
         return sdk_call([&] { return s.value->clear(); });

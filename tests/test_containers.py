@@ -187,3 +187,115 @@ class ContainerBoundaryTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             values.push_back("invalid")
         self.assertEqual(values, [1.25, 2.0, 3.5])
+
+
+class ContainerRegressionTests(unittest.TestCase):
+    def test_map_iterators_share_owner_and_reach_their_sentinel(self):
+        for contents in ({}, {"b": 2, "a": 1}):
+            with self.subTest(contents=contents):
+                mapping = s.MechEyeMapStringInt(contents)
+                begin, end = mapping.begin(), mapping.end()
+                self.assertEqual(end - begin, len(contents))
+                self.assertEqual(mapping.rend() - mapping.rbegin(), len(contents))
+                seen = []
+                while begin != end:
+                    seen.append(next(begin))
+                self.assertEqual(seen, sorted(contents.items()))
+                self.assertEqual(mapping.find("missing"), end)
+                self.assertEqual(mapping.upper_bound("z"), end)
+                self.assertEqual(mapping.lower_bound("z"), end)
+                self.assertEqual(begin.copy(), end)
+                self.assertEqual(
+                    list(mapping.rbegin()), sorted(contents.items(), reverse=True)
+                )
+        mapping = s.MechEyeMapStringInt({"a": 1})
+        self.assertNotEqual(mapping.begin(), mapping.rbegin())
+        self.assertNotEqual(mapping.begin(), None)
+        with self.assertRaisesRegex(ValueError, "directions"):
+            mapping.begin().distance(mapping.rbegin())
+        other = s.MechEyeMapStringInt({"a": 1})
+        self.assertNotEqual(mapping.begin(), other.begin())
+        with self.assertRaisesRegex(ValueError, "different containers"):
+            mapping.end() - other.begin()
+        for first, last in ((other.begin(), None), (mapping.begin(), other.end())):
+            with self.assertRaisesRegex(ValueError, "different containers"):
+                mapping.erase(first, last)
+        self.assertEqual(mapping.asdict(), {"a": 1})
+
+    def test_bulk_vector_writes_copy_values_and_support_self_extension(self):
+        for operation in ("extend", "iadd"):
+            with self.subTest(operation=operation):
+                original = s.ROI(1, 2, 3, 4)
+                vector = s.MechEyeVectorROI()
+                if operation == "extend":
+                    self.assertIsNone(vector.extend([original]))
+                else:
+                    alias = vector
+                    vector += [original]
+                    self.assertIs(vector, alias)
+                original.width = 99
+                self.assertEqual(vector[0].width, 3)
+                vector.extend(vector)
+                vector[0].width = 50
+                self.assertEqual(vector[1].width, 3)
+                self.assertGreaterEqual(vector.capacity(), 2)
+
+    def test_vector_repetition_copies_each_added_value(self):
+        vector = s.MechEyeVectorROI([s.ROI(1, 2, 3, 4)])
+        first, alias = vector[0], vector
+        vector *= 3
+        self.assertIs(vector, alias)
+        self.assertIs(vector[0], first)
+        vector[0].width = 99
+        self.assertEqual([value.width for value in vector], [99, 3, 3])
+        vector[1].height = 50
+        self.assertEqual(vector[2].height, 4)
+        vector *= 1
+        self.assertEqual(len(vector), 3)
+        vector *= -1
+        self.assertTrue(vector.empty())
+        with self.assertRaises(TypeError):
+            vector *= 0.5
+
+    def test_negative_sizes_never_modify_vector_contents(self):
+        vector = s.MechEyeVectorString(["preserved"])
+        for operation in (
+            lambda: vector.assign(-1, "lost"),
+            lambda: vector.insert(vector.begin(), -1, "lost"),
+            lambda: vector.reserve(-1),
+            lambda: vector.resize(-1),
+        ):
+            with self.assertRaises(ValueError):
+                operation()
+            self.assertEqual(list(vector), ["preserved"])
+        with self.assertRaises(TypeError):
+            s.MechEyeVectorString(1, "value", "extra")
+        for operation in (
+            lambda: vector.assign(0.5, "lost"),
+            lambda: vector.insert(0, 0.5, "lost"),
+            lambda: vector.reserve(0.5),
+        ):
+            with self.assertRaises(TypeError):
+                operation()
+            self.assertEqual(list(vector), ["preserved"])
+
+    def test_bulk_vector_write_failure_preserves_contents(self):
+        vector = s.MechEyeVectorString(["preserved"])
+
+        def values():
+            yield "partial"
+            raise ValueError("source failed")
+
+        with self.assertRaisesRegex(ValueError, "source failed"):
+            vector.extend(values())
+        self.assertEqual(list(vector), ["preserved"])
+
+    def test_threaded_bulk_appends_copy_all_rois(self):
+        vector = s.MechEyeVectorROI()
+        original = s.ROI(1, 2, 3, 4)
+        with ThreadPoolExecutor(max_workers=8) as executor:
+            list(executor.map(lambda _: vector.extend([original]), range(100)))
+        original.width = 99
+        self.assertEqual(len(vector), 100)
+        self.assertEqual([value.width for value in vector], [3] * 100)
+        self.assertEqual(len({id(value) for value in vector}), 100)

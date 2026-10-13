@@ -147,3 +147,93 @@ class EventTests(unittest.TestCase):
         self.assertEqual(context.owners, [])
         del context
         a._dispatch_events(lambda: None, threading.Event())
+
+    def test_restart_after_stop_uses_new_worker_and_signal_for_all_copies(self):
+        copied = a.Camera(self.camera)
+        waiting, observed, release, delivered = (threading.Event() for _ in range(4))
+        pending = []
+
+        class Callback(a.EventCallbackBase):
+            def process_event(self, data):
+                delivered.set()
+
+        callback = Callback()
+        native = SimpleNamespace(poll_events=lambda: [pending.pop()] if pending else [])
+        old = new = None
+        with (
+            patch.object(a, "function", return_value=s.ErrorStatus()),
+            patch.object(self.camera, "_native", native),
+        ):
+            try:
+                self.events.register_camera_event_callback(self.camera, 1, callback)
+                old = self.camera._event_context.thread
+                stop = self.camera._event_stop
+                wait = stop.wait
+
+                def delayed_wait(timeout=None):
+                    waiting.set()
+                    stopped = wait(timeout)
+                    if stopped:
+                        observed.set()
+                        release.wait(3)
+                    return stopped
+
+                stop.wait = delayed_wait
+                self.assertTrue(waiting.wait(2))
+                self.events.unregister_camera_event_callback(self.camera, 1)
+                self.assertTrue(observed.wait(2))
+                self.events.register_camera_event_callback(copied, 1, callback)
+                new = self.camera._event_context.thread
+                self.assertIsNot(new, old)
+                self.assertIsNot(self.camera._event_stop, stop)
+                self.assertIs(copied._event_stop, self.camera._event_stop)
+                self.assertTrue(stop.is_set())
+                self.assertFalse(self.camera._event_stop.is_set())
+                event = a.EventData()
+                event.event_id = 1
+                pending.append((_unwrap(event), []))
+                release.set()
+                self.assertTrue(delivered.wait(2))
+            finally:
+                release.set()
+                self.camera._event_stop.set()
+                for worker in (old, new):
+                    if worker is not None:
+                        worker.join(2)
+        self.assertFalse(old.is_alive())
+        self.assertFalse(new.is_alive())
+
+    def test_unregister_from_callback_and_register_again_remains_live(self):
+        ready = threading.Event()
+        pending = []
+        camera, events = self.camera, self.events
+
+        class Callback(a.EventCallbackBase):
+            def process_event(self, data):
+                events.unregister_camera_event_callback(camera, 1)
+                events.register_camera_event_callback(camera, 1, self)
+                ready.set()
+
+        callback = Callback()
+        native = SimpleNamespace(poll_events=lambda: [pending.pop()] if pending else [])
+        with (
+            patch.object(a, "function", return_value=s.ErrorStatus()),
+            patch.object(self.camera, "_native", native),
+        ):
+            old = new = None
+            try:
+                events.register_camera_event_callback(camera, 1, callback)
+                old = camera._event_context.thread
+                event = a.EventData()
+                event.event_id = 1
+                pending.append((_unwrap(event), []))
+                self.assertTrue(ready.wait(2))
+                new = camera._event_context.thread
+                self.assertIsNot(new, old)
+                self.assertTrue(new.is_alive())
+            finally:
+                camera._event_stop.set()
+                for worker in (old, new):
+                    if worker is not None:
+                        worker.join(2)
+        self.assertEqual(camera.pop_callback_errors(), [])

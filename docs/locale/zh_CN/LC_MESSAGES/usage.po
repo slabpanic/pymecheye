@@ -219,6 +219,22 @@ msgstr ""
 
 #: docs/usage.rst:130
 msgid ""
+"For multiprocessing, prefer ``multiprocessing.get_context(\"spawn\")`` and create SDK"
+" objects inside each child process. SDK calls after a fork that inherits ``mecheye`` "
+"raise ``RuntimeError`` before acquiring inherited locks. Such forks are unsupported: "
+"the vendor runtime can also abort during child process shutdown. To use "
+"``forkserver``, call ``multiprocessing.set_forkserver_preload([])`` before starting "
+"the server, so it does not preload a main module that imports ``mecheye``. Exchange "
+"owned NumPy arrays between processes rather than SDK objects."
+msgstr ""
+"多进程推荐使用 ``multiprocessing.get_context(\"spawn\")``，在各子进程中创建 SDK 对象。若 fork 子进程继承了 "
+"``mecheye``，SDK 操作会在获取继承的锁之前抛出 ``RuntimeError``。这类 fork 不受支持，厂商运行时在子进程退出时也可能中止进程。使用 "
+"``forkserver`` 时，应在启动服务进程之前调用 "
+"``multiprocessing.set_forkserver_preload([])``，避免服务进程预加载导入了 ``mecheye`` 的主模块。进程间传递独立 "
+"NumPy 数组，不传递 SDK 对象。"
+
+#: docs/usage.rst:130
+msgid ""
 "Subclass :class:`~mecheye.area_scan_3d_camera.EventCallbackBase` and register it "
 "through :class:`~mecheye.area_scan_3d_camera.CameraEvent`. Event values and payloads "
 "are copied before Python dispatch and can be read while a capture is running. An SDK "

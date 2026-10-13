@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from functools import wraps
 import operator
+import os
 import threading
 
 import numpy as np
@@ -11,7 +12,31 @@ import numpy as np
 from . import _native
 
 _backend = _native.sdk
-_api_lock = threading.RLock()
+_import_process = os.getpid()
+
+
+def _check_process():
+    if os.getpid() != _import_process:
+        raise RuntimeError(
+            "MechEye cannot be used after fork; use multiprocessing spawn or forkserver"
+        )
+
+
+class _ProcessLock:
+    """Reject inherited SDK objects before acquiring a lock held across fork."""
+
+    def __init__(self):
+        self._lock = threading.RLock()
+
+    def __enter__(self):
+        _check_process()
+        return self._lock.__enter__()
+
+    def __exit__(self, *args):
+        return self._lock.__exit__(*args)
+
+
+_api_lock = _ProcessLock()
 _types: dict[type, type] = {}
 
 
@@ -94,6 +119,7 @@ class Proxy(Ownership):
             object.__setattr__(self, "_generation", 0)
 
     def _read_native(self):
+        _check_process()
         if "_snapshot_fields" in self.__dict__:
             with self._snapshot_lock:
                 result = getattr(_backend, self._native_name)()
@@ -112,6 +138,7 @@ class Proxy(Ownership):
         return value
 
     def _get_field(self, name):
+        _check_process()
         if "_snapshot_fields" in self.__dict__:
             with self._snapshot_lock:
                 return self._snapshot_fields[name]
@@ -133,6 +160,7 @@ class Proxy(Ownership):
             return result
 
     def _set_field(self, name, value):
+        _check_process()
         if "_snapshot_fields" in self.__dict__:
             with self._snapshot_lock:
                 native = self._read_native()
@@ -489,7 +517,7 @@ def _snapshot(value):
             for name in value._fields
         }
         object.__setattr__(value, "_snapshot_fields", fields)
-        object.__setattr__(value, "_snapshot_lock", threading.RLock())
+        object.__setattr__(value, "_snapshot_lock", _ProcessLock())
         return value
     if isinstance(value, tuple):
         return tuple(_snapshot(item) for item in value)

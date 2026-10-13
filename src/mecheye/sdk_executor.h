@@ -30,6 +30,24 @@
 namespace nb = nanobind;
 namespace eye = mmind::eye;
 
+#if defined(__linux__)
+inline const pid_t sdk_import_process = ::getpid();
+#endif
+
+inline bool sdk_in_original_process() noexcept {
+#if defined(__linux__)
+    return ::getpid() == sdk_import_process;
+#else
+    return true;
+#endif
+}
+
+inline void require_sdk_process() {
+    if (!sdk_in_original_process())
+        throw std::runtime_error(
+            "MechEye cannot be used after fork; use multiprocessing spawn or forkserver");
+}
+
 // The SDK has no public logging switch and writes to standard streams or starts child processes.
 // On Linux, the dedicated worker copies its file descriptor table and silences only that copy's
 // stdout and stderr. Python and other native application threads retain the original table and
@@ -94,6 +112,8 @@ class SdkExecutor {
     }
 
     static SdkExecutor &instance() {
+        // Check before touching the static initialization guard or inherited mutexes.
+        require_sdk_process();
         // Keep the executor storage alive until process exit, but join its worker after
         // Python finalization has queued all remaining SDK object destructors.
         static auto *executor = new SdkExecutor();
@@ -142,7 +162,10 @@ class SdkExecutor {
             worker_.join();
             throw;
         }
-        if (Py_AtExit([] { SdkExecutor::instance().shutdown(); }) != 0) {
+        if (Py_AtExit([] {
+                if (sdk_in_original_process())
+                    SdkExecutor::instance().shutdown();
+            }) != 0) {
             shutdown();
             throw std::runtime_error("Failed to register Mech-Eye SDK shutdown");
         }
@@ -227,6 +250,8 @@ nb::ndarray<nb::numpy, T> owned_array(std::vector<T> &&values,
 // SDK callback threads have no Python thread state and must never wait for their own shutdown.
 // Dispose SDK objects on the worker; release Python state only when a caller is attached.
 template <typename Function> void sdk_dispose(Function function) noexcept {
+    if (!sdk_in_original_process())
+        return;
     try {
         auto cleanup = [function = std::move(function)]() mutable {
             std::lock_guard<std::recursive_mutex> lock(sdk_mutex);

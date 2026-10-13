@@ -194,6 +194,14 @@ reference becomes invalid after its container is resized or released, raising
 and pixel operations are serialized. SDK object construction and destruction
 run on the dedicated worker.
 
+For multiprocessing, prefer `multiprocessing.get_context("spawn")` and create
+SDK objects inside each child process. SDK calls after a fork that inherits
+`mecheye` raise `RuntimeError` before acquiring inherited locks. Such forks are
+unsupported: the vendor runtime can also abort during child process shutdown. To use
+`forkserver`, call `multiprocessing.set_forkserver_preload([])` before starting
+the server, so it does not preload a main module that imports `mecheye`.
+Exchange owned NumPy arrays between processes rather than SDK objects.
+
 ## Integrated conveniences
 
 The `Camera` object provides NumPy capture and context management:

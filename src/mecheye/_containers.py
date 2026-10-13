@@ -8,6 +8,13 @@ import operator
 from ._compat import _api_lock, _unwrap, _wrap, Proxy, _backend
 
 
+def _size(value):
+    value = operator.index(value)
+    if value < 0:
+        raise ValueError("Vector size cannot be negative")
+    return value
+
+
 def _copy(value):
     if isinstance(value, Proxy) and value._native_name in {
         "Parameter",
@@ -27,8 +34,9 @@ from ._compat import Ownership, _snapshot
 class SwigPyIterator(Ownership):
     """Provide index-based iterator operations without exposing native pointers."""
 
-    def __init__(self, sequence, index=0, reverse=False):
+    def __init__(self, sequence, index=0, reverse=False, owner=None):
         self._sequence = sequence
+        self._owner = sequence if owner is None else owner
         self._index = index
         self._direction = -1 if reverse else 1
 
@@ -57,17 +65,26 @@ class SwigPyIterator(Ownership):
 
         :raises ValueError: The iterators refer to different containers.
         """
-        if self._sequence is not other._sequence:
+        if not isinstance(other, SwigPyIterator) or self._owner is not other._owner:
             raise ValueError("Iterators refer to different containers")
+        if self._direction != other._direction:
+            raise ValueError("Iterators have different traversal directions")
         return (other._index - self._index) * self._direction
 
     def equal(self, other):
         """Return whether both iterators refer to the same container and index."""
-        return self._sequence is other._sequence and self._index == other._index
+        return (
+            isinstance(other, SwigPyIterator)
+            and self._owner is other._owner
+            and self._index == other._index
+            and self._direction == other._direction
+        )
 
     def copy(self):
         """Return an independent iterator at the same position and direction."""
-        return type(self)(self._sequence, self._index, self._direction < 0)
+        return type(self)(
+            self._sequence, self._index, self._direction < 0, owner=self._owner
+        )
 
     def next(self):
         """Return the current element, then advance in the traversal direction."""
@@ -114,10 +131,11 @@ class Vector(list, Ownership):
             if not args:
                 values = []
             elif isinstance(args[0], int):
-                if args[0] < 0:
-                    raise ValueError("Vector size cannot be negative")
+                if len(args) > 2:
+                    raise TypeError("Expected a size and optional value")
+                n = _size(args[0])
                 value = args[1] if len(args) > 1 else self._element_type()
-                values = [_copy(value) for _ in range(args[0])]
+                values = [_copy(value) for _ in range(n)]
             elif len(args) == 1:
                 values = [_copy(value) for value in args[0]]
             else:
@@ -171,6 +189,7 @@ class Vector(list, Ownership):
                     else _copy(value)
                 ),
             )
+            self._capacity = max(self._capacity, len(self))
 
     def __delitem__(self, index):
         with getattr(self, "_event_lock", _api_lock):
@@ -183,6 +202,30 @@ class Vector(list, Ownership):
             self._capacity = max(self._capacity, len(self))
 
     push_back = append
+
+    def extend(self, values):
+        """Append independent copies of values, retaining shared parameter handles."""
+        with getattr(self, "_event_lock", _api_lock):
+            copied = [_copy(value) for value in values]
+            super().extend(copied)
+            self._capacity = max(self._capacity, len(self))
+
+    def __iadd__(self, values):
+        self.extend(values)
+        return self
+
+    def __imul__(self, count):
+        count = operator.index(count)
+        with getattr(self, "_event_lock", _api_lock):
+            original = list(list.__iter__(self))
+            values = (
+                original + [_copy(item) for _ in range(count - 1) for item in original]
+                if count > 0
+                else []
+            )
+            super().__setitem__(slice(None), values)
+            self._capacity = max(self._capacity, len(self))
+            return self
 
     def pop(self, index=-1):
         """Remove and return the indexed element; default to the last element."""
@@ -215,16 +258,16 @@ class Vector(list, Ownership):
 
     def assign(self, n, value):
         """Replace the contents with n independent copies of value."""
-        self[:] = [_copy(value) for _ in range(n)]
+        n = _size(n)
+        with getattr(self, "_event_lock", _api_lock):
+            self[:] = [_copy(value) for _ in range(n)]
 
     def resize(self, n, value=None):
         """Resize to n elements, copying value or default-constructed elements when growing.
 
         :raises ValueError: n is negative.
         """
-        n = operator.index(n)
-        if n < 0:
-            raise ValueError("Vector size cannot be negative")
+        n = _size(n)
         with getattr(self, "_event_lock", _api_lock):
             if n < len(self):
                 del self[n:]
@@ -247,9 +290,10 @@ class Vector(list, Ownership):
             )
             if len(args) == 1:
                 super().insert(index, _copy(args[0]))
+                self._capacity = max(self._capacity, len(self))
                 return SwigPyIterator(self, index)
             if len(args) == 2:
-                self[index:index] = [_copy(args[1]) for _ in range(args[0])]
+                self[index:index] = [_copy(args[1]) for _ in range(_size(args[0]))]
                 return None
             raise TypeError("Expected a position, optional count, and value")
 
@@ -265,6 +309,7 @@ class Vector(list, Ownership):
 
     def reserve(self, n):
         """Record a minimum logical capacity without allocating SDK storage."""
+        n = _size(n)
         with getattr(self, "_event_lock", _api_lock):
             self._capacity = max(self._capacity, n)
 
@@ -346,15 +391,18 @@ class MechEyeMapStringInt(dict, Ownership):
 
     def key_iterator(self):
         """Return an iterator over a sorted snapshot of keys."""
-        return SwigPyIterator(sorted(super().keys()))
+        with _api_lock:
+            return SwigPyIterator(sorted(super().keys()), owner=self)
 
     def value_iterator(self):
         """Return an iterator over a snapshot of values in key order."""
-        return SwigPyIterator([self[key] for key in self])
+        with _api_lock:
+            return SwigPyIterator([self[key] for key in self], owner=self)
 
     def iterator(self):
         """Return an iterator over a sorted snapshot of key-value tuples."""
-        return SwigPyIterator([(key, self[key]) for key in self])
+        with _api_lock:
+            return SwigPyIterator([(key, self[key]) for key in self], owner=self)
 
     iterkeys = key_iterator
     itervalues = value_iterator
@@ -364,13 +412,13 @@ class MechEyeMapStringInt(dict, Ownership):
     def end(self):
         """Return a one-past-end iterator over key-value tuples."""
         result = self.iterator()
-        result._index = len(self)
+        result._index = len(result._sequence)
         return result
 
     def rbegin(self):
         """Return a reverse iterator over a sorted snapshot of key-value tuples."""
         result = self.iterator()
-        result._index = len(self) - 1
+        result._index = len(result._sequence) - 1
         result._direction = -1
         return result
 
@@ -386,22 +434,27 @@ class MechEyeMapStringInt(dict, Ownership):
 
     def find(self, key):
         """Return a sorted-key iterator for key, or a one-past-end iterator if absent."""
-        keys = sorted(super().keys())
-        return SwigPyIterator(keys, keys.index(key) if key in self else len(keys))
+        with _api_lock:
+            keys = sorted(super().keys())
+            return SwigPyIterator(
+                keys, keys.index(key) if key in self else len(keys), owner=self
+            )
 
     def lower_bound(self, key):
         """Return an iterator to the first key greater than or equal to key."""
         import bisect
 
-        keys = sorted(super().keys())
-        return SwigPyIterator(keys, bisect.bisect_left(keys, key))
+        with _api_lock:
+            keys = sorted(super().keys())
+            return SwigPyIterator(keys, bisect.bisect_left(keys, key), owner=self)
 
     def upper_bound(self, key):
         """Return an iterator to the first key strictly greater than key."""
         import bisect
 
-        keys = sorted(super().keys())
-        return SwigPyIterator(keys, bisect.bisect_right(keys, key))
+        with _api_lock:
+            keys = sorted(super().keys())
+            return SwigPyIterator(keys, bisect.bisect_right(keys, key), owner=self)
 
     def erase(self, key, last=None):
         """Erase a key or iterator range.
@@ -411,6 +464,10 @@ class MechEyeMapStringInt(dict, Ownership):
         """
         with _api_lock:
             if isinstance(key, SwigPyIterator):
+                if key._owner is not self or (
+                    last is not None and last._owner is not self
+                ):
+                    raise ValueError("Iterators refer to different containers")
                 stop = key._index + 1 if last is None else last._index
                 for value in key._sequence[key._index : stop]:
                     self.pop(value[0] if isinstance(value, tuple) else value, None)

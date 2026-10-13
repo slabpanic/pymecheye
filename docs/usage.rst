@@ -127,6 +127,14 @@ state while blocked. Explicit locks protect SDK objects in regular and
 free-threaded CPython. Caller-owned NumPy writes and application callback state
 still require caller synchronization.
 
+For multiprocessing, prefer ``multiprocessing.get_context("spawn")`` and create
+SDK objects inside each child process. SDK calls after a fork that inherits
+``mecheye`` raise ``RuntimeError`` before acquiring inherited locks. Such forks are
+unsupported: the vendor runtime can also abort during child process shutdown. To use
+``forkserver``, call ``multiprocessing.set_forkserver_preload([])`` before starting
+the server, so it does not preload a main module that imports ``mecheye``.
+Exchange owned NumPy arrays between processes rather than SDK objects.
+
 Subclass :class:`~mecheye.area_scan_3d_camera.EventCallbackBase` and register it
 through :class:`~mecheye.area_scan_3d_camera.CameraEvent`. Event values and payloads
 are copied before Python dispatch and can be read while a capture is running.

@@ -18,16 +18,28 @@ template <typename T> struct NativeFrame {
     NativeFrame(NativeFrame &&other) noexcept = default;
     NativeFrame &operator=(NativeFrame &&other) noexcept = default;
 
+    template <typename Function> static NativeFrame from_sdk(Function &&function) {
+        // Transport only a managed pointer through the future: MSVC may default-construct
+        // its result storage on the caller, where SDK construction would reenter sdk_call.
+        auto owned = sdk_call([&] { return manage(std::make_unique<T>(function())); });
+        return NativeFrame(std::move(owned));
+    }
+
   private:
+    explicit NativeFrame(std::shared_ptr<T> owned) noexcept : value(std::move(owned)) {}
+
+    static std::shared_ptr<T> manage(std::unique_ptr<T> frame) {
+        auto &executor = SdkExecutor::instance();
+        executor.track_resource(frame.get(), [pointer = frame.get()] { delete pointer; });
+        return std::shared_ptr<T>(frame.release(), [](T *pointer) {
+            sdk_dispose([pointer] { SdkExecutor::instance().release_resource(pointer); });
+        });
+    }
+
     void initialize(const T *other) {
         auto construct = [other] {
             std::lock_guard<std::recursive_mutex> lock(sdk_mutex);
-            auto frame = std::unique_ptr<T>(other ? new T(*other) : new T());
-            auto &executor = SdkExecutor::instance();
-            executor.track_resource(frame.get(), [pointer = frame.get()] { delete pointer; });
-            return std::shared_ptr<T>(frame.release(), [](T *pointer) {
-                sdk_dispose([pointer] { SdkExecutor::instance().release_resource(pointer); });
-            });
+            return manage(std::unique_ptr<T>(other ? new T(*other) : new T()));
         };
         value = SdkExecutor::instance().on_worker() ? call_sdk(construct) : sdk_call(construct);
     }

@@ -2406,6 +2406,10 @@ msgstr "删除一个迭代器元素，或删除 first 到 last 的左闭右开�
 msgid "An iterator positioned at the first element following the erased range."
 msgstr "指向被删除区间之后第一个元素的迭代器。"
 
+#: mecheye._containers.Vector.extend:1
+msgid "Append independent copies of values, retaining shared parameter handles."
+msgstr "追加各值的独立副本，参数句柄保持共享。"
+
 #: mecheye._containers.Vector.front:1
 msgid "Return the first element; an empty vector raises IndexError."
 msgstr "返回第一个元素；空向量抛出 IndexError。"
@@ -4042,10 +4046,10 @@ msgstr "共享 SDK 类型、状态值、参数和用户集接口。"
 #: docs/api/_generated/shared.rst:43:<autosummary>:1
 msgid ""
 ":py:obj:`SwigPyIterator <mecheye.shared.SwigPyIterator>`\\ \\(sequence\\[\\, index\\,"
-" reverse\\]\\)"
+" reverse\\, owner\\]\\)"
 msgstr ""
 ":py:obj:`SwigPyIterator <mecheye.shared.SwigPyIterator>`\\ \\(sequence\\[\\, index\\,"
-" reverse\\]\\)"
+" reverse\\, owner\\]\\)"
 
 #: docs/api/_generated/shared.rst:43:<autosummary>:1
 msgid ":py:obj:`MechEyeMapStringInt <mecheye.shared.MechEyeMapStringInt>`\\"

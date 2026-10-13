@@ -12,6 +12,7 @@ from ._compat import (
     Proxy,
     FixedArray,
     _api_lock,
+    _ProcessLock,
     _backend,
     _unwrap,
     _wrap,
@@ -579,7 +580,7 @@ class _EventContext:
     def __init__(self):
         self.callbacks = {}
         self.errors = deque()
-        self.lock = threading.RLock()
+        self.lock = _ProcessLock()
         self.stop = threading.Event()
         self.thread = None
         self.owners = []
@@ -1084,11 +1085,15 @@ def _dispatch_events(owner_ref, stop):
             if camera is None:
                 return
         try:
+            if stop.is_set():
+                return
             pending = _snapshot(_wrap(camera._native.poll_events()))
             with context.lock:
                 registrations = tuple(context.callbacks.items())
             for data, payload in pending:
                 for event, (callback, legacy) in registrations:
+                    if stop.is_set():
+                        return
                     if event not in {CameraEvent.CAMERA_EVENT_ALL, data.event_id}:
                         continue
                     try:
@@ -1101,7 +1106,7 @@ def _dispatch_events(owner_ref, stop):
                             snapshot_payload = list.__new__(Payload)
                             list.__init__(snapshot_payload, payload)
                             snapshot_payload._capacity = len(payload)
-                            snapshot_payload._event_lock = threading.RLock()
+                            snapshot_payload._event_lock = _ProcessLock()
                             callback.process_event_with_payload(data, snapshot_payload)
                         else:
                             callback.process_event(data)
@@ -1165,18 +1170,27 @@ class CameraEvent(Ownership):
         with _api_lock:
             status = function("register_event", camera, event)
             if status.is_ok():
+                context = camera._event_context
                 with camera._callback_lock:
                     camera._callbacks[event] = (callback, legacy)
-                    camera._event_stop.clear()
-                context = camera._event_context
-                if context.thread is None or not context.thread.is_alive():
-                    context.thread = threading.Thread(
-                        target=_dispatch_events,
-                        args=(weakref.ref(context), context.stop),
-                        name="MechEye events",
-                        daemon=True,
-                    )
-                    context.thread.start()
+                    if (
+                        context.thread is None
+                        or context.stop.is_set()
+                        or not context.thread.is_alive()
+                    ):
+                        # A worker that observed a stop request must never be reused.
+                        context.stop = threading.Event()
+                        for owner_ref in context.owners:
+                            owner = owner_ref()
+                            if owner is not None:
+                                owner._event_stop = context.stop
+                        context.thread = threading.Thread(
+                            target=_dispatch_events,
+                            args=(weakref.ref(context), context.stop),
+                            name="MechEye events",
+                            daemon=True,
+                        )
+                        context.thread.start()
             return status
 
     def unregister_camera_event_callback(self, camera, event):

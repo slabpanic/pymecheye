@@ -172,6 +172,13 @@ finally:
 抛出 `ReferenceError`，避免访问已释放内存。相机、帧、参数和像素操作使用显式锁；
 SDK 对象的构造和销毁也在专用工作线程完成。
 
+多进程推荐使用 `multiprocessing.get_context("spawn")`，在各子进程中创建 SDK
+对象。若 fork 子进程继承了 `mecheye`，SDK 操作会在获取继承的锁之前抛出
+`RuntimeError`。这类 fork 不受支持，厂商运行时在子进程退出时也可能中止进程。
+使用 `forkserver` 时，应在启动服务进程之前调用
+`multiprocessing.set_forkserver_preload([])`，避免服务进程预加载导入了 `mecheye`
+的主模块。进程间传递独立 NumPy 数组，不传递 SDK 对象。
+
 ## 集成便利功能
 
 NumPy 采集和上下文管理直接由 `Camera` 对象提供：
